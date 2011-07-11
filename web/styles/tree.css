@@ -1,0 +1,38 @@
+#tree {
+    position: absolute;
+    left: 20px;
+    top: 170px;
+    width: 39%;
+    font-family: tahoma, cursive;
+}
+
+.menuItem, .selectedMenuItem {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.menuItemLink, .selectedMenuItemLink {
+    font-size: 10pt;
+}
+
+.menuItemLink a {
+    color: #555555;
+    font-weight: normal;
+}
+
+.selectedMenuItemLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menuItemBlock {
+    font-size: 12pt;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.menuItem a:hover {
+    color: black;
+}
