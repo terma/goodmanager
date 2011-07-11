@@ -50,36 +50,30 @@
         <param-value>org.hibernate.dialect.FirebirdDialect</param-value>
         <!--<param-value>org.hibernate.dialect.H2Dialect</param-value>-->
     </context-param>
-    <context-param>
-        <param-name>mailurl</param-name>
-        <!--<param-value>localhost</param-value>-->
-        <!--<param-value>192.168.136.121</param-value>-->
-        <param-value>mail.testes.com.ua</param-value>
-    </context-param>
+    <!--<context-param>-->
+        <!--<param-name>mailurl</param-name>-->
+        <!--<param-value>X</param-value>-->
+    <!--</context-param>-->
     <context-param>
         <param-name>basicloginUse</param-name>
         <param-value>true</param-value>
     </context-param>
-    <context-param>
-        <param-name>domain</param-name>
-        <param-value>192.168.136.101</param-value>
-        <!--<param-value>teammari</param-value>-->
-    </context-param>
-    <context-param>
-        <param-name>domainLogin</param-name>
-        <param-value>admin@testes.com.ua</param-value>
-        <!--<param-value>artem</param-value>-->
-    </context-param>
-    <context-param>
-        <param-name>domainLoginUse</param-name>
-        <param-value>true</param-value>
-        <!--<param-value>false</param-value>-->
-    </context-param>
-    <context-param>
-        <param-name>domainPassword</param-name>
-        <param-value>s_XY787pta_=!)f0</param-value>
-        <!--<param-value>team</param-value>-->
-    </context-param>
+    <!--<context-param>-->
+        <!--<param-name>domain</param-name>-->
+        <!--<param-value>192.168.136.101</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>domainLogin</param-name>-->
+        <!--<param-value>X</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>domainLoginUse</param-name>-->
+        <!--<param-value>true</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>domainPassword</param-name>-->
+        <!--<param-value>X</param-value>-->
+    <!--</context-param>-->
 
     <filter>
         <filter-name>FilterEncodeRequest</filter-name>
