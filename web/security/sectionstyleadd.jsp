@@ -15,7 +15,7 @@
             final List<EntityStyle> styles = EntityManager.list("select style from styles as style");
         %>
         К <a href="<login:link value="/security/main.jsp"/>">главной</a>, примененние стиля к
-        <a href="<login:link value="<%= "/security/list.jsp?sectionid=" + section.getId() %>"/>"><%= section.getName() %></a>
+        <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + section.getId() %>'/>"><%= section.getName() %></a>
         <p>
         <form action="/security/sectionstyleaddresult.jsp" method="post">
             <login:input/>
