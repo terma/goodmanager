@@ -167,8 +167,8 @@
                                             <% } else { %>
                                                 <span style="color: #00ff00; font-weight: bold;">Перезвонить</span>
                                             <% } %>
-                                            <%= contact.getPipol().getFio() %> с фирмы <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>"/>"><%= contact.getPipol().getFirm().getName() %></a>
-                                            из <a href="<login:link value="<%= "/security/list.jsp?sectionid=" + contact.getPipol().getFirm().getSection().getId() + "#firmId" + contact.getPipol().getFirm().getId() %>"/>"><%= contact.getPipol().getFirm().getSection().getName() %></a>
+                                            <%= contact.getPipol().getFio() %> с фирмы <a href="<login:link value='<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>'/>"><%= contact.getPipol().getFirm().getName() %></a>
+                                            из <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + contact.getPipol().getFirm().getSection().getId() + "#firmId" + contact.getPipol().getFirm().getId() %>'/>"><%= contact.getPipol().getFirm().getSection().getName() %></a>
                                             <%
                                                 long expiration = System.currentTimeMillis() - contact.getRepeat().getTime();
                                                 expiration = expiration / (24 * 60 * 60 * 1000);
@@ -225,9 +225,9 @@
                             <td valign="top">
                                 Разделы, всего <%= sections.size() %><p>                                
                                 <% for (final EntitySection section : sections) { %>
-                                    <a href="<login:link value="<%= "/security/list.jsp?sectionid=" + section.getId() %>"/>"><%= LogicStyle.getHtml(section.getStyle(), section.getName()) %></a>
+                                    <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + section.getId() %>'/>"><%= LogicStyle.getHtml(section.getStyle(), section.getName()) %></a>
                                     <% if (user.getGroup().id == 2) { %>
-                                        , <a href="<login:link value="<%= "/security/sectionstyleadd.jsp?sectionid=" + section.getId() %>"/>">стиль</a>
+                                        , <a href="<login:link value='<%= "/security/sectionstyleadd.jsp?sectionid=" + section.getId() %>'/>">стиль</a>
                                     <% } %>
                                     <br>
                                 <% } %>
@@ -239,7 +239,7 @@
                     <%= view.byMeOld ? "Мои" : "Все" %> фирмы по которым не было контакта уже 9 месяцев (<%= firmLastContacts.size() %>):
                     <p>
                         <% for (final FirmLastContact firmLastContact : firmLastContacts) { %>
-                            <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>"/>"><%= firmLastContact.firm.getName() %></a><br>
+                            <a href="<login:link value='<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>'/>"><%= firmLastContact.firm.getName() %></a><br>
                             <% if (firmLastContact.contact != null) { %>
                                 <div class="firmInfo">
                                     Последний контакт от <%= format.format(firmLastContact.contact.getCreate()) %> с

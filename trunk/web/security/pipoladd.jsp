@@ -40,7 +40,7 @@
             }
         %>
         <% if(firmId != null) { %>
-            или к <a href="<login:link value="<%= "detail.jsp?firmId=" + firmId %>"/>">фирме</a>
+            или к <a href="<login:link value='<%= "detail.jsp?firmId=" + firmId %>'/>">фирме</a>
         <% } %>
         <p>
         <form action="/security/pipoladdresult.jsp" method="post">

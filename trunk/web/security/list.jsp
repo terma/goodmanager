@@ -158,9 +158,9 @@
             <jsp:include page="/security/util/mail/list.jsp" flush="true"/>
             <jsp:include page="/security/util/rate/list.jsp" flush="true"/>
             <p>
-                Перечень фирм в разделе <%= LogicStyle.getHtml(section.getStyle(), section.getName()) %> к <a href="<login:link value="<%= "/security/main.jsp#section" + section.getId() %>"/>">разделам</a> к
-                <a href="<login:link value="/security/search/search.jsp"/>">поиску</a> или создать <a href="<login:link value="<%= "/security/firmadd.jsp?sectionId=" + section.getId() %>"/>">фирму</a>,
-                <a href="<login:link value="<%= "/security/views.jsp?sectionId=" + sectionId %>"/>">представление</a>
+                Перечень фирм в разделе <%= LogicStyle.getHtml(section.getStyle(), section.getName()) %> к <a href="<login:link value='<%= "/security/main.jsp#section" + section.getId() %>'/>">разделам</a> к
+                <a href="<login:link value="/security/search/search.jsp"/>">поиску</a> или создать <a href="<login:link value='<%= "/security/firmadd.jsp?sectionId=" + section.getId() %>'/>">фирму</a>,
+                <a href="<login:link value='<%= "/security/views.jsp?sectionId=" + sectionId %>'/>">представление</a>
             </p>
             <p>
                 Показывать фирмы если в названии есть <span id="filterPhraseResult"></span><br>
