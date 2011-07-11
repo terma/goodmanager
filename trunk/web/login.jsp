@@ -79,7 +79,7 @@
                                     <% if (FilterLogin.getAnonymousUserId() != null) { %>
                                         <% final EntityUser anonymousUser = EntityManager.find(EntityUser.class, FilterLogin.getAnonymousUserId()); %>
                                         <% if (anonymousUser != null) { %>
-                                            <p>Анонимный <a href="<login:link value="<%= "/security/main.jsp?" + "login=" + anonymousUser.getLogin() + "&password=" + anonymousUser.getPassword() %>" always="true"/>">вход</a></p>
+                                            <p>Анонимный <a href="<login:link value='<%= "/security/main.jsp?login=" + anonymousUser.getLogin() + "&password=" + anonymousUser.getPassword() %>' always="true"/>">вход</a></p>
                                         <% } %>
                                     <% } %>
                                     <p>Что это такое? Позвать <a href="javascript:showLoginHelp()">на помощь</a>!</p>
