@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Manager</display-name>
+    <context-param>
+        <param-name>databasepassword</param-name>
+        <param-value>masterkey</param-value>
+        <!--<param-value>21imkuD</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>version</param-name>
+        <param-value>1.0.2.13</param-value>
+    </context-param>
+    <context-param>
+        <param-name>1curl</param-name>
+        <param-value>D:\marina\Работа\1С\TRUKRDEM\</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaselogin</param-name>
+        <param-value>sysdba</param-value>
+    </context-param>
+    <!-- <context-param>
+        <description>
+            Идентификатор пользователя вход под которым считается аннонимный. Если он не указан
+            то на странице автризации нет линка для анонимного входа
+        </description>
+        <param-name>anonymoususerid</param-name>
+        <param-value>1</param-value>
+    </context-param> -->
+    <context-param>
+        <param-name>databaseurl</param-name>
+        <!--<param-value>jdbc:firebirdsql:localhost/3050:d:/team/work/infoprog/manager/1-0/database/infoprog.gdb</param-value>-->
+        <param-value>jdbc:firebirdsql:192.168.136.102/3050:D:/Фирма/Данные/Приложения/Менеджер/ROOT/WEB-INF/manager.gdb</param-value>
+        <!--<param-value>jdbc:firebirdsql:192.168.136.121/3050:d:/work/infoprog/site/ROOT/infoprog.gdb</param-value>-->
+        <!--<param-value>jdbc:firebirdsql:localhost/3050:d:/team/work/infoprog/manager/1-0/database/manager.gdb</param-value>-->
+        <!--<param-value>jdbc:h2:d:/team/work/infoprog/manager/1-0/database/infoprog;LOCK_MODE=3;LOCK_TIMEOUT=20000;TRACE_LEVEL_SYSTEM_OUT=1</param-value>-->
+        <!--<param-value>jdbc:firebirdsql:db.testes.com.ua/3050:D:/Фирма/Данные/Приложения/Менеджер/ROOT/WEB-INF/manager.gdb</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>databasedriver</param-name>
+        <param-value>org.firebirdsql.jdbc.FBDriver</param-value>
+        <!--<param-value>org.hibernate.dialect.H2Dialect</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>rateuse</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databasedialect</param-name>
+        <param-value>org.hibernate.dialect.FirebirdDialect</param-value>
+        <!--<param-value>org.hibernate.dialect.H2Dialect</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>mailurl</param-name>
+        <!--<param-value>localhost</param-value>-->
+        <!--<param-value>192.168.136.121</param-value>-->
+        <param-value>mail.testes.com.ua</param-value>
+    </context-param>
+    <context-param>
+        <param-name>basicloginUse</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>domain</param-name>
+        <param-value>192.168.136.101</param-value>
+        <!--<param-value>teammari</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>domainLogin</param-name>
+        <param-value>admin@testes.com.ua</param-value>
+        <!--<param-value>artem</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>domainLoginUse</param-name>
+        <param-value>true</param-value>
+        <!--<param-value>false</param-value>-->
+    </context-param>
+    <context-param>
+        <param-name>domainPassword</param-name>
+        <param-value>s_XY787pta_=!)f0</param-value>
+        <!--<param-value>team</param-value>-->
+    </context-param>
+
+    <filter>
+        <filter-name>FilterEncodeRequest</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterEncodeRequest</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterEncodeRequest</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterUpload</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.upload.UploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUpload</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>FilterEntity</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterEntity</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterEntity</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Определяет правильну локаль для приложения -->
+    <filter>
+        <filter-name>FilterLocale</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.locale.FilterLocale</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLocale</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>FilterLogin</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterLogin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLogin</filter-name>
+        <url-pattern>/security/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>FilterLoginNtlm</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLoginNtlm</filter-name>
+        <url-pattern>/security/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>FilterLoginCheck</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterLoginCheck</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLoginCheck</filter-name>
+        <url-pattern>/security/*</url-pattern>
+    </filter-mapping>
+    <!-- Подключение фильтра измерения производительности, последним для того чтобы он
+    измерял производительность страниц jsp -->
+    <filter>
+        <filter-name>FilterPerforman</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.performan.FilterPerforman</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterPerforman</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Этот сервлет отвечает за отдачу файлов клиентам -->
+    <servlet>
+        <servlet-name>ServletFileGet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.ServletFileGet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletFileGet</servlet-name>
+        <url-pattern>/security/contract/fileget</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletImageGet</servlet-name>
+        <servlet-class>ua.com.testes.manager.servlet.ServletImageGet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletImageGet</servlet-name>
+        <url-pattern>/content/imageget</url-pattern>
+    </servlet-mapping>
+
+    <!-- Для работы DWR -->
+    <servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <!--<display-name>DWR Servlet</display-name>-->
+        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>classes</param-name>
+            <param-value>
+                ua.com.testes.manager.web.service.FirmNamesService,
+ua.com.testes.manager.web.service.SearchFirmsService
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>ua.com.testes.manager.web.listener.LoadListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ua.com.testes.manager.web.filter.SessionListener</listener-class>
+    </listener>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/tag/login.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tag/login.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/tag/version.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tag/version.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+    <description>Manager 1.0 web application</description>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
