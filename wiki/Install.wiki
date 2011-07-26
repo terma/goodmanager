@@ -16,5 +16,7 @@
 
 ==Установка приложения==
  # Скачайте приложение: [http://code.google.com/p/goodmanager/downloads/detail?name=goodmanager.zip&can=2]
+ # Зайдите Пуск / Панель управления / Администрирование / Службы и остановите службу Tomcat
  # Очистите папку c:/program files/tomcat/webapps
  # Розархивируйте программу в папку c:/program files/tomcat/webapps/ROOT
+ # Зайдите Пуск / Панель управления / Администрирование / Службы и запустите службу Tomcat
