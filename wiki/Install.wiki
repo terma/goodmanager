@@ -15,5 +15,6 @@
   * в качестве пути инсталяции выбирете c:/program files/tomcat
 
 ==Установка приложения==
-# Скачайте приложение: [http://code.google.com/p/goodmanager/downloads/detail?name=goodmanager.zip&can=2]
-# Розархивируйте программу в папку c:/program files/tomcat/webapps/ROOT
+ # Скачайте приложение: [http://code.google.com/p/goodmanager/downloads/detail?name=goodmanager.zip&can=2]
+ # Очистите папку c:/program files/tomcat/webapps
+ # Розархивируйте программу в папку c:/program files/tomcat/webapps/ROOT
