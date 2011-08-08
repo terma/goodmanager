@@ -15,8 +15,18 @@
   * в качестве пути инсталяции выбирете c:/program files/tomcat
 
 ==Установка приложения==
+
  # Скачайте приложение: [http://code.google.com/p/goodmanager/downloads/detail?name=goodmanager.zip&can=2]
  # Зайдите Пуск / Панель управления / Администрирование / Службы и остановите службу Tomcat
  # Очистите папку c:/program files/tomcat/webapps
  # Розархивируйте программу в папку c:/program files/tomcat/webapps/ROOT
+ # New! Скачайте начальную базу данных: [http://code.google.com/p/goodmanager/downloads/detail?name=goodmanager-db.zip&can=2]
+ # New! Разархивируйте ее в файл, например: c:/program files/tomcat/goodmanagerdb.gdb
+ # New! Укажите путь к базе данных в настройках приложения 
+  * Откройте в Блокноте файл: c:/program files/tomcat/webapps/ROOT/WEB-INF/web.xml 
+  * New! Найдите строку: databaseurl
+  * New! Далее вместо примера пути: c:/artem/work/goodmanager/web/WEB-INF/manager.gdb укажите: c:/program files/tomcat/goodmanagerdb.gdb
  # Зайдите Пуск / Панель управления / Администрирование / Службы и запустите службу Tomcat
+ # New! Откройте браузер, например Internet Explorer и введите http://localhost:8080
+ # New! Вы увидете окно логина программы, введите логин: admin, пароль: 1 (это администратор по умолчанию)
+ # New! Нажмите на окрывшейся странице ссылку "Права" и добавьте нужных пользователей!
