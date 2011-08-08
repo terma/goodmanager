@@ -1,0 +1,27 @@
+package ua.com.testes.manager.entity.search;
+
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import java.io.Serializable;
+
+
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
+@Entity(name = "rule_firm_user_items")
+public final class EntitySearchRuleFirmUserItem
+        implements Serializable {
+
+
+    @EmbeddedId
+    public EntitySearchRuleFirmUserItemId id = new EntitySearchRuleFirmUserItemId();
+
+}
+
+/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
+ * Qualified Name:     ua.com.testes.manager.entity.search.EntitySearchRuleFirmUserItem
+ * JD-Core Version:    0.6.0
+ */
