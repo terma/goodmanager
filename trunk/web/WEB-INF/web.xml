@@ -112,14 +112,14 @@
         <filter-name>FilterLogin</filter-name>
         <url-pattern>/security/*</url-pattern>
     </filter-mapping>
-    <filter>
-        <filter-name>FilterLoginNtlm</filter-name>
-        <filter-class>ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>FilterLoginNtlm</filter-name>
-        <url-pattern>/security/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>FilterLoginNtlm</filter-name>-->
+        <!--<filter-class>ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>FilterLoginNtlm</filter-name>-->
+        <!--<url-pattern>/security/*</url-pattern>-->
+    <!--</filter-mapping>-->
     <filter>
         <filter-name>FilterLoginCheck</filter-name>
         <filter-class>ua.com.testes.manager.web.filter.FilterLoginCheck</filter-class>
