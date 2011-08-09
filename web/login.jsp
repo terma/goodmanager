@@ -1,6 +1,5 @@
 <%@ page import="ua.com.testes.manager.web.page.PageLoginError" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
-<%@ page import="ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.web.filter.FilterLogin" %>
 <%@ page import="java.util.Locale" %>
@@ -73,9 +72,9 @@
                                         <p>Пароль<br><input style="width: 200px" type="password" name="password" value="<%= password != null ? password : "" %>"></p>
                                         <p><input type="submit" value="Войти">
                                     </form>
-                                    <% if (FilterLoginNtlm.isUse()) { %>
-                                        <p>Попробовать <a href="<login:link value="/security/main.jsp" always="true"/>">автоматически</a></p>
-                                    <% } %>
+                                    <%--<% if (FilterLoginNtlm.isUse()) { %>--%>
+                                        <%--<p>Попробовать <a href="<login:link value="/security/main.jsp" always="true"/>">автоматически</a></p>--%>
+                                    <%--<% } %>--%>
                                     <% if (FilterLogin.getAnonymousUserId() != null) { %>
                                         <% final EntityUser anonymousUser = EntityManager.find(EntityUser.class, FilterLogin.getAnonymousUserId()); %>
                                         <% if (anonymousUser != null) { %>
