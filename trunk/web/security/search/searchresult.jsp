@@ -38,10 +38,6 @@
         EntitySearchSource firms = null;
         EntitySearchSource pipols = null;
         EntitySearchSource contacts = null;
-//        final List<EntityFirm> firmList = new ArrayList<EntityFirm>();
-//        final List<EntityContact> contactList = new ArrayList<EntityContact>();
-//        final List<EntityPipol> pipolList = new ArrayList<EntityPipol>();
-//        final List<EntitySection> sections = EntityManager.list(
 //            "select section from ua.com.testes.manager.entity.EntitySection as section");
         if (pageSearch.firm) {
             firms = new EntitySearchSourceFirm();
