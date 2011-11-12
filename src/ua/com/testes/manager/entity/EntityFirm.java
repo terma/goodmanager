@@ -50,7 +50,7 @@ public final class EntityFirm
     @OneToMany(cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "id_parent")
-/*  51 */ private List<EntityPipol> pipols = new ArrayList();
+/*  51 */ private List<EntityPipol> pipols = new ArrayList<EntityPipol>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -67,7 +67,7 @@ public final class EntityFirm
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "id.firm", cascade = {javax.persistence.CascadeType.ALL})
-/*  69 */ private List<EntityFirmHistory> historys = new ArrayList();
+/*  69 */ private List<EntityFirmHistory> historys = new ArrayList<EntityFirmHistory>();
 
     public String getSite() {
 /*  74 */
@@ -251,8 +251,3 @@ public final class EntityFirm
         this.historys = historys;
     }
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.EntityFirm
- * JD-Core Version:    0.6.0
- */
