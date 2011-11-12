@@ -80,7 +80,7 @@
             if (firm.getDelete() != null) continue;
 
             // Давно не прозваниваемые клиенты
-            if (!view.byMeOld || firm.getUser().getId().equals(user.getId())) {
+            if (!view.byMeOld || firm.getUser() == user) {
                 // Получаем самый последний контакт
                 final FirmLastContact firmLastContact = new FirmLastContact();
                 firmLastContact.firm = firm;
@@ -92,7 +92,7 @@
 
             for (final EntityPipol pipol : firm.getPipols()) {
                 if (pipol.getDelete() != null) continue;
-                for (EntityContact contact : pipol.getContacts()) {
+                for (final EntityContact contact : pipol.getContacts()) {
                     if (contact.getDelete() != null) continue;
                     if (!view.byMeTotal || contact.getUser().getId().equals(user.getId())) {
                         if (System.currentTimeMillis() - contact.getCreate().getTime() < month3) {
@@ -108,7 +108,7 @@
 
                     // Перезвонить
                     if (contact.getRepeat() == null) continue;
-                    if (view.byMeRepeat && !contact.getUser().getId().equals(user)) continue;
+                    if (view.byMeRepeat && contact.getUser() != user) continue;
                     // Если это последний контакт
                     if (contact.getRepeat().before(now) && firm.lastContact() == contact) {
                         contactRepeats.add(contact);
