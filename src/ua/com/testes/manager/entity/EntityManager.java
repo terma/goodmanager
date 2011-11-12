@@ -37,93 +37,48 @@ public class EntityManager {
     private static EntityManagerFactory factory = null;
 
     public static void configuration(String login, String password, String driver, String url, String dialect) {
-/*  40 */
-        Properties properties = new Properties();
-/*  41 */
+        final Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", dialect);
-
-/*  43 */
         properties.setProperty("hibernate.connection.url", url);
-
-/*  46 */
         properties.setProperty("hibernate.connection.driver_class", driver);
-/*  47 */
         properties.setProperty("hibernate.connection.username", login);
-/*  48 */
         properties.setProperty("hibernate.connection.password", password);
-/*  49 */
         properties.setProperty("hibernate.connection.autocommit", "false");
-/*  50 */
         properties.setProperty("hibernate.cache.use_second_level_cache", "true");
-/*  51 */
         properties.setProperty("hibernate.cache.use_query_cache", "true");
-/*  52 */
         properties.setProperty("hibernate.connection.release_mode", "on_close");
-/*  53 */
         properties.setProperty("hibernate.generate_statistics", "false");
-/*  54 */
         properties.setProperty("hibernate.bytecode.use_reflection_optimizer", "false");
-/*  55 */
         properties.setProperty("hibernate.cglib.use_reflection_optimizer", "false");
-
-/*  57 */
         properties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.EhCacheProvider");
-/*  58 */
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-/*  59 */
-        Ejb3Configuration configuration = new Ejb3Configuration().addProperties(properties);
-/*  60 */
-        configuration.addPackage(EntityManager.class.getPackage().getName());
-/*  61 */
-        configuration.addAnnotatedClass(EntityImage.class);
 
-/*  63 */
+        final Ejb3Configuration configuration = new Ejb3Configuration().addProperties(properties);
+        configuration.addPackage(EntityManager.class.getPackage().getName());
+        configuration.addAnnotatedClass(EntityImage.class);
         configuration.addAnnotatedClass(EntityFirm.class);
-/*  64 */
         configuration.addAnnotatedClass(EntitySection.class);
-/*  65 */
         configuration.addAnnotatedClass(EntityRank.class);
-/*  66 */
         configuration.addAnnotatedClass(EntityUser.class);
-/*  67 */
         configuration.addAnnotatedClass(EntityPipol.class);
-/*  68 */
         configuration.addAnnotatedClass(EntityStatus.class);
-/*  69 */
         configuration.addAnnotatedClass(EntityContact.class);
-/*  70 */
         configuration.addAnnotatedClass(EntityContactHistory.class);
-/*  71 */
         configuration.addAnnotatedClass(EntityGroup.class);
-/*  72 */
         configuration.addAnnotatedClass(EntityRule.class);
-/*  73 */
         configuration.addAnnotatedClass(EntityStyle.class);
-/*  74 */
         configuration.addAnnotatedClass(EntityFirmHistory.class);
-/*  75 */
         configuration.addAnnotatedClass(EntityPipolHistory.class);
-/*  76 */
         configuration.addAnnotatedClass(EntityContract.class);
-/*  77 */
         configuration.addAnnotatedClass(EntityContractVersion.class);
-/*  78 */
         configuration.addAnnotatedClass(EntityVersionFile.class);
-/*  79 */
         configuration.addAnnotatedClass(EntityVersionResolution.class);
-/*  80 */
         configuration.addAnnotatedClass(EntityTask.class);
-/*  81 */
         configuration.addAnnotatedClass(EntityView.class);
-/*  82 */
         configuration.addAnnotatedClass(EntityFirmSort.class);
-/*  83 */
         configuration.addAnnotatedClass(EntityViewUser.class);
-/*  84 */
         configuration.addAnnotatedClass(EntityText.class);
-/*  85 */
         configuration.addAnnotatedClass(EntityProduct.class);
-/*  86 */
         configuration.addAnnotatedClass(EntityProductPrice.class);
 /*  87 */
         configuration.addAnnotatedClass(EntityCurrency.class);
@@ -283,49 +238,32 @@ public class EntityManager {
     }
 
     public static void execute(EntityTransaction transaction) {
-
-        managers.get().setFlushMode(FlushModeType.COMMIT);
-
-
-        managers.get().getTransaction().begin();
+        final javax.persistence.EntityManager entityManager = managers.get();
+        entityManager.setFlushMode(FlushModeType.COMMIT);
+        entityManager.getTransaction().begin();
         try {
-
-            transaction.execute(managers.get());
-
-
-            managers.get().getTransaction().commit();
+            transaction.execute(entityManager);
+            entityManager.getTransaction().commit();
         } catch (RuntimeException exception) {
-
-            managers.get().getTransaction().rollback();
-
+            entityManager.getTransaction().rollback();
             throw exception;
         }
     }
 
-    public static javax.persistence.EntityManager getNew() {
-
-        return factory.createEntityManager();
-    }
-
     public static void start() {
-
         managers.set(factory.createEntityManager());
     }
 
-    public static void finish(boolean commit) {
-
+    public static void finish() {
         if (factory == null) {
-
             throw new NullPointerException("EntityManager factory not initialize use configuration()!");
         }
 
         if (managers.get() == null) {
-
             throw new NullPointerException("EntityManager not set filter!");
         }
 
         managers.get().close();
-
-        managers.set(null);
+        managers.remove();
     }
 }

@@ -179,7 +179,7 @@
                     }
                 }
             } finally {
-                EntityManager.finish(false);
+                EntityManager.finish();
             }
         }
 
