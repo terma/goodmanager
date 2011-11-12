@@ -31,8 +31,10 @@ import java.util.List;
 import java.util.Properties;
 
 public class EntityManager {
-    /*  35 */   private static EntityManagerFactory factory = null;
-    /*  36 */   private static final ThreadLocal<javax.persistence.EntityManager> managers = new ThreadLocal();
+
+    private static final ThreadLocal<javax.persistence.EntityManager> managers
+            = new ThreadLocal<javax.persistence.EntityManager>();
+    private static EntityManagerFactory factory = null;
 
     public static void configuration(String login, String password, String driver, String url, String dialect) {
 /*  40 */
@@ -225,16 +227,15 @@ public class EntityManager {
 
         configuration.buildMappings();
         try {
-
+            //noinspection deprecation
             factory = configuration.createEntityManagerFactory();
         } catch (Throwable exception) {
-
             System.err.println("Initial SessionFactory creation failed." + exception);
-
             throw new ExceptionInInitializerError(exception);
         }
     }
 
+    @SuppressWarnings({"unchecked"})
     public static <T> List<T> list(String hql, Object... parameters) {
 
         Query query = managers.get().createQuery(hql);
@@ -247,6 +248,7 @@ public class EntityManager {
         return query.getResultList();
     }
 
+    @SuppressWarnings({"unchecked"})
     public static <T> List<T> listByName(String hqlQueryName, Object[] parameters) {
 
         Query query = managers.get().createNamedQuery(hqlQueryName);
@@ -260,18 +262,17 @@ public class EntityManager {
     }
 
     public static <T> T find(Class<T> entityClass, Object id) {
-
-        return ((javax.persistence.EntityManager) managers.get()).find(entityClass, id);
+        return managers.get().find(entityClass, id);
     }
 
     public static javax.persistence.EntityManager get() {
-
-        return (javax.persistence.EntityManager) managers.get();
+        return managers.get();
     }
 
+    @SuppressWarnings({"unchecked"})
     public static <T> T one(String hql, Object[] parameters) {
 
-        Query query = ((javax.persistence.EntityManager) managers.get()).createQuery(hql);
+        Query query = managers.get().createQuery(hql);
 
         for (int i = 0; i < parameters.length; i++) {
 
@@ -283,19 +284,19 @@ public class EntityManager {
 
     public static void execute(EntityTransaction transaction) {
 
-        ((javax.persistence.EntityManager) managers.get()).setFlushMode(FlushModeType.COMMIT);
+        managers.get().setFlushMode(FlushModeType.COMMIT);
 
 
-        ((javax.persistence.EntityManager) managers.get()).getTransaction().begin();
+        managers.get().getTransaction().begin();
         try {
 
-            transaction.execute((javax.persistence.EntityManager) managers.get());
+            transaction.execute(managers.get());
 
 
-            ((javax.persistence.EntityManager) managers.get()).getTransaction().commit();
+            managers.get().getTransaction().commit();
         } catch (RuntimeException exception) {
 
-            ((javax.persistence.EntityManager) managers.get()).getTransaction().rollback();
+            managers.get().getTransaction().rollback();
 
             throw exception;
         }
@@ -328,8 +329,3 @@ public class EntityManager {
         managers.set(null);
     }
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.EntityManager
- * JD-Core Version:    0.6.0
- */
