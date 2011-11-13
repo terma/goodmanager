@@ -17,15 +17,23 @@
 
         <properties>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
+
             <property name="hibernate.bytecode.use_reflection_optimizer" value="false"/>
             <property name="hibernate.cglib.use_reflection_optimizer" value="false"/>
+
             <property name="hibernate.generate_statistics" value="false"/>
+
             <property name="hibernate.connection.release_mode" value="on_close"/>
-            <property name="hibernate.cache.use_query_cache" value="true"/>
+
             <property name="hibernate.connection.autocommit" value="false"/>
+
+            <property name="net.sf.ehcache.configurationResourceName" value="/META-INF/ehcache.xml"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
             <property name="hibernate.cache.use_second_level_cache" value="true"/>
-            <property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.EhCacheProvider"/>
+            <property name="hibernate.cache.region.factory_class"
+                      value="net.sf.ehcache.hibernate.EhCacheRegionFactory"/>
+            <!--<property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.EhCacheProvider"/>-->
         </properties>
     </persistence-unit>
 </persistence>
