@@ -12,9 +12,9 @@ import java.util.List;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "FIRMS")
-public final class EntityFirm
-        implements Serializable {
-    /*  18 */   private String name = "";
+public final class EntityFirm implements Serializable {
+
+    private String name = "";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERATOR_FIRM")
@@ -22,22 +22,22 @@ public final class EntityFirm
     private Integer id;
 
     @Column(name = "descriptions", nullable = false)
-/*  25 */ private String description = "";
+    private String description = "";
 
     @Column(nullable = false)
-/*  28 */ private String address = "";
+    private String address = "";
 
     @Column(nullable = false)
-/*  31 */ private String telephon = "";
+    private String telephon = "";
 
     @Column(nullable = false)
-/*  34 */ private String fax = "";
+    private String fax = "";
 
     @Column(name = "e_mail", nullable = false, length = 500)
-/*  37 */ private String email = "";
+    private String email = "";
 
     @Column(name = "firm_site", length = 500, nullable = false)
-/*  40 */ private String site = "";
+    private String site = "";
 
     @Column(name = "create_date", nullable = false)
 /*  43 */ private Date create = new Date();
@@ -67,37 +67,25 @@ public final class EntityFirm
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "id.firm", cascade = {javax.persistence.CascadeType.ALL})
-/*  69 */ private List<EntityFirmHistory> historys = new ArrayList<EntityFirmHistory>();
+    private List<EntityFirmHistory> historys = new ArrayList<EntityFirmHistory>();
 
     public String getSite() {
-/*  74 */
         if (this.site.startsWith("http://")) {
-/*  75 */
             return this.site;
         }
-/*  77 */
         return "http://" + this.site;
     }
 
     public EntityContact lastContact() {
-/*  86 */
         EntityContact lastContact = null;
-/*  87 */
         for (EntityPipol pipol : getPipols()) {
-/*  88 */
             if (pipol.getDelete() == null) {
-/*  89 */
                 for (EntityContact contact : pipol.getContacts()) {
-/*  90 */
                     if (contact.getDelete() == null) {
-/*  91 */
                         if (lastContact == null) {
-/*  92 */
                             lastContact = contact;
-                        }
-/*  94 */
-                        else if (lastContact.getCreate().getTime() < contact.getCreate().getTime())
-/*  95 */ lastContact = contact;
+                        } else if (lastContact.getCreate().getTime() < contact.getCreate().getTime())
+                            lastContact = contact;
                     }
                 }
             }
@@ -107,42 +95,34 @@ public final class EntityFirm
     }
 
     public String getName() {
-
         return this.name;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
     public Integer getId() {
-
         return this.id;
     }
 
     public void setId(Integer id) {
-
         this.id = id;
     }
 
     public String getDescription() {
-
         return this.description;
     }
 
     public void setDescription(String description) {
-
         this.description = description;
     }
 
     public String getAddress() {
-
         return this.address;
     }
 
     public void setAddress(String address) {
-
         this.address = address;
     }
 
@@ -222,32 +202,27 @@ public final class EntityFirm
     }
 
     public EntitySection getSection() {
-
         return this.section;
     }
 
     public void setSection(EntitySection section) {
-
         this.section = section;
     }
 
     public Date getDelete() {
-
         return this.delete;
     }
 
     public void setDelete(Date delete) {
-
         this.delete = delete;
     }
 
     public List<EntityFirmHistory> getHistorys() {
-
         return this.historys;
     }
 
     public void setHistorys(List<EntityFirmHistory> historys) {
-
         this.historys = historys;
     }
+
 }

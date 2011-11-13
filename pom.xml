@@ -9,11 +9,6 @@
     <name>goodmanager</name>
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>META-INF</directory>
-            </resource>
-        </resources>
         <!--<testSourceDirectory>test</testSourceDirectory>-->
 
         <plugins>

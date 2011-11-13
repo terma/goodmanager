@@ -93,7 +93,7 @@
                 if (pipol.getDelete() != null) continue;
                 for (final EntityContact contact : pipol.getContacts()) {
                     if (contact.getDelete() != null) continue;
-                    if (!view.byMeTotal || contact.getUser().getId().equals(user.getId())) {
+                    if (!view.byMeTotal || contact.getUser() == user) {
                         if (System.currentTimeMillis() - contact.getCreate().getTime() < month3) {
                             last3Month++;
                         } else if (System.currentTimeMillis() - contact.getCreate().getTime() < month6) {
@@ -182,18 +182,18 @@
                         </tr>
                         <tr>
                             <td valign="top">
-                                <a href="<login:link value="/security/search/search.jsp"/>">Поиск</a><br>
-                                <a href="<login:link value="/security/firmadd.jsp"/>">Создать фирму</a><br>
-                                <a href="<login:link value="/security/pipoladd.jsp"/>">Создать сотрудника</a><br>
-                                <a href="<login:link value="/security/user.jsp"/>">О себе</a><br>
-                                <a href="<login:link value="/security/rule.jsp"/>">Права</a><br>
-                                <a href="<login:link value="/security/contract/main.jsp"/>">Договора</a><br>
-                                <a href="<login:link value="/security/task/list.jsp"/>">Задачи</a><br>
-                                <a href="<login:link value="/security/views.jsp"/>">Представление</a><br>
-                                <a href="<login:link value="/security/product/main.jsp"/>">Продукция</a><br>
-                                <a href="<login:link value="/security/tiding/main.jsp"/>">Новости</a><br>
-                                <a href="<login:link value="/security/mail/main.jsp"/>">Почта</a><br>
-                                <a href="<login:link value="/security/product/storage/main.jsp"/>">Склад</a><br>
+                                <a href="/security/search/search.jsp">Поиск</a><br>
+                                <a href="/security/firmadd.jsp">Создать фирму</a><br>
+                                <a href="/security/pipoladd.jsp">Создать сотрудника</a><br>
+                                <%--<a href="<login:link value="/security/user.jsp"/>">О себе</a><br>--%>
+                                <a href="/security/rule.jsp">Права</a><br>
+                                <a href="/security/contract/main.jsp">Договора</a><br>
+                                <%--<a href="<login:link value="/security/task/list.jsp"/>">Задачи</a><br>--%>
+                                <a href="/security/views.jsp">Представление</a><br>
+                                <%--<a href="<login:link value="/security/product/main.jsp"/>">Продукция</a><br>--%>
+                                <%--<a href="<login:link value="/security/tiding/main.jsp"/>">Новости</a><br>--%>
+                                <%--<a href="<login:link value="/security/mail/main.jsp"/>">Почта</a><br>--%>
+                                <%--<a href="<login:link value="/security/product/storage/main.jsp"/>">Склад</a><br>--%>
                                 <a href="/logout.jsp">Выйти</a><br>
                                 <% if (user.getGroup().id == 2) { %>
                                     <a href="<login:link value="/security/style/list.jsp"/>">Стили</a><br>
@@ -212,7 +212,7 @@
                                         <li><a href="<login:link value="/security/statistic/user.jsp"/>">По менеджеру</a></li>
                                         <li><a href="<login:link value="/security/statistic/work.jsp"/>">По сделанному</a></li>
                                     <% } %>
-                                    <li><a href="<login:link value="/security/statistic/repeat.jsp"/>">Перезвонить</a></li>
+                                    <li><a href="/security/statistic/repeat.jsp">Перезвонить</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -224,9 +224,9 @@
                             <td valign="top">
                                 Разделы, всего <%= sections.size() %><p>                                
                                 <% for (final EntitySection section : sections) { %>
-                                    <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + section.getId() %>'/>"><%= LogicStyle.getHtml(section.getStyle(), section.getName()) %></a>
+                                    <a href="<%= "/security/list.jsp?sectionid=" + section.getId() %>"><%= LogicStyle.getHtml(section.getStyle(), section.getName()) %></a>
                                     <% if (user.getGroup().id == 2) { %>
-                                        , <a href="<login:link value='<%= "/security/sectionstyleadd.jsp?sectionid=" + section.getId() %>'/>">стиль</a>
+                                        , <a href="<%= "/security/sectionstyleadd.jsp?sectionid=" + section.getId() %>">стиль</a>
                                     <% } %>
                                     <br>
                                 <% } %>
@@ -238,7 +238,7 @@
                     <%= view.byMeOld ? "Мои" : "Все" %> фирмы по которым не было контакта уже 9 месяцев (<%= firmLastContacts.size() %>):
                     <p>
                         <% for (final FirmLastContact firmLastContact : firmLastContacts) { %>
-                            <a href="<login:link value='<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>'/>"><%= firmLastContact.firm.getName() %></a><br>
+                            <a href="<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>"><%= firmLastContact.firm.getName() %></a><br>
                             <% if (firmLastContact.contact != null) { %>
                                 <div class="firmInfo">
                                     Последний контакт от <%= format.format(firmLastContact.contact.getCreate()) %> с
