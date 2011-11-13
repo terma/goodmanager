@@ -119,24 +119,15 @@ public final class LogicView {
     }
 
     public static EntityView get(EntityUser user) {
-/*  95 */
         if (user == null) {
-/*  96 */
             throw new NullPointerException("Can't get view by null user!");
         }
-/*  98 */
-        if (user.getDefaultView() != null) {
-/*  99 */
-            checkSortFirm(user.getDefaultView());
 
+        if (user.getDefaultView() != null) {
+            checkSortFirm(user.getDefaultView());
             return user.getDefaultView();
         }
 
         return getDefault();
     }
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.logic.view.LogicView
- * JD-Core Version:    0.6.0
- */

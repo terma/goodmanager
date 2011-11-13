@@ -1,6 +1,11 @@
-<persistence>
-    <persistence-unit name="persistence-unit">
+<?xml version="1.0" encoding="utf-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="persistence-unit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
         <class>ua.com.testes.manager.entity.EntityFirm</class>
         <class>ua.com.testes.manager.entity.EntityGroup</class>
         <class>ua.com.testes.manager.entity.EntityContactHistory</class>
@@ -9,5 +14,18 @@
         <class>ua.com.testes.manager.entity.EntityContact</class>
         <class>ua.com.testes.manager.entity.EntityPipol</class>
         <class>ua.com.testes.manager.entity.user.EntityUser</class>
+
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.bytecode.use_reflection_optimizer" value="false"/>
+            <property name="hibernate.cglib.use_reflection_optimizer" value="false"/>
+            <property name="hibernate.generate_statistics" value="false"/>
+            <property name="hibernate.connection.release_mode" value="on_close"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.EhCacheProvider"/>
+        </properties>
     </persistence-unit>
 </persistence>
