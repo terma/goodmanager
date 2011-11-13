@@ -10,10 +10,6 @@
         <param-name>version</param-name>
         <param-value>1.0.2.13</param-value>
     </context-param>
-    <!--<context-param>-->
-        <!--<param-name>1curl</param-name>-->
-        <!--<param-value>D:\marina\Работа\1С\TRUKRDEM\</param-value>-->
-    <!--</context-param>-->
     <context-param>
         <param-name>databaselogin</param-name>
         <param-value>sysdba</param-value>
@@ -28,7 +24,7 @@
     </context-param> -->
     <context-param>
         <param-name>databaseurl</param-name>
-        <param-value>jdbc:firebirdsql:localhost/3050:c:/artem/work/goodmanager/web/WEB-INF/manager.gdb</param-value>
+        <param-value>jdbc:firebirdsql:localhost/3050:c:/users/amiv/projects/good-manager/manager.gdb</param-value>
         <!--<param-value>jdbc:h2:c:/artem/work/goodmanager/db/db;LOCK_MODE=3;LOCK_TIMEOUT=20000;TRACE_LEVEL_SYSTEM_OUT=1</param-value>-->
     </context-param>
     <context-param>
