@@ -1,0 +1,13 @@
+<persistence>
+    <persistence-unit name="persistence-unit">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>ua.com.testes.manager.entity.EntityFirm</class>
+        <class>ua.com.testes.manager.entity.EntityGroup</class>
+        <class>ua.com.testes.manager.entity.EntityContactHistory</class>
+        <class>ua.com.testes.manager.entity.EntityPipolHistory</class>
+        <class>ua.com.testes.manager.entity.EntityFirmHistory</class>
+        <class>ua.com.testes.manager.entity.EntityContact</class>
+        <class>ua.com.testes.manager.entity.EntityPipol</class>
+        <class>ua.com.testes.manager.entity.user.EntityUser</class>
+    </persistence-unit>
+</persistence>
