@@ -194,8 +194,14 @@ ua.com.testes.manager.web.service.SearchFirmsService
             <taglib-location>/WEB-INF/tag/version.tld</taglib-location>
         </taglib>
     </jsp-config>
+
     <description>Manager 1.0 web application</description>
+
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <session-timeout>180</session-timeout>
+    </session-config>
 </web-app>
