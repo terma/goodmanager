@@ -24,7 +24,7 @@
     </context-param> -->
     <context-param>
         <param-name>databaseurl</param-name>
-        <param-value>jdbc:firebirdsql:localhost/3050:c:/users/amiv/projects/good-manager/manager.gdb</param-value>
+        <param-value>jdbc:firebirdsql:localhost/3050:d:/artem/good-manager/manager.gdb</param-value>
         <!--<param-value>jdbc:h2:c:/artem/work/goodmanager/db/db;LOCK_MODE=3;LOCK_TIMEOUT=20000;TRACE_LEVEL_SYSTEM_OUT=1</param-value>-->
     </context-param>
     <context-param>

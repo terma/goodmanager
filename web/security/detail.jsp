@@ -7,7 +7,6 @@
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%!
 
@@ -87,15 +86,15 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="5">
             <tr>
                 <td colspan="2" valign="top">
-                    Выход <a href="<login:link value="/security/search/search.jsp"/>">Поиск</a> к <a href="<login:link value="/security/main.jsp"/>">разделам</a>,
-                    может <a href="<login:link value="<%= "/security/firmadd.jsp?sectionId=" + firm.getSection().getId() %>"/>">создать</a>
+                    Выход <a href="/security/search/search.jsp">Поиск</a> к <a href="/security/main.jsp">разделам</a>,
+                    может <a href="<%= "/security/firmadd.jsp?sectionId=" + firm.getSection().getId() %>">создать</a>
                     <% if (firm.getDelete() == null) { %>
-                        или <a href="<login:link value="<%= "/security/firmedit.jsp?firmId=" + firmId %>"/>">редактировать</a> фирму,
+                        или <a href="<%= "/security/firmedit.jsp?firmId=" + firmId %>">редактировать</a> фирму,
                     <% } %>
-                    <a href="<login:link value="<%= "/security/views.jsp?firmId=" + firmId %>"/>">представление</a>
+                    <a href="<%= "/security/views.jsp?firmId=" + firmId %>">представление</a>
                     <p>
                     Фирма <%= firm.getName() %> №<%= firm.getId() %> из раздела
-                    <a href="<login:link value="<%= "/security/list.jsp?sectionid=" + firm.getSection().getId() + "#firmId" + firm.getId() %>"/>"><%= LogicStyle.getHtml(firm.getSection().getStyle(), firm.getSection().getName()) %></a><br>
+                    <a href="<%= "/security/list.jsp?sectionid=" + firm.getSection().getId() + "#firmId" + firm.getId() %>"><%= LogicStyle.getHtml(firm.getSection().getStyle(), firm.getSection().getName()) %></a><br>
                     <div class="firmInfo">Менеджер <a href="mailto:<%= firm.getUser().getEmail() %>"><%= firm.getUser().getFio() %></a><br>
                         Добавлена <%= createFormat.format(firm.getCreate()) %><br>
                         Телефон <%= firm.getTelephon() %><br>
@@ -146,13 +145,13 @@
                         <% if (!view.delete.pipol && pipol.getDelete() != null) continue; %>
                         <div>
                             <% if (pipol.getDelete() == null) { %>
-                                <a href="<login:link value="<%= "/security/pipoldeleteconfirm.jsp?pipolId=" + pipol.getId() %>"/>"><img
+                                <a href="<%= "/security/pipoldeleteconfirm.jsp?pipolId=" + pipol.getId() %>"><img
                                         src="/image/delete.gif" style="vertical-align: middle;" alt="Удалить" width="15" height="15"
                                         border="0"></a>
                             <% } %>
                             <%= pipol.getFio() %>,
                             <% if (pipol.getDelete() == null) { %>
-                                <a href="<login:link value="<%= "/security/pipoledit.jsp?pipolId=" + pipol.getId() %>"/>">редактировать</a><br>
+                                <a href="<%= "/security/pipoledit.jsp?pipolId=" + pipol.getId() %>">редактировать</a><br>
                             <% } %>
                             <span class="pipolRang">Менеджер <a href="mailto:<%= pipol.getUser().getEmail() %>"><%= pipol.getUser().getFio() %></a></span><br>
                             <span class="pipolRang">Добавлен <%= createFormat.format(pipol.getCreate()) %></span><br>
@@ -194,7 +193,7 @@
                             </p>
                         <% } %>
                     <% } %>
-                    <p><a href="<login:link value="<%= "/security/pipoladd.jsp?firmId=" + firmId %>"/>">Добавить</a>
+                    <p><a href="<%= "/security/pipoladd.jsp?firmId=" + firmId %>">Добавить</a>
                 </td>
                 <td width="70%" valign="top">
                     <%
@@ -210,7 +209,7 @@
                     <% for (final EntityContact contact : contacts) { %>
                         <% if (!view.delete.contact && (contact.getPipol().getDelete() != null || contact.getDelete() != null)) continue; %>
                         <% if (contact.getDelete() == null && contact.getPipol().getDelete() == null) { %>
-                            <a href="<login:link value="<%= "/security/contactdeleteconfirm.jsp?contactId=" + contact.getId() %>"/>"><img
+                            <a href="<%= "/security/contactdeleteconfirm.jsp?contactId=" + contact.getId() %>"><img
                                     src="/image/delete.gif" style="vertical-align: middle;" alt="Удалить" width="15" height="15"
                                     border="0"></a>
                         <% } %>
@@ -222,7 +221,7 @@
                             <%= contact.getPipol().getFio() %>,
                         <% } %>
                         <% if (contact.getDelete() == null && contact.getPipol().getDelete() == null) { %>
-                            <a href="<login:link value="<%= "/security/contactedit.jsp?contactId=" + contact.getId() %>"/>">редактировать</a><br>
+                            <a href="<%= "/security/contactedit.jsp?contactId=" + contact.getId() %>">редактировать</a><br>
                         <% } %>
                         Со статусом <%= contact.getStatus().name %><br>
                         <% if (contact.getDescription().length() > 0) { %>
@@ -251,7 +250,7 @@
                             </p>
                         <% } %>
                     <% } %>
-                    <a href="<login:link value="<%= "/security/contactadd.jsp?firmId=" + firmId %>"/>">Беседа</a>                    
+                    <a href="<%= "/security/contactadd.jsp?firmId=" + firmId %>">Беседа</a>
                 </td>
             </tr>
         </table>

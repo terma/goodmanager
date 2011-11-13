@@ -2,7 +2,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="java.util.*" %>
-<%@ page import="java.io.Serializable" %>
 <%@ page import="ua.com.testes.manager.logic.view.LogicView" %>
 <%@ page import="ua.com.testes.manager.entity.view.EntityView" %>
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
@@ -47,7 +46,7 @@
 
             };
 
-    private static final class FirmLastContact implements Serializable {
+    private static final class FirmLastContact {
 
         public EntityFirm firm;
         public EntityContact contact;

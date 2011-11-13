@@ -21,14 +21,6 @@ public class EntityManager {
         properties.setProperty("hibernate.connection.driver_class", driver);
         properties.setProperty("hibernate.connection.username", login);
         properties.setProperty("hibernate.connection.password", password);
-        properties.setProperty("hibernate.connection.autocommit", "false");
-        properties.setProperty("hibernate.cache.use_second_level_cache", "true");
-        properties.setProperty("hibernate.cache.use_query_cache", "true");
-        properties.setProperty("hibernate.connection.release_mode", "on_close");
-        properties.setProperty("hibernate.generate_statistics", "false");
-        properties.setProperty("hibernate.bytecode.use_reflection_optimizer", "false");
-        properties.setProperty("hibernate.cglib.use_reflection_optimizer", "false");
-        properties.setProperty("hibernate.cache.provider_class", "net.sf.ehcache.hibernate.EhCacheProvider");
 //        properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
         factory = Persistence.createEntityManagerFactory("persistence-unit", properties);
