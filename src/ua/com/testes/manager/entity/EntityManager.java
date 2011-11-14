@@ -14,14 +14,9 @@ public class EntityManager {
     private static EntityManagerFactory factory = null;
 
     @SuppressWarnings({"deprecation"})
-    public static void configuration(String login, String password, String driver, String url, String dialect) {
+    public static void configuration(String url) {
         final Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", dialect);
         properties.setProperty("hibernate.connection.url", url);
-        properties.setProperty("hibernate.connection.driver_class", driver);
-        properties.setProperty("hibernate.connection.username", login);
-        properties.setProperty("hibernate.connection.password", password);
-//        properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
         factory = Persistence.createEntityManagerFactory("persistence-unit", properties);
     }

@@ -2,49 +2,17 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Manager</display-name>
-    <context-param>
-        <param-name>databasepassword</param-name>
-        <param-value>masterkey</param-value>
-    </context-param>
+
     <context-param>
         <param-name>version</param-name>
         <param-value>1.0.2.13</param-value>
     </context-param>
-    <context-param>
-        <param-name>databaselogin</param-name>
-        <param-value>sysdba</param-value>
-    </context-param>
-    <!-- <context-param>
-        <description>
-            Идентификатор пользователя вход под которым считается аннонимный. Если он не указан
-            то на странице автризации нет линка для анонимного входа
-        </description>
-        <param-name>anonymoususerid</param-name>
-        <param-value>1</param-value>
-    </context-param> -->
-    <context-param>
-        <param-name>databaseurl</param-name>
-        <param-value>jdbc:firebirdsql:localhost/3050:c:/users/amiv/projects/goodmanager/manager.gdb</param-value>
-        <!--<param-value>jdbc:h2:c:/artem/work/goodmanager/db/db;LOCK_MODE=3;LOCK_TIMEOUT=20000;TRACE_LEVEL_SYSTEM_OUT=1</param-value>-->
-    </context-param>
-    <context-param>
-        <param-name>databasedriver</param-name>
-        <param-value>org.firebirdsql.jdbc.FBDriver</param-value>
-        <!--<param-value>org.h2.Driver</param-value>-->
-    </context-param>
+
     <context-param>
         <param-name>rateuse</param-name>
         <param-value>true</param-value>
     </context-param>
-    <context-param>
-        <param-name>databasedialect</param-name>
-        <param-value>org.hibernate.dialect.FirebirdDialect</param-value>
-        <!--<param-value>org.hibernate.dialect.H2Dialect</param-value>-->
-    </context-param>
-    <!--<context-param>-->
-        <!--<param-name>mailurl</param-name>-->
-        <!--<param-value>X</param-value>-->
-    <!--</context-param>-->
+
     <context-param>
         <param-name>basicloginUse</param-name>
         <param-value>true</param-value>
