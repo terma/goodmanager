@@ -26,7 +26,7 @@
                     if (firmLastContact2.contact == null) {
                         return -1;
                     }
-                    return firmLastContact1.contact.getCreate().compareTo(firmLastContact2.contact.getCreate());
+                    return firmLastContact1.contact.create.compareTo(firmLastContact2.contact.create);
                 }
 
             };
@@ -35,13 +35,13 @@
             new Comparator<EntityContact>() {
 
                 public final int compare(EntityContact contact, EntityContact contact2) {
-                    if (contact.getRepeat() == null) {
-                        return contact2.getRepeat() == null ? 0 : 1;
+                    if (contact.repeat == null) {
+                        return contact2.repeat == null ? 0 : 1;
                     }
-                    if (contact2.getRepeat() == null) {
+                    if (contact2.repeat == null) {
                         return -1;
                     }
-                    return contact.getRepeat().compareTo(contact2.getRepeat());
+                    return contact.repeat.compareTo(contact2.repeat);
                 }
 
             };
@@ -84,7 +84,7 @@
                 final FirmLastContact firmLastContact = new FirmLastContact();
                 firmLastContact.firm = firm;
                 firmLastContact.contact = firm.lastContact();
-                if (firmLastContact.contact == null || (currentTime - firmLastContact.contact.getCreate().getTime() > month9)) {
+                if (firmLastContact.contact == null || (currentTime - firmLastContact.contact.create.getTime() > month9)) {
                     firmLastContacts.add(firmLastContact);
                 }
             }
@@ -92,24 +92,28 @@
             for (final EntityPipol pipol : firm.getPipols()) {
                 if (pipol.getDelete() != null) continue;
                 for (final EntityContact contact : pipol.getContacts()) {
-                    if (contact.getDelete() != null) continue;
-                    if (!view.byMeTotal || contact.getUser() == user) {
-                        if (System.currentTimeMillis() - contact.getCreate().getTime() < month3) {
+                    if (contact.delete != null) continue;
+                    if (!view.byMeTotal || contact.user == user) {
+                        if (System.currentTimeMillis() - contact.create.getTime() < month3) {
                             last3Month++;
-                        } else if (System.currentTimeMillis() - contact.getCreate().getTime() < month6) {
-                            last6Month++;
-                        } else if (System.currentTimeMillis() - contact.getCreate().getTime() < month9) {
-                            last9Month++;
                         } else {
-                            lastOtherMonth++;
+                            if (System.currentTimeMillis() - contact.create.getTime() < month6) {
+                                last6Month++;
+                            } else {
+                                if (System.currentTimeMillis() - contact.create.getTime() < month9) {
+                                    last9Month++;
+                                } else {
+                                    lastOtherMonth++;
+                                }
+                            }
                         }
                     }
 
                     // Перезвонить
-                    if (contact.getRepeat() == null) continue;
-                    if (view.byMeRepeat && contact.getUser() != user) continue;
+                    if (contact.repeat == null) continue;
+                    if (view.byMeRepeat && contact.user != user) continue;
                     // Если это последний контакт
-                    if (contact.getRepeat().before(now) && firm.lastContact() == contact) {
+                    if (contact.repeat.before(now) && firm.lastContact() == contact) {
                         contactRepeats.add(contact);
                     }
                 }
@@ -161,15 +165,15 @@
                                     %>
                                     <% for (final EntityContact contact : contactRepeats) { %>
                                         <li>
-                                            <% if (contact.getRepeat().before(before)) { %>
+                                            <% if (contact.repeat.before(before)) { %>
                                                 <span style="color: #ff0000; font-weight: bold;">Перезвонить</span>
                                             <% } else { %>
                                                 <span style="color: #00ff00; font-weight: bold;">Перезвонить</span>
                                             <% } %>
-                                            <%= contact.getPipol().getFio() %> с фирмы <a href="<login:link value='<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>'/>"><%= contact.getPipol().getFirm().getName() %></a>
-                                            из <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + contact.getPipol().getFirm().getSection().getId() + "#firmId" + contact.getPipol().getFirm().getId() %>'/>"><%= contact.getPipol().getFirm().getSection().getName() %></a>
+                                            <%= contact.pipol.getFio() %> с фирмы <a href="<%= "/security/detail.jsp?firmId=" + contact.pipol.getFirm().getId() %>"><%= contact.pipol.getFirm().getName() %></a>
+                                            из <a href="<%= "/security/list.jsp?sectionid=" + contact.pipol.getFirm().getSection().getId() + "#firmId" + contact.pipol.getFirm().getId() %>"><%= contact.pipol.getFirm().getSection().getName() %></a>
                                             <%
-                                                long expiration = System.currentTimeMillis() - contact.getRepeat().getTime();
+                                                long expiration = System.currentTimeMillis() - contact.repeat.getTime();
                                                 expiration = expiration / (24 * 60 * 60 * 1000);
                                             %>
                                             <% if (expiration > 1) { %>
@@ -241,8 +245,8 @@
                             <a href="<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>"><%= firmLastContact.firm.getName() %></a><br>
                             <% if (firmLastContact.contact != null) { %>
                                 <div class="firmInfo">
-                                    Последний контакт от <%= format.format(firmLastContact.contact.getCreate()) %> с
-                                    <%= firmLastContact.contact.getPipol().getFio() %> по поводу <%= firmLastContact.contact.getDescription() %>
+                                    Последний контакт от <%= format.format(firmLastContact.contact.create) %> с
+                                    <%= firmLastContact.contact.pipol.getFio() %> по поводу <%= firmLastContact.contact.description %>
                                 </div>
                             <% } %>
                         <% } %>

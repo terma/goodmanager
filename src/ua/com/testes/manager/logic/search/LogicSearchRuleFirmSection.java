@@ -6,8 +6,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleFirmSection;
 import ua.com.testes.manager.entity.search.EntitySearchRuleFirmSectionItem;
 
-import java.io.Serializable;
-
 
 final class LogicSearchRuleFirmSection
         implements LogicSearchRule {
@@ -21,7 +19,7 @@ final class LogicSearchRuleFirmSection
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         EntityFirm entity;
 

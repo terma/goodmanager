@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-final class LogicSearchSourceFirmPipolContact
-        implements LogicSearchSource {
+final class LogicSearchSourceFirmPipolContact implements LogicSearchSource {
 
     public void get(Map<EntitySearchSource, List<Serializable>> results, Map<EntitySearchSource, LogicSearchRule> rules) {
 
@@ -47,13 +46,13 @@ final class LogicSearchSourceFirmPipolContact
 
                 sourceContact = entitySource;
 
-                ruleContact = (LogicSearchRule) rules.get(sourceContact);
+                ruleContact = rules.get(sourceContact);
 
             } else if ((entitySource instanceof EntitySearchSourceFirm)) {
 
                 sourceFirm = entitySource;
 
-                ruleFirm = (LogicSearchRule) rules.get(sourceFirm);
+                ruleFirm = rules.get(sourceFirm);
 
             } else if ((entitySource instanceof EntitySearchSourceFirmWithDelete)) {
 
@@ -61,13 +60,13 @@ final class LogicSearchSourceFirmPipolContact
 
                 sourceFirm = entitySource;
 
-                ruleFirm = (LogicSearchRule) rules.get(sourceFirm);
+                ruleFirm = rules.get(sourceFirm);
 
             } else if ((entitySource instanceof EntitySearchSourcePipol)) {
 
                 sourcePipol = entitySource;
 
-                rulePipol = (LogicSearchRule) rules.get(sourcePipol);
+                rulePipol = rules.get(sourcePipol);
 
             } else if ((entitySource instanceof EntitySearchSourcePipolWithDelete)) {
 
@@ -75,7 +74,7 @@ final class LogicSearchSourceFirmPipolContact
 
                 sourcePipol = entitySource;
 
-                rulePipol = (LogicSearchRule) rules.get(sourcePipol);
+                rulePipol = rules.get(sourcePipol);
 
             }
 
@@ -124,7 +123,7 @@ final class LogicSearchSourceFirmPipolContact
 
                                     for (EntityContact contact : pipol.getContacts())
 
-                                        if ((contactDeleteUse) || (contact.getDelete() == null))
+                                        if ((contactDeleteUse) || (contact.delete == null))
                                             if ((ruleContact == null) || (ruleContact.accept(contact)))
                                                 resultContacts.add(contact);
 
@@ -151,8 +150,3 @@ final class LogicSearchSourceFirmPipolContact
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.logic.search.LogicSearchSourceFirmPipolContact
- * JD-Core Version:    0.6.0
- */

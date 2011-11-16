@@ -4,7 +4,6 @@ package ua.com.testes.manager.logic.search;
 import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleFirmComposite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,7 @@ final class LogicSearchRuleFirmComposite
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if (this.rules.isEmpty()) return true;
 

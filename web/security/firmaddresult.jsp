@@ -14,7 +14,7 @@
     firm.getPipols().add(pipol);
     pipol.setFirm(firm);
     pipol.getContacts().add(contact);
-    contact.setPipol(pipol);
+    contact.pipol = pipol;
     final List<PageDetailError> errors = new ArrayList<PageDetailError>();
     int sectionId = 0;
     try {
@@ -40,12 +40,12 @@
     pipol.setRang(request.getParameter("pipolrank").trim());
     pipol.setEmail(request.getParameter("pipolemail").trim());
     pipol.setDescription(request.getParameter("pipoldescription"));
-    contact.setDescription(request.getParameter("contactdescription"));
+    contact.description = request.getParameter("contactdescription");
     if (firm.getName() == null || firm.getName().trim().length() == 0) {
         errors.add(PageDetailError.FIRM_NAME_EMPTY);
     } else if (pipol.getFio() == null || pipol.getFio().trim().length() == 0) {
         errors.add(PageDetailError.PIPOL_FIO_EMPTY);
-    } else if (contact.getDescription() == null || contact.getDescription().trim().length() == 0) {
+    } else if (contact.description == null || contact.description.trim().length() == 0) {
         errors.add(PageDetailError.CONTACT_DESCRIPTION_EMPTY);
     }
     // Если нужно повторный контакт
@@ -67,9 +67,9 @@
                 if (nowCalendar.getTime().after(calendar.getTime())) {
                     errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
                 }
-                contact.setRepeat(calendar.getTime());
+                contact.repeat = calendar.getTime();
             } catch (Exception exception) {
-                contact.setRepeat(new Date());
+                contact.repeat = new Date();
                 errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
             }
         } else if ("delta".equals(repeatType)) {
@@ -102,8 +102,8 @@
                 firm.getSection().getFirms().add(firm);
                 firm.setUser(user);
                 pipol.setUser(user);
-                contact.setUser(user);
-                contact.setStatus(manager.find(EntityStatus.class, tempStatusId));
+                contact.user = user;
+                contact.status = manager.find(EntityStatus.class, tempStatusId);
                 manager.persist(firm);
                 return firm;
             }

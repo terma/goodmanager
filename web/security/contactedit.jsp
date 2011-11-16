@@ -28,42 +28,43 @@
                 if (editContact == null) {
                     EntityContact contact = EntityManager.find(EntityContact.class, Integer.parseInt(request.getParameter("contactId")));
                     editContact = new EntityContact();
-                    editContact.setId(contact.getId());
-                    editContact.setDescription(contact.getDescription());
-                    editContact.setRepeat(contact.getRepeat());
-                    editContact.setUser(contact.getUser());
-                    editContact.setStatus(contact.getStatus());
-                    editContact.setPipol(contact.getPipol());
+                    editContact.id = contact.id;
+                    editContact.description = contact.description;
+                    editContact.repeat = contact.repeat;
+                    editContact.user = contact.user;
+                    editContact.status = contact.status;
+                    editContact.pipol = contact.pipol;
                 }
                 final List<PageDetailError> errors = (List<PageDetailError>) request.getAttribute("errors");
             %>
-            <input type="hidden" name="contactid" value="<%= editContact.getId() %>">
-            Контакт с сотрудником <a href="mailto:<%= editContact.getPipol().getEmail() %>"><%= editContact.getPipol().getFio() %></a> из
-            <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + editContact.getPipol().getFirm().getId() %>"/>"><%= editContact.getPipol().getFirm().getName() %></a>
-            раздел <a href="<login:link value="<%= "/security/list.jsp?sectionId=" + editContact.getPipol().getFirm().getSection().getId() %>"/>"><%= editContact.getPipol().getFirm().getSection().getName() %></a><br>
+            <input type="hidden" name="contactid" value="<%= editContact.id %>">
+            Контакт с сотрудником <a href="mailto:<%= editContact.pipol.getEmail() %>"><%= editContact.pipol.getFio() %></a> из
+            <a href="<%= "/security/detail.jsp?firmId=" + editContact.pipol.getFirm().getId() %>"><%= editContact.pipol.getFirm().getName() %></a>
+            раздел <a href="<%= "/security/list.jsp?sectionId=" + editContact.pipol.getFirm().getSection().getId() %>"><%= editContact.pipol.getFirm().getSection().getName() %></a><br>
             <p>
                 <b>Реквизиты контакта</b>
                 <p>
-                    Статус<br>
-                    <select name="statusId" style="vertical-align: middle; width: 80%">
+                    <label for="status">Статус</label><br>
+                    <select id="status" name="statusId" style="vertical-align: middle; width: 80%">
                         <%
                             final List<EntityStatus> statuses = EntityManager.list(
                                 "select status from ua.com.testes.manager.entity.EntityStatus as status");
                         %>
                         <% for (final EntityStatus status : statuses) { %>
-                            <option <%= status.id.equals(editContact.getStatus().id) ? "selected" : "" %>
-                                value="<%= status.id %>"><%= status.name %>
+                            <option <%= status == editContact.status ? "selected" : "" %> value="<%= status.id %>">
+                                <%= status.name %>
                             </option>
                         <% } %>
                     </select><br>
                     <%
                         GregorianCalendar repeatCalendar = null;
-                        if (editContact.getRepeat() != null) {
+                        if (editContact.repeat != null) {
                             repeatCalendar = new GregorianCalendar();
-                            repeatCalendar.setTime(editContact.getRepeat());
+                            repeatCalendar.setTime(editContact.repeat);
                         }
+                        Date result2 = editContact.repeat;
                     %>
-                    Нужно ли перезвонить <input type="checkbox" <%= editContact.getRepeat() != null ? "checked" : "" %> name="contactrepeatneed"
+                    Нужно ли перезвонить <input type="checkbox" <%= result2 != null ? "checked" : "" %> name="contactrepeatneed"
                         id="contactrepeatneed" style="vertical-align: middle;"> и когда, скажем
                     <% if (errors != null && errors.contains(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT)) { %>
                         <br><b>Введите пожайлусто правильно дату, так чтобы она была больше чем сегодня.</b>
@@ -144,7 +145,7 @@
                     <% if (errors != null && errors.contains(PageDetailError.CONTACT_DESCRIPTION_EMPTY)) { %>
                         <b>Введите пожайлусто текст беседы с сотрудником.</b>
                     <% } %>
-                    <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= editContact.getDescription() %></textarea>
+                    <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= editContact.description %></textarea>
                 </p>
             </p>
             <input type="submit" name="" value="Сохранить">

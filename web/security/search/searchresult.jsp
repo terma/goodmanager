@@ -8,7 +8,6 @@
 <%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <%!
     private static final SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy");
@@ -72,7 +71,7 @@
         <link type="text/css" href="/public/testes/style.css" rel="stylesheet">
     </head>
     <body>
-    <a href="<login:link value="/security/search/search.jsp"/>">Назад</a> к поиску<p>
+    <a href="/security/search/search.jsp">Назад</a> к поиску<p>
         <% if (pageSearch.firm) { %>
             <%
                 final List<EntityFirm> resultFirms = (List) results.get(firms);
@@ -96,21 +95,22 @@
                 <% } %>
             </p>
             <% for (final EntityFirm firm : resultFirms) { %>
-                <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + firm.getId() %>"/>"><%= firm.getName() %></a><br>
+                <a href="<%= "/security/detail.jsp?firmId=" + firm.getId() %>"><%= firm.getName() %></a><br>
             <% } %>
         <% } %>
         <% if(pageSearch.pipol) { %>
             <% final List<EntityPipol> resultPipols = (List) results.get(pipols); %>
             <p><b>Найдены сотрудников <%= resultPipols.size() %></b><p>
             <% for (final EntityPipol pipol : resultPipols) { %>
-                <%= pipol.getFio() %> из фирмы <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + pipol.getFirm().getId() %>"/>"><%= pipol.getFirm().getName() %></a><br>
+                <%= pipol.getFio() %> из фирмы <a href="<%= "/security/detail.jsp?firmId=" + pipol.getFirm().getId() %>"><%= pipol.getFirm().getName() %></a><br>
             <% } %>
         <% } %>
         <% if (pageSearch.contact) { %>
             <% final List<EntityContact> resultContacts = (List) results.get(contacts); %>
             <p><b>Найдены контактов <%= resultContacts.size() %></b><p>
             <% for (final EntityContact contact : resultContacts) { %>
-                От <%= format.format(contact.getCreate()) %> с <%= contact.getPipol().getFio() %> из <a href="<login:link value="<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>"/>"><%= contact.getPipol().getFirm().getName() %></a><br>
+                От <%= format.format(contact.create) %> с <%= contact.pipol.getFio() %> из
+                <a href="<%= "/security/detail.jsp?firmId=" + contact.pipol.getFirm().getId() %>"><%= contact.pipol.getFirm().getName() %></a><br>
             <% } %>
         <% } %>
     </body>

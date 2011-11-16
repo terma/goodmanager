@@ -1,15 +1,12 @@
-﻿<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="ua.com.testes.manager.web.page.PageFirm" %>
+﻿<%@ page import="ua.com.testes.manager.web.page.PageFirm" %>
 <%@ page import="ua.com.testes.manager.entity.*" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
-<%@ page import="java.util.Comparator" %>
-<%@ page import="java.util.Collections" %>
 <%@ page import="ua.com.testes.manager.entity.view.EntityFirmSort" %>
 <%@ page import="ua.com.testes.manager.logic.view.LogicView" %>
 <%@ page import="ua.com.testes.manager.entity.view.EntityView" %>
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
@@ -122,13 +119,13 @@
                 for (final EntityPipol pipol : firm.getPipols()) {
                     if (!view.delete.pipol && pipol.getDelete() != null) continue;
                     for (final EntityContact contact : pipol.getContacts()) {
-                        if (!view.delete.contact && contact.getDelete() != null) continue;
+                        if (!view.delete.contact && contact.delete != null) continue;
                         // Если смотреть по мне и это не мой контакт
-                        if (view.byMe && contact.getUser() != user) continue;
+                        if (view.byMe && contact.user != user) continue;
                         if (firmInfo.last == null) {
                             firmInfo.last = contact;
                         } else {
-                            if (firmInfo.last.getCreate().getTime() < contact.getCreate().getTime()) {
+                            if (firmInfo.last.create.getTime() < contact.create.getTime()) {
                                 firmInfo.last = contact;
                             }
                         }
@@ -136,14 +133,20 @@
                 }
                 if (firmInfo.last == null) {
                     pageFirmList.add(firmInfo);
-                } else if (System.currentTimeMillis() - firmInfo.last.getCreate().getTime() < month3) {
-                    pageFirm3List.add(firmInfo);
-                } else if (System.currentTimeMillis() - firmInfo.last.getCreate().getTime() < month6) {
-                    pageFirm6List.add(firmInfo);
-                } else if (System.currentTimeMillis() - firmInfo.last.getCreate().getTime() < month9) {
-                    pageFirm9List.add(firmInfo);
                 } else {
-                    pageFirmList.add(firmInfo);
+                    if (System.currentTimeMillis() - firmInfo.last.create.getTime() < month3) {
+                        pageFirm3List.add(firmInfo);
+                    } else {
+                        if (System.currentTimeMillis() - firmInfo.last.create.getTime() < month6) {
+                            pageFirm6List.add(firmInfo);
+                        } else {
+                            if (System.currentTimeMillis() - firmInfo.last.create.getTime() < month9) {
+                                pageFirm9List.add(firmInfo);
+                            } else {
+                                pageFirmList.add(firmInfo);
+                            }
+                        }
+                    }
                 }
             }
             final PageFirmComparator comparator = new PageFirmComparator(view.sort.firms);

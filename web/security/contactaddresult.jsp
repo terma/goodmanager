@@ -30,8 +30,8 @@
     } catch (NumberFormatException exception) {
         errors.add(PageDetailError.STATUS_NOT_SELECT);
     }
-    contact.setDescription(request.getParameter("contactdescription"));
-    if (contact.getDescription() == null || contact.getDescription().trim().length() == 0) {
+    contact.description = request.getParameter("contactdescription");
+    if (contact.description == null || contact.description.trim().length() == 0) {
         errors.add(PageDetailError.CONTACT_DESCRIPTION_EMPTY);
     }
 
@@ -45,11 +45,11 @@
         EntityManager.execute(new EntityTransaction<Object>() {
 
             public Object execute(final javax.persistence.EntityManager manager) {
-                contact.setPipol(manager.find(EntityPipol.class, tempPipolId));
-                contact.setUser(user);
-                contact.setStatus(manager.find(EntityStatus.class, tempStatusId));
+                contact.pipol = manager.find(EntityPipol.class, tempPipolId);
+                contact.user = user;
+                contact.status = manager.find(EntityStatus.class, tempStatusId);
                 manager.persist(contact);
-                contact.getPipol().getContacts().add(contact);
+                contact.pipol.getContacts().add(contact);
                 return null;
             }
 

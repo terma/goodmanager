@@ -17,34 +17,34 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
             <tr>
                 <%
-                    int contactId = Integer.parseInt(request.getParameter("contactId"));
-                    EntityContact contact = EntityManager.find(EntityContact.class, contactId);
+                    final int contactId = Integer.parseInt(request.getParameter("contactId"));
+                    final EntityContact contact = EntityManager.find(EntityContact.class, contactId);
                     final EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
                 %>
                 <td valign="center" align="center">
-                    <a href="/security/detail.jsp?firmId=<%= contact.getPipol().getFirm().getId() %>">Назад</a>
+                    <a href="/security/detail.jsp?firmId=<%= contact.pipol.getFirm().getId() %>">Назад</a>
                     <p>
-                        <% if (user.getId() == contact.getUser().getId()) {  %>
-                            <% if (contact.getPipol().getContacts().size() > 1) { %>
-                                <form action="contactdelete.jsp">
+                        <% if (user == contact.user) {  %>
+                            <% if (contact.pipol.getContacts().size() > 1) { %>
+                                <form action="contactdelete.jsp" method="post">
                                     <login:input/>
                                     <p>
-                                        Вы действительно хотите удалить беседу с <%= contact.getPipol().getFio() %>
-                                        из <%= contact.getPipol().getFirm().getName() %> от <%= format.format(contact.getCreate()) %>,
-                                        беседа о <p><%= contact.getDescription() %></p>
+                                        Вы действительно хотите удалить беседу с <%= contact.pipol.getFio() %>
+                                        из <%= contact.pipol.getFirm().getName() %> от <%= format.format(contact.create) %>,
+                                        беседа о <p><%= contact.description %></p>
                                     </p>
-                                    <input type="hidden" name="contactId" value="<%= contact.getId() %>">
+                                    <input type="hidden" name="contactId" value="<%= contact.id %>">
                                     <input type="submit" value="Удалить">
                                 </form>
                             <% } else { %>
                                 К сожалению нельзя удалить последний контакт
-                                из <%= contact.getPipol().getFirm().getName() %>, создайте <a href="/security/contactadd.jsp?firmId=<%= contact.getPipol().getFirm().getId() %>">новый</a>, или вообще
-                                удалите всю <a href="/security/firmdeleteconfirm.jsp?firmId=<%= contact.getPipol().getFirm().getId() %>">фирму</a>
+                                из <%= contact.pipol.getFirm().getName() %>, создайте <a href="/security/contactadd.jsp?firmId=<%= contact.pipol.getFirm().getId() %>">новый</a>, или вообще
+                                удалите всю <a href="/security/firmdeleteconfirm.jsp?firmId=<%= contact.pipol.getFirm().getId() %>">фирму</a>
                             <% } %>
                         <% } else { %>
                             К сожалению Вы не можете удалять беседу другого
-                            сотрудника (<%= contact.getUser().getFio() %>) с <%= contact.getPipol().getFio() %> от
-                            <%= format.format(contact.getCreate()) %>
+                            сотрудника (<%= contact.pipol.getFio() %>) с <%= contact.pipol.getFio() %> от
+                            <%= format.format(contact.create) %>
                         <% } %>
                     </p>
                 </td>

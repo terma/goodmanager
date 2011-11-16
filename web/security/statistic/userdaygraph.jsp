@@ -52,8 +52,8 @@
         }
 
         for (EntityContact contact : contacts) {
-            if (contact.getCreate().after(tempStart) && contact.getCreate().before(day.finish)) {
-                calendar.setTime(contact.getCreate());
+            if (contact.create.after(tempStart) && contact.create.before(day.finish)) {
+                calendar.setTime(contact.create);
                 final int contactCreateHour = calendar.get(Calendar.HOUR_OF_DAY);
                 Hour hour = day.hours.get(contactCreateHour);
                 hour.contacts.add(contact);

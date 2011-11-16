@@ -13,7 +13,7 @@
     private static class ContactComparator implements Comparator<EntityContact> {
 
         public int compare(EntityContact o1, EntityContact o2) {
-            return o2.getCreate().compareTo(o1.getCreate());
+            return o2.create.compareTo(o1.create);
         }
 
     }
@@ -207,34 +207,60 @@
                     %>
                     Беседа, всего <%= contacts.size() %><p>
                     <% for (final EntityContact contact : contacts) { %>
-                        <% if (!view.delete.contact && (contact.getPipol().getDelete() != null || contact.getDelete() != null)) continue; %>
-                        <% if (contact.getDelete() == null && contact.getPipol().getDelete() == null) { %>
-                            <a href="<%= "/security/contactdeleteconfirm.jsp?contactId=" + contact.getId() %>"><img
+                        <%
+        if (!view.delete.contact && (contact.pipol.getDelete() != null || contact.delete != null)) continue; %>
+                        <%
+        if (contact.delete == null && contact.pipol.getDelete() == null) {
+        Integer result = contact.id;
+    %>
+                            <a href="<%= "/security/contactdeleteconfirm.jsp?contactId=" + result %>"><img
                                     src="/image/delete.gif" style="vertical-align: middle;" alt="Удалить" width="15" height="15"
                                     border="0"></a>
+                        <% }
+        Date result1 = contact.create;
+    EntityUser result3 = contact.user;
+    %>
+                        <%= createFormat.format(result1) %> беседовал
+                        <%= result3.getFio() %> с
+                        <%
+        if (contact.pipol.getEmail().length() > 0) {
+        EntityPipol result = contact.pipol;
+    EntityPipol result2 = contact.pipol;
+    %>
+                            <a href="mailto:<%= result2.getEmail() %>"><%= result.getFio() %></a>,
+                        <% } else {
+        EntityPipol result = contact.pipol;
+    %>
+                            <%= result.getFio() %>,
                         <% } %>
-                        <%= createFormat.format(contact.getCreate()) %> беседовал
-                        <%= contact.getUser().getFio() %> с
-                        <% if (contact.getPipol().getEmail().length() > 0) { %>
-                            <a href="mailto:<%= contact.getPipol().getEmail() %>"><%= contact.getPipol().getFio() %></a>,
-                        <% } else { %>
-                            <%= contact.getPipol().getFio() %>,
+                        <%
+        if (contact.delete == null && contact.pipol.getDelete() == null) {
+        Integer result = contact.id;
+    %>
+                            <a href="<%= "/security/contactedit.jsp?contactId=" + result %>">редактировать</a><br>
+                        <% }
+        EntityStatus result2 = contact.status;
+    %>
+                        Со статусом <%= result2.name %><br>
+                        <%
+        if (contact.description.length() > 0) {
+        String result = contact.description;
+    %>
+                            <%= result %><br>
                         <% } %>
-                        <% if (contact.getDelete() == null && contact.getPipol().getDelete() == null) { %>
-                            <a href="<%= "/security/contactedit.jsp?contactId=" + contact.getId() %>">редактировать</a><br>
-                        <% } %>
-                        Со статусом <%= contact.getStatus().name %><br>
-                        <% if (contact.getDescription().length() > 0) { %>
-                            <%= contact.getDescription() %><br>
-                        <% } %>
-                        <% if (contact.getRepeat() != null) { %>
-                            <b>Нужно перезвонить <%= repeatFormat.format(contact.getRepeat()) %></b>
+                        <%
+        if (contact.repeat != null) {
+        Date result = contact.repeat;
+    %>
+                            <b>Нужно перезвонить <%= repeatFormat.format(result) %></b>
                         <% } %>
                         <p>
-                        <% if (view.history.contact && !contact.getHistorys().isEmpty()) { %>
+                        <%
+        if (view.history.contact && !contact.historys.isEmpty()) { %>
                             <p class="contactHistory">
                                 История
-                                <% final List<EntityContactHistory> contactHistorys = new ArrayList<EntityContactHistory>(contact.getHistorys()); %>
+                                <%
+        final List<EntityContactHistory> contactHistorys = new ArrayList<EntityContactHistory>(contact.historys); %>
                                 <% Collections.sort(contactHistorys, new ContactHistoryComparator()); %>
                                 <% for (final EntityContactHistory history : contactHistorys) { %>
                                     <p class="contactHistory">

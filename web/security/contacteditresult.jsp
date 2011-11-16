@@ -10,13 +10,13 @@
     final EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
     final EntityContact editContact = new EntityContact();
     final List<PageDetailError> errors = new ArrayList<PageDetailError>();
-    editContact.setId(Integer.parseInt(request.getParameter("contactid")));
-    final EntityContact contact = EntityManager.find(EntityContact.class, editContact.getId());
-    editContact.setPipol(contact.getPipol());
-    editContact.setDescription(request.getParameter("contactdescription").trim());
+    editContact.id = Integer.parseInt(request.getParameter("contactid"));
+    final EntityContact contact = EntityManager.find(EntityContact.class, editContact.id);
+    editContact.pipol = contact.pipol;
+    editContact.description = request.getParameter("contactdescription").trim();
     try {
         final int statusId = Integer.parseInt(request.getParameter("statusId"));
-        editContact.setStatus(EntityManager.find(EntityStatus.class, statusId));
+        editContact.status = EntityManager.find(EntityStatus.class, statusId);
     } catch (NumberFormatException exception) {
         errors.add(PageDetailError.STATUS_NOT_SELECT);
     }
@@ -39,9 +39,9 @@
                 if (nowCalendar.getTime().after(calendar.getTime())) {
                     errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
                 }
-                editContact.setRepeat(calendar.getTime());
+                editContact.repeat = calendar.getTime();
             } catch (Exception exception) {
-                editContact.setRepeat(new Date());
+                editContact.repeat = new Date();
                 errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
             }
         } else if ("delta".equals(repeatType)) {
@@ -55,22 +55,22 @@
     } else {
         EntityManager.execute(new EntityTransaction() {
 
-            public Object execute(javax.persistence.EntityManager manager) {
+            public Object execute(final javax.persistence.EntityManager manager) {
                 final EntityContactHistory history = new EntityContactHistory();
-                history.repeat = contact.getRepeat();
-                history.description = contact.getDescription();
+                history.repeat = contact.repeat;
+                history.description = contact.description;
                 history.id.contact = contact;
-                history.status = contact.getStatus();
+                history.status = contact.status;
                 history.user = user;
-                contact.getHistorys().add(history);
-                contact.setStatus(editContact.getStatus());
-                contact.setRepeat(editContact.getRepeat());
-                contact.setDescription(editContact.getDescription());
+                contact.historys.add(history);
+                contact.status = editContact.status;
+                contact.repeat = editContact.repeat;
+                contact.description = editContact.description;
                 manager.persist(contact);
                 return null;
             }
 
         });
-        response.sendRedirect("/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId());
+        response.sendRedirect("/security/detail.jsp?firmId=" + contact.pipol.getFirm().getId());
     }
 %>

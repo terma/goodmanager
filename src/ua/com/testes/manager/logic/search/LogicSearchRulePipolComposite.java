@@ -6,7 +6,6 @@ import ua.com.testes.manager.entity.EntityPipol;
 import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRulePipolComposite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ final class LogicSearchRulePipolComposite
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if (this.rules.isEmpty()) return true;
 
