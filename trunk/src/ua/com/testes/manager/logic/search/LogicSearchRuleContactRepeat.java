@@ -6,7 +6,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactRepeat;
 import ua.com.testes.manager.util.UtilCalendar;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -25,13 +24,13 @@ final class LogicSearchRuleContactRepeat
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityContact)) {
 
             EntityContact entity = (EntityContact) serializable;
 
-            return UtilCalendar.inPeriod(this.start, this.finish, entity.getRepeat());
+            return UtilCalendar.inPeriod(this.start, this.finish, entity.repeat);
 
         }
 

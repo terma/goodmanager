@@ -5,8 +5,6 @@ import ua.com.testes.manager.entity.EntityContact;
 import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactDescription;
 
-import java.io.Serializable;
-
 
 final class LogicSearchRuleContactDescription
         implements LogicSearchRule {
@@ -20,13 +18,13 @@ final class LogicSearchRuleContactDescription
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityContact)) {
 
             EntityContact entity = (EntityContact) serializable;
 
-            return entity.getDescription().toLowerCase().contains(this.description);
+            return entity.description.toLowerCase().contains(this.description);
 
         }
 

@@ -122,22 +122,22 @@
             for (final EntityPipol pipol : firm.getPipols()) {
                 if (pipol.getDelete() != null) continue;
                 for (final EntityContact contact : pipol.getContacts()) {
-                    if (contact.getDelete() != null) continue;
+                    if (contact.delete != null) continue;
                     if (userSet != null) {
-                        if (!userSet.contains(Integer.toString(contact.getUser().getId()))) continue;
-                        pageStatistic.userIds.add(contact.getUser().getId());
+                        if (!userSet.contains(Integer.toString(contact.user.getId()))) continue;
+                        pageStatistic.userIds.add(contact.user.getId());
                     }
-                    if (!user.getGroup().allowStatistic(contact.getUser())) continue;
+                    if (!user.getGroup().allowStatistic(contact.user)) continue;
                     if (pageStatistic.period) {
-                        if (pageStatistic.start.getTime() > contact.getCreate().getTime()) continue;
-                        if (pageStatistic.finish.getTime() < contact.getCreate().getTime()) continue;
+                        if (pageStatistic.start.getTime() > contact.create.getTime()) continue;
+                        if (pageStatistic.finish.getTime() < contact.create.getTime()) continue;
                     }
-                    if (!statuses.contains(contact.getStatus())) continue;
-                    int tempCount = count.get(new PageStatisticStatus(contact.getStatus())) + 1;
+                    if (!statuses.contains(contact.status)) continue;
+                    int tempCount = count.get(new PageStatisticStatus(contact.status)) + 1;
                     if (maxCount < tempCount) {
                         maxCount = tempCount;
                     }
-                    count.put(new PageStatisticStatus(contact.getStatus()), tempCount);
+                    count.put(new PageStatisticStatus(contact.status), tempCount);
                 }
             }
         }

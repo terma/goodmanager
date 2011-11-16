@@ -6,20 +6,17 @@ import ua.com.testes.manager.entity.EntityPipol;
 import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactComposite;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-final class LogicSearchRuleContactComposite
-        implements LogicSearchRule {
+final class LogicSearchRuleContactComposite implements LogicSearchRule {
+
     private final EntitySearchRuleContactComposite.Type type;
     private final List<LogicSearchRule> rules;
 
-
     public LogicSearchRuleContactComposite(EntitySearchRule entity) {
-
-        this.rules = new ArrayList();
+        this.rules = new ArrayList<LogicSearchRule>();
 
         EntitySearchRuleContactComposite composite = (EntitySearchRuleContactComposite) entity;
 
@@ -40,7 +37,7 @@ final class LogicSearchRuleContactComposite
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if (this.rules.isEmpty()) return true;
 
@@ -65,26 +62,13 @@ final class LogicSearchRuleContactComposite
     }
 
 
-    private boolean acceptInternal(Serializable serializable) {
-
+    private boolean acceptInternal(Object serializable) {
         for (LogicSearchRule rule : this.rules) {
-
             if (this.type == EntitySearchRuleContactComposite.Type.AND) {
-
                 if (!rule.accept(serializable)) return false;
-
             } else if (rule.accept(serializable)) return true;
-
         }
-
-
         return this.type == EntitySearchRuleContactComposite.Type.AND;
-
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.logic.search.LogicSearchRuleContactComposite
- * JD-Core Version:    0.6.0
- */

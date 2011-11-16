@@ -6,7 +6,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRulePipolCreate;
 import ua.com.testes.manager.util.UtilCalendar;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -25,7 +24,7 @@ final class LogicSearchRulePipolCreate
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityPipol)) {
 

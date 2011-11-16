@@ -14,7 +14,7 @@
     private static final class ContactDateComparator implements Comparator<EntityContact> {
 
         public int compare(EntityContact o1, EntityContact o2) {
-            return o1.getCreate().compareTo(o2.getCreate());
+            return o1.create.compareTo(o2.create);
         }
 
     }
@@ -178,24 +178,24 @@
             for (final EntityPipol pipol : firm.getPipols()) {
                 if (pipol.getDelete() != null) continue;
                 for (final EntityContact contact : pipol.getContacts()) {
-                    if (contact.getDelete() != null) continue;
+                    if (contact.delete != null) continue;
                     if (userSet != null) {
-                        if (!userSet.contains(Integer.toString(contact.getUser().getId()))) continue;
-                        pageStatistic.userIds.add(contact.getUser().getId());
+                        if (!userSet.contains(Integer.toString(contact.user.getId()))) continue;
+                        pageStatistic.userIds.add(contact.user.getId());
                     }
-                    if (!user.getGroup().allowStatistic(contact.getUser())) continue;
+                    if (!user.getGroup().allowStatistic(contact.user)) continue;
                     if (pageStatistic.period) {
-                        if (pageStatistic.start.getTime() > contact.getCreate().getTime()) continue;
-                        if (pageStatistic.finish.getTime() < contact.getCreate().getTime()) continue;
+                        if (pageStatistic.start.getTime() > contact.create.getTime()) continue;
+                        if (pageStatistic.finish.getTime() < contact.create.getTime()) continue;
                     }
-                    if (!statuses.contains(contact.getStatus())) continue;
+                    if (!statuses.contains(contact.status)) continue;
                     // Если нужно укажем более малую дату
-                    if (defaultStart.after(contact.getCreate())) {
-                        defaultStart = contact.getCreate();
+                    if (defaultStart.after(contact.create)) {
+                        defaultStart = contact.create;
                     }
                     // Находим последнию дату
-                    if (defaultFinish.before(contact.getCreate())) {
-                        defaultFinish = contact.getCreate();
+                    if (defaultFinish.before(contact.create)) {
+                        defaultFinish = contact.create;
                     }
                     contacts.add(contact);
                 }
@@ -249,13 +249,13 @@
                 final EntityContact contact = contactIterator.next();
 
                 // Если это нужный пользователь
-                if (tempUser == contact.getUser()) {
+                if (tempUser == contact.user) {
 
-                    if (contact.getCreate().before(current)) {
+                    if (contact.create.before(current)) {
                         contactIterator.remove();
                         // Попадание
-                        Integer count = counts.get(new StatisticStatus(contact.getStatus())) + 1;
-                        counts.put(new StatisticStatus(contact.getStatus()), count);
+                        Integer count = counts.get(new StatisticStatus(contact.status)) + 1;
+                        counts.put(new StatisticStatus(contact.status), count);
                         if (countMax < count + 1) {
                             countMax = count;
                         }

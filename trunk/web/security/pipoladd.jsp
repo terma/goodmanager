@@ -88,12 +88,13 @@
             <p>
                 <%
                     GregorianCalendar repeatCalendar = null;
-                    if (contact.getRepeat() != null) {
+                    if (contact.repeat != null) {
                         repeatCalendar = new GregorianCalendar();
-                        repeatCalendar.setTime(contact.getRepeat());
+                        repeatCalendar.setTime(contact.repeat);
                     }
-                %>
-                Нужно ли перезвонить <input type="checkbox" <%= contact.getRepeat() != null ? "checked" : "" %> name="contactrepeatneed" style="vertical-align: middle;">
+                Date result1 = contact.repeat;
+    %>
+                Нужно ли перезвонить <input type="checkbox" <%= result1 != null ? "checked" : "" %> name="contactrepeatneed" style="vertical-align: middle;">
                 и когда, скажем
                 <% if (errors != null && errors.contains(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT)) { %>
                     <br><b>Введите пожайлусто правильно дату, так чтобы она была больше чем сегодня.</b>
@@ -172,8 +173,10 @@
             Беседа<br>
             <% if (errors != null && errors.contains(PageDetailError.CONTACT_DESCRIPTION_EMPTY)) { %>
                 <b>Введите пожайлусто текст беседы с сотрудником.</b>
-            <% } %>
-            <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= contact.getDescription() %></textarea><p>
+            <% }
+                String result = contact.description;
+            %>
+            <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= result %></textarea><p>
             <input type="submit" name="" value="Создать">
         </form>
     </body>

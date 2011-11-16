@@ -3,21 +3,22 @@
 <%@ page import="ua.com.testes.manager.entity.EntityTransaction" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
+<%@ page import="ua.com.testes.manager.entity.EntityPipol" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final int contactId = Integer.parseInt(request.getParameter("contactId"));
     final EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
     final EntityContact contact = EntityManager.find(EntityContact.class, contactId);
-    if (user.getId() == contact.getUser().getId()) {
+    if (user.getId() == contact.user.getId()) {
         EntityManager.execute(new EntityTransaction() {
 
             public Object execute(javax.persistence.EntityManager manager) {
-                contact.setDelete(new Date());
+                contact.delete = new Date();
                 manager.persist(contact);
                 return null;
             }
 
         });
     }
-    response.sendRedirect("detail.jsp?firmId=" + contact.getPipol().getFirm().getId());
+    response.sendRedirect("detail.jsp?firmId=" + contact.pipol.getFirm().getId());
 %>

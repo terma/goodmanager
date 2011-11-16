@@ -8,7 +8,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactDelete;
 import ua.com.testes.manager.util.UtilCalendar;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -27,7 +26,7 @@ final class LogicSearchRuleContactDelete
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityFirm)) {
 
@@ -37,7 +36,7 @@ final class LogicSearchRuleContactDelete
 
                 for (EntityContact contact : pipol.getContacts()) {
 
-                    if (UtilCalendar.inPeriod(this.start, this.finish, contact.getDelete())) {
+                    if (UtilCalendar.inPeriod(this.start, this.finish, contact.delete)) {
 
                         return true;
 

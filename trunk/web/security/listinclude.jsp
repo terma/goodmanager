@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.entity.view.EntityView" %>
+<%@ page import="ua.com.testes.manager.entity.EntityContact" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
     final EntityView view = (EntityView) request.getAttribute("view");
@@ -78,9 +80,11 @@
                         <%= format.format(firmInfo.firm.getCreate()) %>
                     </td>
                 <% } %>
-                <% if (view.showLastContact) { %>
+                <% if (view.showLastContact) {
+        Date result = firmInfo.last.create;
+    %>
                     <td class="firmInfo">
-                        Последний контакт от <%= firmInfo.last != null ? format.format(firmInfo.last.getCreate()) : "нет" %>
+                        Последний контакт от <%= firmInfo.last != null ? format.format(result) : "нет" %>
                     </td>
                 <% } %>
             <% even = !even;

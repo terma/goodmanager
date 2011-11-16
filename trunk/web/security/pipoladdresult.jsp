@@ -11,7 +11,7 @@
     final EntityPipol pipol = new EntityPipol();
     final EntityContact contact = new EntityContact();
     pipol.getContacts().add(contact);
-    contact.setPipol(pipol);
+    contact.pipol = pipol;
     final List<PageDetailError> errors = new ArrayList<PageDetailError>();
     int firmId = 0;
     try {
@@ -30,10 +30,10 @@
     pipol.setRang(request.getParameter("pipolrank"));
     pipol.setEmail(request.getParameter("pipolemail"));
     pipol.setDescription(request.getParameter("pipoldescription"));
-    contact.setDescription(request.getParameter("contactdescription"));
+    contact.description = request.getParameter("contactdescription");
     if (pipol.getFio() == null || pipol.getFio().trim().length() == 0) {
         errors.add(PageDetailError.PIPOL_FIO_EMPTY);
-    } else if (contact.getDescription() == null || contact.getDescription().trim().length() == 0) {
+    } else if (contact.description == null || contact.description.trim().length() == 0) {
         errors.add(PageDetailError.CONTACT_DESCRIPTION_EMPTY);
     }
 
@@ -56,9 +56,9 @@
                 if (nowCalendar.getTime().after(calendar.getTime())) {
                     errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
                 }
-                contact.setRepeat(calendar.getTime());
+                contact.repeat = calendar.getTime();
             } catch (Exception exception) {
-                contact.setRepeat(new Date());
+                contact.repeat = new Date();
                 errors.add(PageDetailError.CONTACT_REPEATE_DATE_INCORRENT);
             }
         } else if ("delta".equals(repeatType)) {
@@ -89,8 +89,8 @@
             public Object execute(final javax.persistence.EntityManager manager) {
                 pipol.setFirm(manager.find(EntityFirm.class, tempFirmId));
                 pipol.setUser(user);
-                contact.setUser(user);
-                contact.setStatus(manager.find(EntityStatus.class, tempStatusId));
+                contact.user = user;
+                contact.status = manager.find(EntityStatus.class, tempStatusId);
                 manager.persist(pipol);
                 pipol.getFirm().getPipols().add(pipol);
                 return null;

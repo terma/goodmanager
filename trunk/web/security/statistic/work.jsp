@@ -132,15 +132,15 @@
                                     }
                                 }
                                 for (final EntityContact contact : pipol.getContacts()) {
-                                    if (contact.getUser().getId().equals(userId)) {
-                                        if (start.before(contact.getCreate()) && finish.after(contact.getCreate())) {
+                                    if (contact.user.getId().equals(userId)) {
+                                        if (start.before(contact.create) && finish.after(contact.create)) {
                                             createContacts.add(contact);
                                         }
-                                        if (contact.getDelete() != null && start.before(contact.getDelete()) && finish.after(contact.getDelete())) {
+                                        if (contact.delete != null && start.before(contact.delete) && finish.after(contact.delete)) {
                                             deleteContacts.add(contact);
                                         }
                                     }
-                                    for (final EntityContactHistory contactHistory : contact.getHistorys()) {
+                                    for (final EntityContactHistory contactHistory : contact.historys) {
                                         if (contactHistory.user.getId().equals(userId)) {
                                             if (start.before(contactHistory.id.update) && finish.after(contactHistory.id.update)) {
                                                 updateContacts.add(contactHistory);
@@ -247,7 +247,11 @@
                     <p>Создал контакты (<%= createContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContact contact : createContacts) { %>
-                            <li><a href="<login:link value="<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>"/>"><%= contact.getDescription() %></a></li>
+                            <li><a href="<%
+        EntityPipol result = contact.pipol;
+    %><login:link value="<%= "/security/detail.jsp?firmId=" + result.getFirm().getId() %>"/>
+        String result = contact.description;
+    "><%= result %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -255,7 +259,11 @@
                     <p>Удалил контакты (<%= deleteContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContact contact : deleteContacts) { %>
-                            <li><a href="<login:link value="<%= "/security/detail.jsp?firmId=" + contact.getPipol().getFirm().getId() %>"/>"><%= contact.getDescription() %></a></li>
+                            <li><a href="<%
+        EntityPipol result = contact.pipol;
+    %><login:link value="<%= "/security/detail.jsp?firmId=" + result.getFirm().getId() %>"/>
+        String result = contact.description;
+    "><%= result %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -263,7 +271,11 @@
                     <p>Отредактировал контакты (<%= updateContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContactHistory contactHistory : updateContacts) { %>
-                            <li><a href="<login:link value="<%= "/security/detail.jsp?firmId=" + contactHistory.id.contact.getPipol().getFirm().getId() %>"/>"><%= contactHistory.id.contact.getPipol().getFirm().getName() %></a></li>
+                            <li><a href="<%
+        EntityPipol result = contactHistory.id.contact.pipol;
+    %><login:link value="<%= "/security/detail.jsp?firmId=" + result.getFirm().getId() %>"/>
+        EntityPipol result = contactHistory.id.contact.pipol;
+    "><%= result.getFirm().getName() %></a></li>
                         <% } %>
                     </ul>
                 <% } %>

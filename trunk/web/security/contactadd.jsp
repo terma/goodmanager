@@ -76,8 +76,10 @@
                 Беседа<br>
                 <% if (errors != null && errors.contains(PageDetailError.CONTACT_DESCRIPTION_EMPTY)) { %>
                 <b>Введите пожайлусто текст беседы с сотрудником.</b>
-                <% } %>
-                <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= contact.getDescription() %></textarea><p>
+                <% }
+        String result = contact.description;
+    %>
+                <textarea rows="8" name="contactdescription" cols="" style="width: 80%"><%= result %></textarea><p>
             <input type="submit" name="" value="Создать">
         </form>
     </body>

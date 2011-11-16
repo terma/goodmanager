@@ -81,11 +81,13 @@ public final class EntityFirm implements Serializable {
         for (EntityPipol pipol : getPipols()) {
             if (pipol.getDelete() == null) {
                 for (EntityContact contact : pipol.getContacts()) {
-                    if (contact.getDelete() == null) {
+                    if (contact.delete == null) {
                         if (lastContact == null) {
                             lastContact = contact;
-                        } else if (lastContact.getCreate().getTime() < contact.getCreate().getTime())
-                            lastContact = contact;
+                        } else {
+                            if (lastContact.create.getTime() < contact.create.getTime())
+                                lastContact = contact;
+                        }
                     }
                 }
             }

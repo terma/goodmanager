@@ -12,7 +12,7 @@
     private static final class ContactDateComparator implements Comparator<EntityContact> {
 
         public int compare(EntityContact o1, EntityContact o2) {
-            return o1.getCreate().compareTo(o2.getCreate());
+            return o1.create.compareTo(o2.create);
         }
 
     }
@@ -161,19 +161,19 @@
                 for (final EntityPipol pipol : firm.getPipols()) {
                     if (pipol.getDelete() != null) continue;
                     for (final EntityContact contact : pipol.getContacts()) {
-                        if (contact.getDelete() != null) continue;
+                        if (contact.delete != null) continue;
                         if (userSet != null) {
-                            if (!userSet.contains(Integer.toString(contact.getUser().getId()))) continue;
-                            pageStatistic.userIds.add(contact.getUser().getId());
+                            if (!userSet.contains(Integer.toString(contact.user.getId()))) continue;
+                            pageStatistic.userIds.add(contact.user.getId());
                         }
-                        if (!user.getGroup().allowStatistic(contact.getUser())) continue;
+                        if (!user.getGroup().allowStatistic(contact.user)) continue;
                         if (pageStatistic.period) {
-                            if (pageStatistic.start.getTime() > contact.getCreate().getTime()) continue;
-                            if (pageStatistic.finish.getTime() < contact.getCreate().getTime()) continue;
+                            if (pageStatistic.start.getTime() > contact.create.getTime()) continue;
+                            if (pageStatistic.finish.getTime() < contact.create.getTime()) continue;
                         }
-                        if (!statuses.contains(contact.getStatus())) continue;
-                        if (contact.getRepeat() == null) continue;
-                        if (contact.getRepeat().after(current) && contact.getRepeat().before(currentNext)) {
+                        if (!statuses.contains(contact.status)) continue;
+                        if (contact.repeat == null) continue;
+                        if (contact.repeat.after(current) && contact.repeat.before(currentNext)) {
                             date.contacts.add(contact);
                         }
                     }
@@ -207,12 +207,20 @@
                         <b>На <%= format.format(date.current) %></b><br>
                         Контактов <%= date.contacts.size() %>
                         <p>
-                            <% for (final EntityContact contact : date.contacts) { %>
+                            <% for (final EntityContact contact : date.contacts) {
+        String result = contact.description;
+    EntityPipol result1 = contact.pipol;
+    EntityPipol result2 = contact.pipol;
+    EntityPipol result3 = contact.pipol;
+    EntityPipol result4 = contact.pipol;
+    EntityPipol result5 = contact.pipol;
+    EntityPipol result6 = contact.pipol;
+    %>
                                 <p>
-                                    Перезвонить <a href="mailto:<%= contact.getPipol().getEmail() %>"><%= contact.getPipol().getFio() %></a> из компании
-                                    <a href="/security/detail.jsp?firmId=<%= contact.getPipol().getFirm().getId() %>"><%= contact.getPipol().getFirm().getName() %></a>
-                                    которая в <a href="/security/list.jsp?sectionId=<%= contact.getPipol().getFirm().getSection().getId() %>"><%= contact.getPipol().getFirm().getSection().getName() %></a>
-                                    по поводу <%= contact.getDescription() %>
+                                    Перезвонить <a href="mailto:<%= result6.getEmail() %>"><%= result5.getFio() %></a> из компании
+                                    <a href="/security/detail.jsp?firmId=<%= result4.getFirm().getId() %>"><%= result3.getFirm().getName() %></a>
+                                    которая в <a href="/security/list.jsp?sectionId=<%= result2.getFirm().getSection().getId() %>"><%= result1.getFirm().getSection().getName() %></a>
+                                    по поводу <%= result %>
                                 </p>
                             <% } %>
                         </p>

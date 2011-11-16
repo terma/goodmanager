@@ -8,7 +8,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactStatus;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactStatusItem;
 
-import java.io.Serializable;
 import java.util.Iterator;
 
 
@@ -24,7 +23,7 @@ final class LogicSearchRuleContactStatus
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityFirm)) {
 
@@ -37,7 +36,7 @@ final class LogicSearchRuleContactStatus
 
                     for (EntitySearchRuleContactStatusItem item : this.entity.items)
 
-                        if (contact.getStatus().id.equals(Integer.valueOf(item.id.statusId)))
+                        if (contact.status.id.equals(Integer.valueOf(item.id.statusId)))
                             return true;
 
                 }

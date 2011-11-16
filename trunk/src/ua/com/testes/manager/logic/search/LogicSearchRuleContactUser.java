@@ -6,8 +6,6 @@ import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactUser;
 import ua.com.testes.manager.entity.search.EntitySearchRuleContactUserItem;
 
-import java.io.Serializable;
-
 
 final class LogicSearchRuleContactUser
         implements LogicSearchRule {
@@ -21,7 +19,7 @@ final class LogicSearchRuleContactUser
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         EntityContact contact;
 
@@ -31,7 +29,7 @@ final class LogicSearchRuleContactUser
 
             for (EntitySearchRuleContactUserItem item : this.entity.items) {
 
-                if (contact.getUser().getId().equals(Integer.valueOf(item.id.userId))) {
+                if (contact.user.getId().equals(Integer.valueOf(item.id.userId))) {
 
                     return true;
 

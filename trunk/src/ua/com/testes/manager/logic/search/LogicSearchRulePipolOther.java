@@ -5,8 +5,6 @@ import ua.com.testes.manager.entity.EntityPipol;
 import ua.com.testes.manager.entity.search.EntitySearchRule;
 import ua.com.testes.manager.entity.search.EntitySearchRulePipolOther;
 
-import java.io.Serializable;
-
 
 final class LogicSearchRulePipolOther
         implements LogicSearchRule {
@@ -20,7 +18,7 @@ final class LogicSearchRulePipolOther
     }
 
 
-    public boolean accept(Serializable serializable) {
+    public boolean accept(Object serializable) {
 
         if ((serializable instanceof EntityPipol)) {
 
