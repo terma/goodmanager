@@ -9,7 +9,11 @@
     <name>goodmanager</name>
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <!--<testSourceDirectory>test</testSourceDirectory>-->
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+        </resources>
 
         <plugins>
             <plugin>
@@ -34,7 +38,6 @@
                 <version>2.1.1</version>
                 <configuration>
                     <warSourceDirectory>web</warSourceDirectory>
-                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                 </configuration>
             </plugin>
         </plugins>
