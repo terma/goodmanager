@@ -44,6 +44,19 @@
     </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp-provider</artifactId>
+            <version>0.7.1.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -110,6 +123,10 @@
                 <exclusion>
                     <artifactId>jms</artifactId>
                     <groupId>javax.jms</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mail</artifactId>
+                    <groupId>javax.mail</groupId>
                 </exclusion>
             </exclusions>
         </dependency>

@@ -25,13 +25,14 @@
             <property name="hibernate.generate_statistics" value="false"/>
 
             <property name="hibernate.connection.release_mode" value="on_close"/>
-
             <property name="hibernate.connection.autocommit" value="false"/>
-
-            <property name="hibernate.connection.driver_class" value="org.firebirdsql.jdbc.FBDriver"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.FirebirdDialect"/>
             <property name="hibernate.connection.username" value="sysdba"/>
+            <property name="hibernate.connection.driver_class" value="org.firebirdsql.jdbc.FBDriver"/>
             <property name="hibernate.connection.password" value="masterkey"/>
+            <property name="hibernate.connection.provider_class"
+                      value="com.jolbox.bonecp.provider.BoneCPConnectionProvider"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.FirebirdDialect"/>
 
             <property name="net.sf.ehcache.configurationResourceName" value="/META-INF/ehcache.xml"/>
             <property name="hibernate.cache.use_query_cache" value="true"/>

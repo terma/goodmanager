@@ -116,6 +116,7 @@
                 if (!LogicView.isUserCheck(firm.getUser().getId(), view, true)) continue;
                 final PageFirm firmInfo = new PageFirm();
                 firmInfo.firm = firm;
+
                 for (final EntityPipol pipol : firm.getPipols()) {
                     if (!view.delete.pipol && pipol.getDelete() != null) continue;
                     for (final EntityContact contact : pipol.getContacts()) {
@@ -131,6 +132,7 @@
                         }
                     }
                 }
+
                 if (firmInfo.last == null) {
                     pageFirmList.add(firmInfo);
                 } else {
