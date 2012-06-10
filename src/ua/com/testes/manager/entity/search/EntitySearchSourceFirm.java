@@ -11,8 +11,3 @@ import javax.persistence.Entity;
 @DiscriminatorValue("1")
 public class EntitySearchSourceFirm extends EntitySearchSource {
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.search.EntitySearchSourceFirm
- * JD-Core Version:    0.6.0
- */

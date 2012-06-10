@@ -59,54 +59,26 @@ class LogicSearchRuleFactory {
 
 
     static {
-
         registered(LogicSearchRulePipolComposite.class, EntitySearchRulePipolComposite.class);
-
         registered(LogicSearchRulePipolFio.class, EntitySearchRulePipolFio.class);
-
         registered(LogicSearchRulePipolOther.class, EntitySearchRulePipolOther.class);
-
         registered(LogicSearchRulePipolUser.class, EntitySearchRulePipolUser.class);
-
         registered(LogicSearchRulePipolDelete.class, EntitySearchRulePipolDelete.class);
-
         registered(LogicSearchRulePipolCreate.class, EntitySearchRulePipolCreate.class);
-
-
         registered(LogicSearchRuleFirmComposite.class, EntitySearchRuleFirmComposite.class);
-
         registered(LogicSearchRuleFirmName.class, EntitySearchRuleFirmName.class);
-
         registered(LogicSearchRuleFirmOther.class, EntitySearchRuleFirmOther.class);
-
         registered(LogicSearchRuleFirmUser.class, EntitySearchRuleFirmUser.class);
-
         registered(LogicSearchRuleFirmSection.class, EntitySearchRuleFirmSection.class);
-
         registered(LogicSearchRuleFirmCreate.class, EntitySearchRuleFirmCreate.class);
-
         registered(LogicSearchRuleFirmDelete.class, EntitySearchRuleFirmDelete.class);
-
-
         registered(LogicSearchRuleContactComposite.class, EntitySearchRuleContactComposite.class);
-
         registered(LogicSearchRuleContactCreate.class, EntitySearchRuleContactCreate.class);
-
         registered(LogicSearchRuleContactDelete.class, EntitySearchRuleContactDelete.class);
-
         registered(LogicSearchRuleContactDescription.class, EntitySearchRuleContactDescription.class);
-
         registered(LogicSearchRuleContactRepeat.class, EntitySearchRuleContactRepeat.class);
-
         registered(LogicSearchRuleContactUser.class, EntitySearchRuleContactUser.class);
-
         registered(LogicSearchRuleContactStatus.class, EntitySearchRuleContactStatus.class);
-
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.logic.search.LogicSearchRuleFactory
- * JD-Core Version:    0.6.0
- */
