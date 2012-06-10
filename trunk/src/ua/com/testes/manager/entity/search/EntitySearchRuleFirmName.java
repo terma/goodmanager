@@ -14,9 +14,5 @@ public final class EntitySearchRuleFirmName extends EntitySearchRuleFirm {
 
     @Column(name = "rule_firm_name", nullable = false)
     public String name;
-}
 
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.search.EntitySearchRuleFirmName
- * JD-Core Version:    0.6.0
- */
+}

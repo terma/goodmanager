@@ -3,7 +3,6 @@
 <%@ page import="ua.com.testes.manager.entity.EntityTransaction" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
-<%@ page import="ua.com.testes.manager.entity.EntityPipol" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final int contactId = Integer.parseInt(request.getParameter("contactId"));

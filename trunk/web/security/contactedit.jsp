@@ -19,10 +19,9 @@
         </script>
     </head>
     <body>
-        К <a href="<login:link value="/security/main.jsp"/>">разделам</a>
+        К <a href="/security/main.jsp">разделам</a>
         <p>
         <form action="/security/contacteditresult.jsp" method="post">
-            <login:input/>
             <%
                 EntityContact editContact = (EntityContact) request.getAttribute("contact");
                 if (editContact == null) {
@@ -56,6 +55,7 @@
                             </option>
                         <% } %>
                     </select><br>
+
                     <%
                         GregorianCalendar repeatCalendar = null;
                         if (editContact.repeat != null) {
@@ -141,6 +141,7 @@
                             </select>
                         </li>
                     </ul>
+
                     Беседа<br>
                     <% if (errors != null && errors.contains(PageDetailError.CONTACT_DESCRIPTION_EMPTY)) { %>
                         <b>Введите пожайлусто текст беседы с сотрудником.</b>
