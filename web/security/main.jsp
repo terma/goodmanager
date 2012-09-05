@@ -135,6 +135,8 @@
             }
 
         </style>
+        <script src="/jquery.js"></script>
+        <script src="/engine.js"></script>
     </head>
     <body>
         <jsp:include page="/security/util/mail/list.jsp" flush="true"/>
@@ -238,10 +240,12 @@
                         </tr>
                     </table>
                 </td>
-                <td width="40%" valign="top">
+                <td width="40%" valign="top" id="firmlastcontacts">
                     <%= view.byMeOld ? "Мои" : "Все" %> фирмы по которым не было контакта уже 9 месяцев (<%= firmLastContacts.size() %>):
                     <p>
-                        <% for (final FirmLastContact firmLastContact : firmLastContacts) { %>
+                            <% final int firmLastContactsLimit = Math.min(firmLastContacts.size(), 10); %>
+                        <% for (int i = 0; i < firmLastContactsLimit; i++) { %>
+                            <% final FirmLastContact firmLastContact = firmLastContacts.get(i); %>
                             <a href="<%= "/security/detail.jsp?firmId=" + firmLastContact.firm.getId() %>"><%= firmLastContact.firm.getName() %></a><br>
                             <% if (firmLastContact.contact != null) { %>
                                 <div class="firmInfo">
@@ -251,6 +255,9 @@
                             <% } %>
                         <% } %>
                     </p>
+                    <% if (firmLastContactsLimit < firmLastContacts.size()) { %>
+                        <a id="showfirmlastcontacts" href="javascript:firmLastContacts()">Показать остальные <%= firmLastContacts.size() - firmLastContactsLimit %></a>
+                    <% } %>
                 </td>
             </tr>
         </table>
