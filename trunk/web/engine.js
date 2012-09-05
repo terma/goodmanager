@@ -4,3 +4,8 @@ function firmLastContacts() {
     $(parentNode).append("Момент...");
     $("#firmlastcontacts").load("/security/firmlastcontacts.jsp");
 }
+
+function showAllContactsWithRepeat() {
+    $("#showAllContactsWithRepeat").html("Момент...");
+    $("#contactsWithRepeat").load("/security/contactrepeats.jsp");
+}
