@@ -31,21 +31,6 @@
 
             };
 
-    private static final Comparator<EntityContact> contactOldRepeatComparator =
-            new Comparator<EntityContact>() {
-
-                public final int compare(EntityContact contact, EntityContact contact2) {
-                    if (contact.repeat == null) {
-                        return contact2.repeat == null ? 0 : 1;
-                    }
-                    if (contact2.repeat == null) {
-                        return -1;
-                    }
-                    return contact.repeat.compareTo(contact2.repeat);
-                }
-
-            };
-
     private static final class FirmLastContact {
 
         public EntityFirm firm;
@@ -64,10 +49,8 @@
     nowCalendar.set(Calendar.MILLISECOND, 0);
     nowCalendar.set(Calendar.SECOND, 0);
     nowCalendar.add(Calendar.DAY_OF_MONTH, 1);
-    final Date now = nowCalendar.getTime();
 
     final long currentTime = System.currentTimeMillis();
-    final List<EntityContact> contactRepeats = new ArrayList<EntityContact>();
     final List<FirmLastContact> firmLastContacts = new ArrayList<FirmLastContact>();
     final List<EntitySection> sections = EntityManager.list("select section from sections as section");
     int last3Month = 0;
@@ -108,19 +91,10 @@
                             }
                         }
                     }
-
-                    // Перезвонить
-                    if (contact.repeat == null) continue;
-                    if (view.byMeRepeat && contact.user != user) continue;
-                    // Если это последний контакт
-                    if (contact.repeat.before(now) && firm.lastContact() == contact) {
-                        contactRepeats.add(contact);
-                    }
                 }
             }
         }
     }
-    Collections.sort(contactRepeats, contactOldRepeatComparator);
     Collections.sort(firmLastContacts, firmLastContactComparator);
 %>
 <html>
@@ -158,32 +132,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top">
-                                На сегодня <%= format.format(new Date()) %>
-                                <ul>
-                                    <%
-                                        nowCalendar.add(Calendar.DAY_OF_MONTH, -1);
-                                        final Date before = nowCalendar.getTime();
-                                    %>
-                                    <% for (final EntityContact contact : contactRepeats) { %>
-                                        <li>
-                                            <% if (contact.repeat.before(before)) { %>
-                                                <span style="color: #ff0000; font-weight: bold;">Перезвонить</span>
-                                            <% } else { %>
-                                                <span style="color: #00ff00; font-weight: bold;">Перезвонить</span>
-                                            <% } %>
-                                            <%= contact.pipol.getFio() %> с фирмы <a href="<%= "/security/detail.jsp?firmId=" + contact.pipol.getFirm().getId() %>"><%= contact.pipol.getFirm().getName() %></a>
-                                            из <a href="<%= "/security/list.jsp?sectionid=" + contact.pipol.getFirm().getSection().getId() + "#firmId" + contact.pipol.getFirm().getId() %>"><%= contact.pipol.getFirm().getSection().getName() %></a>
-                                            <%
-                                                long expiration = System.currentTimeMillis() - contact.repeat.getTime();
-                                                expiration = expiration / (24 * 60 * 60 * 1000);
-                                            %>
-                                            <% if (expiration > 1) { %>
-                                                <b>ожидает <%= expiration %> дня <%= expiration > 100 ? ", плохо" : "!" %></b>
-                                            <% } %>
-                                        </li>
-                                     <% } %>
-                                </ul>
+                            <td valign="top" id="contactsWithRepeat">
+                                <jsp:include page="/security/contactrepeats.jsp" flush="true">
+                                    <jsp:param name="limitInPast" value="5"/>
+                                </jsp:include>
                             </td>
                         </tr>
                         <tr>
