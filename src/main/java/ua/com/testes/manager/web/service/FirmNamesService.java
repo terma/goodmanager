@@ -20,51 +20,28 @@ import java.util.List;
 public class FirmNamesService {
 
     @RemoteMethod
-    public String findLike(String firmName)
-            throws IOException, ServletException {
-
+    public String findLike(String firmName) throws IOException, ServletException {
         WebContext webContext = WebContextFactory.get();
-
         HttpSession httpSession = webContext.getHttpServletRequest().getSession(false);
 
-
         if ((httpSession == null) || (httpSession.getAttribute("userId") == null)) {
-
             return "";
-
         }
 
-
         String firmNameInLowerCase = firmName.toLowerCase();
-
         List<EntitySection> sections = EntityManager.listByName("sections.all", new Object[0]);
-
         List firms = new ArrayList();
 
         for (EntitySection section : sections) {
-
             for (EntityFirm firm : section.getFirms()) {
-
                 if (firm.getName().toLowerCase().contains(firmNameInLowerCase)) {
-
                     firms.add(firm);
-
                 }
-
             }
-
         }
 
-
         webContext.getHttpServletRequest().setAttribute("firms", firms);
-
         return webContext.forwardToString("/security/likefirms.jsp");
-
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.web.service.FirmNamesService
- * JD-Core Version:    0.6.0
- */

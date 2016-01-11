@@ -9,12 +9,23 @@ import java.util.Properties;
 
 public class EntityManager {
 
-    private static final ThreadLocal<javax.persistence.EntityManager> managers
-            = new ThreadLocal<javax.persistence.EntityManager>();
+    private static final ThreadLocal<javax.persistence.EntityManager> managers = new ThreadLocal<javax.persistence.EntityManager>();
     private static EntityManagerFactory factory = null;
+
+    private static EntityManager entityManager;
+
+    public static EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public static void setEntityManager(EntityManager newEntityManager) {
+        entityManager = newEntityManager;
+    }
 
     @SuppressWarnings({"deprecation"})
     public static void configuration(String url) {
+        setEntityManager(new EntityManager());
+
         final Properties properties = new Properties();
         properties.setProperty("hibernate.connection.url", url);
 
@@ -32,11 +43,7 @@ public class EntityManager {
 
     @SuppressWarnings({"unchecked"})
     public static <T> List<T> listByName(String hqlQueryName, Object[] parameters) {
-        Query query = managers.get().createNamedQuery(hqlQueryName);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter("p" + i, parameters[i]);
-        }
-        return query.getResultList();
+        return entityManager.listByNameNonStatic(hqlQueryName, parameters);
     }
 
     public static <T> T find(Class<T> entityClass, Object id) {
@@ -84,5 +91,14 @@ public class EntityManager {
 
         managers.get().close();
         managers.remove();
+    }
+
+    // todo remove all static methods on non static
+    public <T> List<T> listByNameNonStatic(String hqlQueryName, Object[] parameters) {
+        Query query = managers.get().createNamedQuery(hqlQueryName);
+        for (int i = 0; i < parameters.length; i++) {
+            query.setParameter("p" + i, parameters[i]);
+        }
+        return query.getResultList();
     }
 }
