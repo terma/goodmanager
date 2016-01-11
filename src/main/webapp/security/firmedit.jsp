@@ -11,9 +11,9 @@
         <link type="text/css" href="/public/testes/style.css" rel="stylesheet">
     </head>
     <body>
-        К <a href="/security/main.jsp"/>">разделам</a>
+        К <a href="/security/main.jsp">разделам</a>
         <p>
-        <form action="/security/firmeditresult.jsp" method="post">
+        <form action="/security/firmeditresult" method="post">
             <login:input/>
             <%
                 EntityFirm editFirm = (EntityFirm) request.getAttribute("firm");
@@ -24,6 +24,7 @@
                     editFirm.setId(firm.getId());
                     editFirm.setDescription(firm.getDescription());
                     editFirm.setTelephon(firm.getTelephon());
+                    editFirm.setAddress(firm.getAddress());
                     editFirm.setFax(firm.getFax());
                     editFirm.setUser(firm.getUser());
                     editFirm.setEmail(firm.getEmail());

@@ -305,7 +305,7 @@
     </head>
     <body>
         <p>
-            Назад к <a href="/security/statistic/user.jsp"/>">статистики</a>, или к
+            Назад к <a href="/security/statistic/user.jsp">статистики</a>, или к
             <a href="/security/main.jsp"/>">разделам</a>, максимум <%= countMax %>
         </p>
         <table border="0" cellpadding="0" cellspacing="0">

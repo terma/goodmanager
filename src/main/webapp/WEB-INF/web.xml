@@ -133,8 +133,7 @@
         <init-param>
             <param-name>classes</param-name>
             <param-value>
-                ua.com.testes.manager.web.service.FirmNamesService,
-ua.com.testes.manager.web.service.SearchFirmsService
+                ua.com.testes.manager.web.service.FirmNamesService
             </param-value>
         </init-param>
     </servlet>
@@ -142,6 +141,15 @@ ua.com.testes.manager.web.service.SearchFirmsService
     <servlet-mapping>
         <servlet-name>dwr-invoker</servlet-name>
         <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FirmEditResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.FirmEditResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmEditResultServlet</servlet-name>
+        <url-pattern>/security/firmeditresult</url-pattern>
     </servlet-mapping>
 
     <listener>

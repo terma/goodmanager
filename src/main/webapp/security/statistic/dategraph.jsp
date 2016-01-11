@@ -235,8 +235,8 @@
     </head>
     <body>
         <p>
-            Назад к <a href="/security/statistic/date.jsp"/>">статистики</a>, или к
-            <a href="/security/main.jsp"/>">разделам</a>
+            Назад к <a href="/security/statistic/date.jsp">статистики</a>, или к
+            <a href="/security/main.jsp">разделам</a>
         </p>
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>

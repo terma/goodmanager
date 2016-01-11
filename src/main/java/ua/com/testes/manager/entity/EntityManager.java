@@ -12,6 +12,10 @@ public class EntityManager {
     private static final ThreadLocal<javax.persistence.EntityManager> managers = new ThreadLocal<javax.persistence.EntityManager>();
     private static EntityManagerFactory factory = null;
 
+    // todo test only not for prod
+    private static boolean testTransaction;
+    private static javax.persistence.EntityManager testEntityManager;
+
     private static EntityManager entityManager;
 
     public static EntityManager getEntityManager() {
@@ -34,11 +38,7 @@ public class EntityManager {
 
     @SuppressWarnings({"unchecked"})
     public static <T> List<T> list(String hql, Object... parameters) {
-        Query query = managers.get().createQuery(hql);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter("p" + i, parameters[i]);
-        }
-        return query.getResultList();
+        return entityManager.listNonStatic(hql, parameters);
     }
 
     @SuppressWarnings({"unchecked"})
@@ -47,7 +47,7 @@ public class EntityManager {
     }
 
     public static <T> T find(Class<T> entityClass, Object id) {
-        return managers.get().find(entityClass, id);
+        return entityManager.findNonStatic(entityClass, id);
     }
 
     public static javax.persistence.EntityManager get() {
@@ -64,15 +64,11 @@ public class EntityManager {
     }
 
     public static void execute(EntityTransaction transaction) {
-        final javax.persistence.EntityManager entityManager = managers.get();
-        entityManager.setFlushMode(FlushModeType.COMMIT);
-        entityManager.getTransaction().begin();
-        try {
-            transaction.execute(entityManager);
-            entityManager.getTransaction().commit();
-        } catch (RuntimeException exception) {
-            entityManager.getTransaction().rollback();
-            throw exception;
+        if (testTransaction) {
+            // todo refactor test should not be part of prod code
+            transaction.execute(testEntityManager);
+        } else {
+            entityManager.executeNonStatic(transaction);
         }
     }
 
@@ -91,6 +87,47 @@ public class EntityManager {
 
         managers.get().close();
         managers.remove();
+    }
+
+    public static boolean isTestTransaction() {
+        return testTransaction;
+    }
+
+    public static void setTestTransaction(boolean testTransaction) {
+        EntityManager.testTransaction = testTransaction;
+    }
+
+    public static javax.persistence.EntityManager getTestEntityManager() {
+        return testEntityManager;
+    }
+
+    public static void setTestJavaxEntityManager(javax.persistence.EntityManager testEntityManager) {
+        EntityManager.testEntityManager = testEntityManager;
+    }
+
+    public void executeNonStatic(EntityTransaction transaction) {
+        final javax.persistence.EntityManager entityManager = managers.get();
+        entityManager.setFlushMode(FlushModeType.COMMIT);
+        entityManager.getTransaction().begin();
+        try {
+            transaction.execute(entityManager);
+            entityManager.getTransaction().commit();
+        } catch (RuntimeException exception) {
+            entityManager.getTransaction().rollback();
+            throw exception;
+        }
+    }
+
+    public <T> List<T> listNonStatic(String hql, Object... parameters) {
+        Query query = managers.get().createQuery(hql);
+        for (int i = 0; i < parameters.length; i++) {
+            query.setParameter("p" + i, parameters[i]);
+        }
+        return query.getResultList();
+    }
+
+    public <T> T findNonStatic(Class<T> entityClass, Object id) {
+        return managers.get().find(entityClass, id);
     }
 
     // todo remove all static methods on non static

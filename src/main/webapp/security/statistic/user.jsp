@@ -62,7 +62,7 @@
             PageStatisticDate pageStatistic = (PageStatisticDate) session.getAttribute("statisticuser");
             if (pageStatistic == null) pageStatistic = new PageStatisticDate();
         %>
-        <p>Назад к <a href="/security/main.jsp"/>">разделам</a></p>
+        <p>Назад к <a href="/security/main.jsp">разделам</a></p>
         <form action="/security/statistic/usergraph.jsp" method="post">
             <login:input/>
         <table border="0" cellpadding="0" cellspacing="5" width="100%">

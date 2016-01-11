@@ -40,7 +40,7 @@
             <property name="hibernate.cache.region.factory_class"
                       value="net.sf.ehcache.hibernate.EhCacheRegionFactory"/>
 
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>

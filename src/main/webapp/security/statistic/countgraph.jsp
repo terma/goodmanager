@@ -162,8 +162,8 @@
     </head>
     <body>
         <p>
-            Назад к <a href="/security/statistic/count.jsp"/>">статистики</a>, или к
-            <a href="/security/main.jsp"/>">разделам</a>
+            Назад к <a href="/security/statistic/count.jsp">статистики</a>, или к
+            <a href="/security/main.jsp">разделам</a>
         </p>
         <table border="0" cellpadding="5" cellspacing="0">
             <% boolean even = true; %>

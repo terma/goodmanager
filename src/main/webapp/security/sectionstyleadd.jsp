@@ -14,7 +14,7 @@
             final EntitySection section = EntityManager.find(EntitySection.class, Integer.parseInt(request.getParameter("sectionid")));
             final List<EntityStyle> styles = EntityManager.list("select style from styles as style");
         %>
-        К <a href="/security/main.jsp"/>">главной</a>, примененние стиля к
+        К <a href="/security/main.jsp">главной</a>, примененние стиля к
         <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + section.getId() %>'/>"><%= section.getName() %></a>
         <p>
         <form action="/security/sectionstyleaddresult.jsp" method="post">
