@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/terma/goodmanager.svg?branch=master)](https://travis-ci.org/terma/goodmanager) [![Coverage Status](https://coveralls.io/repos/terma/goodmanager/badge.svg?branch=master&service=github)](https://coveralls.io/github/terma/goodmanager?branch=master)
+
 # goodmanager
 Automatically exported from code.google.com/p/goodmanager
 
