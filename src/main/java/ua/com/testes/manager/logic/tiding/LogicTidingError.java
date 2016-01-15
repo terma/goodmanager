@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public enum LogicTidingError {
-    /*  8 */   NAME_EMPTY, CATEGORY_NOT_SET;
+       NAME_EMPTY, CATEGORY_NOT_SET;
 
 
     public static Set<LogicTidingError> toSet(LogicTidingError[] errorArray) {

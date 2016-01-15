@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public final class PerformanManager {
-    /*  9 */   private static final Map<String, PerformanCounter> counters = new HashMap();
+       private static final Map<String, PerformanCounter> counters = new HashMap();
 
 
     public static Map<String, PerformanCounter> get() {

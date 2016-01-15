@@ -7,7 +7,7 @@ public final class PerformanState {
 
 
     PerformanState(PerformanCounter counter) {
-/*  9 */
+
         this.counter = counter;
 
         this.startTime = System.currentTimeMillis();

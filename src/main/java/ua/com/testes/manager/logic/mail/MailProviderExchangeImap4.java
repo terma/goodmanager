@@ -20,75 +20,75 @@ public class MailProviderExchangeImap4
 
     public MailProviderExchangeImap4(String login, String password, String url)
             throws MailException {
-/*  27 */
+
         this.store = getStore(login, password, url);
     }
 
     public List<MailItem> getMessages() {
-/*  35 */
+
         List items = new ArrayList();
         try {
-/*  37 */
+
             Folder folder = this.store.getFolder("INBOX");
-/*  38 */
+
             folder.open(1);
-/*  39 */
+
             int messageNumber = 1;
-/*  40 */
+
             for (Message message : folder.getMessages()) {
                 try {
-/*  42 */
+
                     items.add(new MailItem(message.getSentDate(), message.getSubject(), toAddressList(message.getFrom()), toAddressList(message.getAllRecipients()), messageNumber));
 
-/*  45 */
+
                     messageNumber++;
                 } catch (AddressException exception) {
-/*  47 */
+
                     exception.printStackTrace();
                 }
             }
-/*  50 */
+
             folder.close(false);
         } catch (MessagingException e) {
-/*  53 */
+
             throw new MailException(e);
         }
         try {
-/*  56 */
+
             this.store.close();
         } catch (MessagingException e) {
-/*  58 */
+
             throw new MailException(e);
         }
-/*  60 */
+
         return items;
     }
 
     public List<MailFolder> getRootFolders() {
         try {
-/*  65 */
+
             List mailFolders = new ArrayList();
-/*  66 */
+
             for (Folder folder : this.store.getFolder("").list()) {
-/*  67 */
+
                 MailFolder mailFolder = new MailFolder();
-/*  68 */
+
                 mailFolder.name = folder.getName();
-/*  69 */
+
                 mailFolder.path = folder.getFullName();
-/*  70 */
+
                 if (folder.getType() == 3) {
-/*  71 */
+
                     mailFolder.messages = folder.getMessageCount();
-/*  72 */
+
                     mailFolder.notReadMessages = folder.getNewMessageCount();
-/*  73 */
+
                     mailFolder.deleteMessages = folder.getDeletedMessageCount();
                 }
-/*  75 */
+
                 mailFolders.add(mailFolder);
             }
-/*  77 */
+
             return mailFolders;
         } catch (MessagingException e) {
             throw new MailException(e);
@@ -97,29 +97,29 @@ public class MailProviderExchangeImap4
 
     public List<MailFolder> getFolders(String parentFolderName) {
         try {
-/*  85 */
+
             List mailFolders = new ArrayList();
-/*  86 */
+
             for (Folder folder : this.store.getFolder(parentFolderName).list()) {
-/*  87 */
+
                 MailFolder mailFolder = new MailFolder();
-/*  88 */
+
                 mailFolder.name = folder.getName();
-/*  89 */
+
                 mailFolder.path = folder.getFullName();
-/*  90 */
+
                 if (folder.getType() == 3) {
-/*  91 */
+
                     mailFolder.messages = folder.getMessageCount();
-/*  92 */
+
                     mailFolder.notReadMessages = folder.getNewMessageCount();
-/*  93 */
+
                     mailFolder.deleteMessages = folder.getDeletedMessageCount();
                 }
-/*  95 */
+
                 mailFolders.add(mailFolder);
             }
-/*  97 */
+
             return mailFolders;
         } catch (MessagingException e) {
             throw new MailException(e);

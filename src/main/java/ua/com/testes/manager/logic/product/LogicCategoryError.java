@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public enum LogicCategoryError {
-    /*  8 */   NAME_EMPTY, NAME_NOT_UNIQUE;
+       NAME_EMPTY, NAME_NOT_UNIQUE;
 
 
     public static Set<LogicCategoryError> toSet(LogicCategoryError[] errorArray) {

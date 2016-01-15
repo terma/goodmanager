@@ -2,7 +2,7 @@ package ua.com.testes.manager.page;
 
 
 public enum PageLoginError {
-    /*  5 */   NOT_CORRENT(1), BLOCK(2);
+       NOT_CORRENT(1), BLOCK(2);
 
     private int code;
 

@@ -21,101 +21,101 @@ public final class UploadFile extends InputStream {
     private String m_typeMime;
     private String m_subTypeMime;
     private boolean m_isMissing;
-    /*  31 */   private int mark_position = 0;
+       private int mark_position = 0;
     public static final int SAVEAS_AUTO = 0;
     public static final int SAVEAS_VIRTUAL = 1;
     public static final int SAVEAS_PHYSICAL = 2;
 
     public UploadFile() {
-/*  37 */
+
         this.m_startData = 0;
-/*  38 */
+
         this.m_endData = 0;
-/*  39 */
+
         this.m_size = 0;
-/*  40 */
+
         this.m_fieldname = "";
-/*  41 */
+
         this.m_filename = "";
-/*  42 */
+
         this.m_fileExt = "";
-/*  43 */
+
         this.m_filePathName = "";
-/*  44 */
+
         this.m_contentType = "";
-/*  45 */
+
         this.m_contentDisp = "";
-/*  46 */
+
         this.m_typeMime = "";
-/*  47 */
+
         this.m_subTypeMime = "";
-/*  48 */
+
         this.m_isMissing = true;
-/*  49 */
+
         this.mis_current_pos = 0;
-/*  50 */
+
         this.mis_size = 0;
     }
 
     public int read() {
-/*  54 */
+
         if (this.mis_current_pos < this.mis_size) {
-/*  55 */
+
             return 0xFF & getBinaryData(this.mis_current_pos++);
         }
-/*  57 */
+
         return -1;
     }
 
     public int available() {
-/*  62 */
+
         return this.mis_size - this.mis_current_pos;
     }
 
     public InputStream getInputStream() {
-/*  66 */
+
         return this;
     }
 
     public void saveAs(String destFilePathName) throws UploadException, IOException {
-/*  70 */
+
         saveAs(destFilePathName, 0);
     }
 
     public void saveAs(String destFilePathName, int optionSaveAs) throws UploadException, IOException {
-/*  74 */
+
         String path = this.m_parent.getPhysicalPath(destFilePathName, optionSaveAs);
-/*  75 */
+
         if (path == null)
-/*  76 */ throw new IllegalArgumentException("There is no specified destination file (1140).");
+ throw new IllegalArgumentException("There is no specified destination file (1140).");
         try {
-/*  79 */
+
             File file = new File(path);
-/*  80 */
+
             FileOutputStream fileOut = new FileOutputStream(file);
-/*  81 */
+
             if ((this.m_size > 0) && (this.m_size + this.m_startData > 0) && (this.m_size + this.m_startData < this.m_parent.m_binArray.length))
-/*  82 */ fileOut.write(this.m_parent.m_binArray, this.m_startData, this.m_size);
-/*  83 */
+ fileOut.write(this.m_parent.m_binArray, this.m_startData, this.m_size);
+
             fileOut.close();
         } catch (IOException e) {
-/*  86 */
+
             e.printStackTrace();
-/*  87 */
+
             throw new UploadException("UploadFile can't be saved (1120). file=" + destFilePathName + " ex=" + e);
         }
     }
 
     public OutputStream out() throws UploadException, IOException {
         try {
-/*  93 */
+
             ByteArrayOutputStream out = new ByteArrayOutputStream();
-/*  94 */
+
             if ((this.m_size > 0) && (this.m_size + this.m_startData > 0) && (this.m_size + this.m_startData < this.m_parent.m_binArray.length)) {
-/*  97 */
+
                 out.write(this.m_parent.m_binArray, this.m_startData, this.m_size);
             }
-/*  99 */
+
             out.close();
 
             return out;

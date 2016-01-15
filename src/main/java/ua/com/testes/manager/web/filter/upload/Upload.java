@@ -13,8 +13,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public final class Upload {
-    /*  23 */   private final Set<String> ds = new TreeSet();
-    /*  24 */   private final Set<String> as = new TreeSet();
+       private final Set<String> ds = new TreeSet();
+       private final Set<String> as = new TreeSet();
     byte[] m_binArray;
     private HttpServletRequest m_request;
     private HttpServletResponse m_response;
@@ -33,95 +33,95 @@ public final class Upload {
     public static final int SAVE_PHYSICAL = 2;
     private UploadFiles m_files;
     private Request m_formRequest;
-    /*  44 */   private String charset = "UTF-8";
+       private String charset = "UTF-8";
     private static final int DEFAULT_BLOCK_SIZE = 65000;
 
     public Upload() {
-/*  48 */
+
         this.m_totalBytes = 0;
-/*  49 */
+
         this.m_currentIndex = 0;
-/*  50 */
+
         this.m_startData = 0;
-/*  51 */
+
         this.m_endData = 0;
-/*  52 */
+
         this.m_boundary = "";
-/*  53 */
+
         this.m_totalMaxFileSize = 0L;
-/*  54 */
+
         this.m_maxFileSize = 0L;
-/*  55 */
+
         this.m_denyPhysicalPath = false;
-/*  56 */
+
         this.m_contentDisposition = "";
-/*  57 */
+
         this.m_files = new UploadFiles();
-/*  58 */
+
         this.m_formRequest = new Request();
     }
 
     public final void init(ServletConfig config) {
-/*  62 */
+
         this.m_application = config.getServletContext();
     }
 
     public void service(HttpServletRequest request, HttpServletResponse response) {
-/*  66 */
+
         this.m_request = request;
-/*  67 */
+
         this.m_response = response;
     }
 
     public final void init(ServletConfig c, HttpServletRequest rq, HttpServletResponse rs) {
-/*  71 */
+
         this.m_application = c.getServletContext();
-/*  72 */
+
         this.m_request = rq;
-/*  73 */
+
         this.m_response = rs;
     }
 
     public final void initialize(PageContext pageContext) {
-/*  77 */
+
         this.m_application = pageContext.getServletContext();
-/*  78 */
+
         this.m_request = ((HttpServletRequest) pageContext.getRequest());
-/*  79 */
+
         this.m_response = ((HttpServletResponse) pageContext.getResponse());
     }
 
     public final void init(ServletContext application, HttpServletRequest request, HttpServletResponse response) {
-/*  83 */
+
         this.m_application = application;
-/*  84 */
+
         this.m_request = request;
-/*  85 */
+
         this.m_response = response;
     }
 
     public void upload() throws UploadException, IOException {
-/*  89 */
+
         System.out.println("UPLOAD: Start");
-/*  90 */
+
         long totalFileSize = 0L;
-/*  91 */
+
         boolean found = false;
-/*  92 */
+
         String fileName = "";
-/*  93 */
+
         String fileExt = "";
-/*  94 */
+
         String filePathName = "";
-/*  95 */
+
         String contentType = "";
-/*  96 */
+
         String contentDisp = "";
-/*  97 */
+
         String typeMIME = "";
-/*  98 */
+
         String subTypeMIME = "";
-/*  99 */
+
         this.m_totalBytes = this.m_request.getContentLength();
 
         DataInputStream dis = new DataInputStream(this.m_request.getInputStream());

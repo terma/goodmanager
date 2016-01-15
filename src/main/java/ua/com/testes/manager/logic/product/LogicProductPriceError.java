@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public enum LogicProductPriceError {
-    /*  8 */   CURRENTCY_NOT_SELECT, PRODUCT_NOT_SELECT, PRICE_INFINITE;
+       CURRENTCY_NOT_SELECT, PRODUCT_NOT_SELECT, PRICE_INFINITE;
 
 
     public static Set<LogicProductPriceError> toSet(LogicProductPriceError[] errorArray) {

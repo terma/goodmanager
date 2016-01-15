@@ -7,9 +7,9 @@ import ua.com.testes.manager.entity.content.EntityText;
 public final class TextFacade {
 
     public static EntityText getByName(String textName) {
-/*  8 */
+
         if (textName == null) {
-/*  9 */
+
             throw new NullPointerException();
 
         }

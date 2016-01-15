@@ -27,7 +27,7 @@ public final class EntitySection implements Serializable {
 
     @OneToMany(mappedBy = "parent", cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-/*  31 */ private List<EntitySection> childs = new ArrayList();
+ private List<EntitySection> childs = new ArrayList();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_parent")
@@ -41,70 +41,70 @@ public final class EntitySection implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(cascade = {javax.persistence.CascadeType.ALL})
     @JoinColumn(name = "id_parent")
-/*  44 */ private List<EntityFirm> firms = new ArrayList();
+ private List<EntityFirm> firms = new ArrayList();
 
     @OneToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "section_style_id")
     private EntityStyle style;
 
-    /*  55 */
+
     public String getName() {
         return this.name;
     }
 
     public void setName(String name) {
-/*  59 */
+
         this.name = name;
     }
 
     public Integer getId() {
-/*  63 */
+
         return this.id;
     }
 
     public void setId(Integer id) {
-/*  67 */
+
         this.id = id;
     }
 
     public String getDescription() {
-/*  71 */
+
         return this.description;
     }
 
     public void setDescription(String description) {
-/*  75 */
+
         this.description = description;
     }
 
     public List<EntitySection> getChilds() {
-/*  79 */
+
         return this.childs;
     }
 
     public void setChilds(List<EntitySection> childs) {
-/*  83 */
+
         this.childs = childs;
     }
 
     public EntitySection getParent() {
-/*  87 */
+
         return this.parent;
     }
 
     public void setParent(EntitySection parent) {
-/*  91 */
+
         this.parent = parent;
     }
 
     public EntityUser getOwner() {
-/*  95 */
+
         return this.owner;
     }
 
     public void setOwner(EntityUser owner) {
-/*  99 */
+
         this.owner = owner;
     }
 

@@ -20,7 +20,7 @@ public final class EntityUser
         implements Serializable {
 
     @Column(length = 250, nullable = false)
-/*  21 */ private String fio = "";
+ private String fio = "";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator_user")
@@ -29,16 +29,16 @@ public final class EntityUser
 
     @Lob
     @Column(name = "descriptions", nullable = false)
-/*  29 */ private String description = "";
+ private String description = "";
 
     @Column(name = "password1", length = 100, nullable = false)
-/*  33 */ private String password = "";
+ private String password = "";
 
     @Column(name = "ib_name", length = 100, nullable = false, unique = true)
-/*  36 */ private String login = "";
+ private String login = "";
 
     @Column(length = 250, nullable = false, name = "user_email")
-/*  39 */ private String email = "";
+ private String email = "";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -51,7 +51,7 @@ public final class EntityUser
 
     @OneToMany(mappedBy = "user", cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-/*  51 */ private List<EntityFirm> firms = new ArrayList();
+ private List<EntityFirm> firms = new ArrayList();
 
     @Column(name = "user_block")
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,46 +59,46 @@ public final class EntityUser
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "owner")
-/*  59 */ private List<EntityTask> dependTasks = new ArrayList();
+ private List<EntityTask> dependTasks = new ArrayList();
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "owner", cascade = {javax.persistence.CascadeType.ALL})
-/*  63 */ private List<EntityTask> ownerTasks = new ArrayList();
+ private List<EntityTask> ownerTasks = new ArrayList();
 
     @OneToOne(cascade = {javax.persistence.CascadeType.ALL}, fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "user_view_id")
-/*  67 */ private EntityView defaultView = new EntityView();
+ private EntityView defaultView = new EntityView();
 
     @OneToMany(mappedBy = "user", cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-/*  72 */ private List<EntityMail> mails = new ArrayList();
+ private List<EntityMail> mails = new ArrayList();
 
     @Embedded
-/*  76 */ private EntityUser1c activeX1c = new EntityUser1c();
+ private EntityUser1c activeX1c = new EntityUser1c();
 
     public boolean isBlock() {
-/*  83 */
+
         return (getBlock() != null) && (System.currentTimeMillis() - getBlock().getTime() <= 0L);
     }
 
     public String getFio() {
-/*  87 */
+
         return this.fio;
     }
 
     public void setFio(String fio) {
-/*  91 */
+
         this.fio = fio;
     }
 
     public Integer getId() {
-/*  95 */
+
         return this.id;
     }
 
     public void setId(Integer id) {
-/*  99 */
+
         this.id = id;
     }
 

@@ -16,7 +16,7 @@ public final class EntityPipol
         implements Serializable {
 
     @Column(nullable = false, length = 250)
-/*  18 */ private String fio = "";
+ private String fio = "";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERATOR_PIPOL")
@@ -24,19 +24,19 @@ public final class EntityPipol
     private Integer id;
 
     @Column(name = "descriptions", nullable = false)
-/*  26 */ private String description = "";
+ private String description = "";
 
     @Column(nullable = false)
-/*  29 */ private String telephon = "";
+ private String telephon = "";
 
     @Column(nullable = false)
-/*  32 */ private String rang = "";
+ private String rang = "";
 
     @Column(name = "e_mail", nullable = false)
-/*  35 */ private String email = "";
+ private String email = "";
 
     @Column(name = "create_date", nullable = false)
-/*  38 */ private Date create = new Date();
+ private Date create = new Date();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -56,52 +56,52 @@ public final class EntityPipol
     @OneToMany(cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "id_parent")
-/*  56 */ private List<EntityContact> contacts = new ArrayList();
+ private List<EntityContact> contacts = new ArrayList();
 
     @Column(name = "delete_date")
     private Date delete;
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "id.pipol", cascade = {javax.persistence.CascadeType.ALL})
-/*  64 */ private List<EntityPipolHistory> historys = new ArrayList();
+ private List<EntityPipolHistory> historys = new ArrayList();
 
     public String getFio() {
-/*  69 */
+
         return this.fio;
     }
 
     public void setFio(String fio) {
-/*  73 */
+
         this.fio = fio;
     }
 
     public Integer getId() {
-/*  77 */
+
         return this.id;
     }
 
     public void setId(Integer id) {
-/*  81 */
+
         this.id = id;
     }
 
     public String getDescription() {
-/*  85 */
+
         return this.description;
     }
 
     public void setDescription(String description) {
-/*  89 */
+
         this.description = description;
     }
 
     public String getTelephon() {
-/*  93 */
+
         return this.telephon;
     }
 
     public void setTelephon(String telephon) {
-/*  97 */
+
         this.telephon = telephon;
     }
 

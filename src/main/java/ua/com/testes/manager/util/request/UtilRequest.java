@@ -4,9 +4,9 @@ package ua.com.testes.manager.util.request;
 public final class UtilRequest {
 
     public static String addParameter(String request, String parameterName, String parameterValue) {
-/*  7 */
+
         if (request.contains("?")) {
-/*  8 */
+
             return request + "&" + parameterName + "=" + parameterValue;
 
         }

@@ -2,7 +2,7 @@ package ua.com.testes.manager.web.page;
 
 
 public enum PageSearchError {
-    /*  5 */   EMPTY_TEXT(1);
+       EMPTY_TEXT(1);
 
     private int code;
 

@@ -40,7 +40,7 @@ public final class EntityFirm implements Serializable {
     private String site = "";
 
     @Column(name = "create_date", nullable = false)
-/*  43 */ private Date create = new Date();
+    private Date create = new Date();
 
     @OneToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -50,7 +50,7 @@ public final class EntityFirm implements Serializable {
     @OneToMany(cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "id_parent")
-/*  51 */ private List<EntityPipol> pipols = new ArrayList<EntityPipol>();
+    private List<EntityPipol> pipols = new ArrayList<EntityPipol>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -74,6 +74,11 @@ public final class EntityFirm implements Serializable {
             return this.site;
         }
         return "http://" + this.site;
+    }
+
+    public void setSite(String site) {
+
+        this.site = site;
     }
 
     public EntityContact lastContact() {
@@ -156,11 +161,6 @@ public final class EntityFirm implements Serializable {
     public void setEmail(String email) {
 
         this.email = email;
-    }
-
-    public void setSite(String site) {
-
-        this.site = site;
     }
 
     public Date getCreate() {

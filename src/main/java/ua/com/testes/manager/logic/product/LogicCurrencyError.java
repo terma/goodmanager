@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public enum LogicCurrencyError {
-    /*  8 */   NAME_EMPTY, NAME_NOT_UNIQUE, LABEL_EMPTY, LABEL_NOT_UNIQUE, LABEL_TOO_LONG;
+       NAME_EMPTY, NAME_NOT_UNIQUE, LABEL_EMPTY, LABEL_NOT_UNIQUE, LABEL_TOO_LONG;
 
 
     public static Set<LogicCurrencyError> toSet(LogicCurrencyError[] errorArray) {
