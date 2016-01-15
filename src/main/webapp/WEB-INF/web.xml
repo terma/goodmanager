@@ -152,6 +152,15 @@
         <url-pattern>/security/firmeditresult</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PipolEditResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.PipolEditResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PipolEditResultServlet</servlet-name>
+        <url-pattern>/security/pipoleditresult</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>ua.com.testes.manager.web.listener.LoadListener</listener-class>
     </listener>

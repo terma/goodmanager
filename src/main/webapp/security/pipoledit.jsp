@@ -11,9 +11,9 @@
         <link type="text/css" href="/public/testes/style.css" rel="stylesheet">
     </head>
     <body>
-        К <a href="/security/main.jsp"/>">разделам</a>
+        К <a href="/security/main.jsp">разделам</a>
         <p>
-        <form action="/security/pipoleditresult.jsp" method="post">
+        <form action="/security/pipoleditresult" method="post">
             <login:input/>
             <%
                 EntityPipol editPipol = (EntityPipol) request.getAttribute("pipol");
@@ -26,15 +26,16 @@
                     editPipol.setTelephon(pipol.getTelephon());
                     editPipol.setUser(pipol.getUser());
                     editPipol.setEmail(pipol.getEmail());
+                    editPipol.setRang(pipol.getRang());
                     editPipol.setFirm(pipol.getFirm());
                 }
                 final List<PageDetailError> errors = (List<PageDetailError>) request.getAttribute("errors");
             %>
             <input type="hidden" name="pipolid" value="<%= editPipol.getId() %>">
             <% String link = "/security/detail.jsp?firmId=" + editPipol.getFirm().getId(); %>
-            Сотрудник из <a href="<%= link %>"/>"><%= editPipol.getFirm().getName() %></a>
+            Сотрудник из <a href="<%= link %>"><%= editPipol.getFirm().getName() %></a>
             <% String link1 = "/security/list.jsp?sectionId=" + editPipol.getFirm().getSection().getId(); %>
-            раздел <a href="<%= link1 %>"/>"><%= editPipol.getFirm().getSection().getName() %></a>
+            раздел <a href="<%= link1 %>"><%= editPipol.getFirm().getSection().getName() %></a>
             можно сбросить <a href="#">измененния</a><br>
             <p>
                 <b>Реквизиты сотрудника</b>

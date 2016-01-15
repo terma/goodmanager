@@ -48,6 +48,10 @@
                     </execution>
                 </executions>
 
+                <configuration>
+                    <packageName>ua.com.testes.manager.web.servlet</packageName>
+                </configuration>
+
                 <!-- Use the Tomcat 6 JSP compiler -->
                 <dependencies>
                     <dependency>
@@ -64,6 +68,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <webXml>${pom.basedir}/target/jspweb.xml</webXml>
+                    <packagingExcludes>**/*.jsp</packagingExcludes>
                 </configuration>
             </plugin>
 
