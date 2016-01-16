@@ -100,7 +100,7 @@
         измерял производительность страниц jsp -->
     <filter>
         <filter-name>FilterPerforman</filter-name>
-        <filter-class>ua.com.testes.manager.web.filter.performan.FilterPerforman</filter-class>
+        <filter-class>ua.com.testes.manager.web.filter.performance.FilterPerformance</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FilterPerforman</filter-name>

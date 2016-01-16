@@ -6,29 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 
-public class FilterEncodeRequest
-        implements Filter {
+public class FilterEncodeRequest implements Filter {
 
+    @Override
     public void destroy() {
-
     }
 
-
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-
         httpRequest.setCharacterEncoding("utf-8");
-
         chain.doFilter(request, response);
-
     }
 
-
-    public void init(FilterConfig config)
-            throws ServletException {
-
+    @Override
+    public void init(FilterConfig config) throws ServletException {
     }
 
 }

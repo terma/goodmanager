@@ -20,7 +20,7 @@
         <link type="text/css" href="/public/testes/style.css" rel="stylesheet">
     </head>
     <body>
-        К <a href="/security/content/text/main.jsp"/>">текстам</a>
+        К <a href="/security/content/text/main.jsp">текстам</a>
         <%
             final Set<TextError> errors = (Set<TextError>) request.getAttribute("errors");
             EntityText text = (EntityText) request.getAttribute("text");

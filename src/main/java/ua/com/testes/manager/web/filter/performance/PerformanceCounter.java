@@ -1,7 +1,7 @@
-package ua.com.testes.manager.web.filter.performan;
+package ua.com.testes.manager.web.filter.performance;
 
 
-public final class PerformanCounter {
+public final class PerformanceCounter {
 
     private volatile long time = 0L;
     private volatile int count = 0;
@@ -18,7 +18,7 @@ public final class PerformanCounter {
         return count == 0 ? 0 : time / count;
     }
 
-    public synchronized void increment(long delay) {
+    synchronized void increment(long delay) {
         time += delay;
         count += 1;
     }

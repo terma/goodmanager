@@ -24,8 +24,8 @@
     <body>
         <jsp:include page="/security/util/mail/list.jsp" flush="true"/>
         <p>
-            К <a href="/security/content/main.jsp"/>">главной</a>,
-            <a href="/security/content/text/add.jsp"/>">добавить</a> текст
+            К <a href="/security/content/main.jsp">главной</a>,
+            <a href="/security/content/text/add.jsp">добавить</a> текст
         </p>
         <% if (texts.isEmpty()) { %>
             <p>Нет не одного текста.</p>

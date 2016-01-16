@@ -19,7 +19,7 @@
                 %>
                 <td valign="center" align="center">
                     <% String link = "/security/list.jsp?sectionId=" + firm.getSection().getId() + "#firmId" + firm.getId(); %>
-                    <a href="<%= link %>"/>">Назад</a>
+                    <a href="<%= link %>">Назад</a>
                     <p>
                         <% if (user.getId() == firm.getUser().getId()) { %>
                             <form action="firmdelete.jsp">

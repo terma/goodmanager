@@ -1,4 +1,4 @@
-package ua.com.testes.manager.web.filter.performan;
+package ua.com.testes.manager.web.filter.performance;
 
 
 import javax.servlet.*;
@@ -6,42 +6,26 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 
-public final class FilterPerforman
-        implements Filter {
+public final class FilterPerformance implements Filter {
 
+    @Override
     public void destroy() {
-
     }
 
-
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-
-        PerformanState state = PerformanManager.start(httpRequest.getRequestURI());
-
+        PerformanceState state = PerformanceManager.start(httpRequest.getRequestURI());
         try {
-
             chain.doFilter(request, response);
-
         } finally {
-
             state.finish();
-
         }
-
     }
 
-
-    public void init(FilterConfig config)
-            throws ServletException {
-
+    @Override
+    public void init(FilterConfig config) throws ServletException {
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.web.filter.performan.FilterPerforman
- * JD-Core Version:    0.6.0
- */

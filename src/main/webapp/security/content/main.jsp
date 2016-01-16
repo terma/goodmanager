@@ -1,4 +1,3 @@
-<%@ page import="ua.com.testes.manager.entity.*" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page language='java' %>
@@ -20,10 +19,10 @@
     <body>
         <jsp:include page="/security/util/mail/list.jsp" flush="true"/>
         <p>
-            К <a href="/security/main.jsp"/>">главной</a>
+            К <a href="/security/main.jsp">главной</a>
         </p>
         <p>
-            Перейти к редактированию <a href="/security/content/text/main.jsp"/>">текстов</a>
+            Перейти к редактированию <a href="/security/content/text/main.jsp">текстов</a>
         </p>
     </body>
 </html>

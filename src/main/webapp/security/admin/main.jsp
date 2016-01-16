@@ -1,6 +1,6 @@
 <%@ page import="net.sf.ehcache.CacheManager" %>
-<%@ page import="ua.com.testes.manager.web.filter.performan.PerformanCounter" %>
-<%@ page import="ua.com.testes.manager.web.filter.performan.PerformanManager" %>
+<%@ page import="ua.com.testes.manager.web.filter.performance.PerformanceCounter" %>
+<%@ page import="ua.com.testes.manager.web.filter.performance.PerformanceManager" %>
 <%@ page import="java.util.*" %>
 <%@ page import="ua.com.testes.manager.logic.activeX1c.LogicActiveX1c" %>
 <%@ page import="ua.com.testes.manager.util.activex1c.UtilActiveX1cConnection" %>
@@ -12,15 +12,15 @@
 
     private static final class CounterComparator implements Comparator<String> {
 
-        private final Map<String, PerformanCounter> counters;
+        private final Map<String, PerformanceCounter> counters;
 
-        public CounterComparator(final Map<String, PerformanCounter> counters) {
+        public CounterComparator(final Map<String, PerformanceCounter> counters) {
             this.counters = counters;
         }
 
         public int compare(String o1, String o2) {
-            final PerformanCounter counter1 = counters.get(o1);
-            final PerformanCounter counter2 = counters.get(o2);
+            final PerformanceCounter counter1 = counters.get(o1);
+            final PerformanceCounter counter2 = counters.get(o2);
             if (counter1 == null) return -1;
             if (counter2 == null) return +1;
             return Double.compare(counter2.getAverage(), counter1.getAverage());
@@ -66,7 +66,7 @@
                 <td valign="top">
                     Блоки производительности
                     <ul style="list-style: none">
-                        <% Map<String, PerformanCounter> counters = PerformanManager.get(); %>
+                        <% Map<String, PerformanceCounter> counters = PerformanceManager.get(); %>
                         <% final CounterComparator comparator = new CounterComparator(counters); %>
                         <% final List<String> orderCounterNames = new ArrayList<String>(counters.keySet()); %>
                         <% Collections.sort(orderCounterNames, comparator); %>
