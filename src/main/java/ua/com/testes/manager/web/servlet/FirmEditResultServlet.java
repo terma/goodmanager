@@ -33,7 +33,14 @@ public class FirmEditResultServlet extends HttpServlet {
 
         final EntityFirm firmEdit = new EntityFirm();
         final List<PageDetailError> errors = new ArrayList<PageDetailError>();
-        firmEdit.setId(Integer.parseInt(request.getParameter("firmid")));
+
+        final String firmId = request.getParameter("firmid");
+        if (firmId == null) {
+            response.sendRedirect("/security/main.jsp");
+            return;
+        }
+
+        firmEdit.setId(Integer.parseInt(firmId));
         final EntityFirm firm = EntityManager.find(EntityFirm.class, firmEdit.getId());
         firmEdit.setName(request.getParameter("firmname").trim());
         firmEdit.setSection(firm.getSection());

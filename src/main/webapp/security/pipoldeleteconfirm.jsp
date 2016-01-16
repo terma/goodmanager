@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.entity.EntityPipol" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -24,7 +23,6 @@
                         <% if (user.getId() == pipol.getUser().getId()) { %>
                             <% if (pipol.getFirm().getPipols().size() > 1) { %>
                                 <form action="pipoldelete.jsp">
-                                    <login:input/>
                                     <p>
                                         Вы действительно хотите удалить сотрудника <%= pipol.getFio() %>
                                         из <%= pipol.getFirm().getName() %>?

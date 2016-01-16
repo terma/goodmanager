@@ -10,7 +10,6 @@
 <%@ page import="java.util.Collections" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%!
 
     private static final Comparator<EntityFirm> firmComparator = new Comparator<EntityFirm>() {

@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.web.filter.FilterLogin" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="ua.com.testes.manager.util.locale.UtilLocale" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -73,12 +72,12 @@
                                         <p><input type="submit" value="Войти">
                                     </form>
                                     <%--<% if (FilterLoginNtlm.isUse()) { %>--%>
-                                        <%--<p>Попробовать <a href="<login:link value="/security/main.jsp" always="true"/>">автоматически</a></p>--%>
+                                        <%--<p>Попробовать <a href="/security/main.jsp">автоматически</a></p>--%>
                                     <%--<% } %>--%>
                                     <% if (FilterLogin.getAnonymousUserId() != null) { %>
                                         <% final EntityUser anonymousUser = EntityManager.find(EntityUser.class, FilterLogin.getAnonymousUserId()); %>
                                         <% if (anonymousUser != null) { %>
-                                            <p>Анонимный <a href="<login:link value='<%= "/security/main.jsp?login=" + anonymousUser.getLogin() + "&password=" + anonymousUser.getPassword() %>' always="true"/>">вход</a></p>
+                                            <p>Анонимный <a href="/security/main.jsp?login=<%= anonymousUser.getLogin() %>&password=<%= anonymousUser.getPassword() %>">вход</a></p>
                                         <% } %>
                                     <% } %>
                                     <p>Что это такое? Позвать <a href="javascript:showLoginHelp()">на помощь</a>!</p>

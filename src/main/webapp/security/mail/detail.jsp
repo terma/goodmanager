@@ -11,7 +11,6 @@
 <%@ page import="ua.com.testes.manager.entity.mail.EntityPartText" %>
 <%@ page import="ua.com.testes.manager.entity.mail.EntityPartFile" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 //    final EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));

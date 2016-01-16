@@ -3,7 +3,6 @@
 <%@ page import="ua.com.testes.manager.entity.product.EntityCurrency" %>
 <%@ page import="ua.com.testes.manager.logic.product.LogicCurrencyError" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -24,7 +23,6 @@
         %>
         <p>
         <form action="/security/product/currency/addresult.jsp" method="post">
-            <login:input/>
             <p><b>Реквизиты валюты</b></p>
             <p>
                 Название<br>

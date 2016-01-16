@@ -5,7 +5,6 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final ua.com.testes.manager.entity.user.EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
@@ -30,7 +29,6 @@
         %>
         <p>
         <form action="/security/content/text/addresult.jsp" method="post">
-            <login:input/>
             <p><b>Реквизиты текста</b></p>
             <p>
                 Название<br>

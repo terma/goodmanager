@@ -5,7 +5,6 @@
 <%@ page import="ua.com.testes.manager.entity.mail.server.EntityServer" %>
 <%@ page import="ua.com.testes.manager.entity.mail.EntityMail" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -24,7 +23,6 @@
                     <a href="/security/mail/main.jsp">Назад</a>
                     <p>
                         <form action="/security/mail/delete.jsp">
-                            <login:input/>
                             <p>
                                 Вы действительно хотите удалить сообщение
                             </p>

@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.entity.EntityTransaction" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));

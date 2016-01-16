@@ -21,7 +21,6 @@
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
 <%@ page import="java.util.concurrent.ConcurrentMap" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%!
 

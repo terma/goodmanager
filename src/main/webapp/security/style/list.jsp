@@ -4,7 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final List<EntityStyle> styles = EntityManager.list("select style from styles as style");

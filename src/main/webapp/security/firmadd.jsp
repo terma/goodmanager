@@ -3,7 +3,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.util.UtilCalendar" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -32,8 +31,7 @@
     <body>
         К <a href="main.jsp">разделам</a>
         <p>
-        <form action="firmaddresult.jsp" method="post">
-            <login:input/>
+        <form action="firmaddresult" method="post">
         <%
             Integer sectionId;
             try {

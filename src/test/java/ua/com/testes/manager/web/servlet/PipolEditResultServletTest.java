@@ -91,4 +91,15 @@ public class PipolEditResultServletTest {
         verify(javaxEntityManager).persist(pipol);
     }
 
+    @Test
+    public void ifNoPipolIdSpecifiedGotoMain() throws IOException, ServletException {
+        EntityUser user = new EntityUser();
+        when(entityManager.findNonStatic(eq(EntityUser.class), Matchers.any())).thenReturn(user);
+
+        new PipolEditResultServlet().doPost(request, response);
+
+        verify(response).sendRedirect("/security/main.jsp");
+        verifyZeroInteractions(javaxEntityManager);
+    }
+
 }

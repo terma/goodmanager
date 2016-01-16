@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyleError" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final EntityUser user = EntityManager.find(ua.com.testes.manager.entity.user.EntityUser.class, session.getAttribute("userId"));
@@ -52,7 +51,6 @@
         К <a href="/security/style/list.jsp"/>">стилям</a>,
         <a href="/security/main.jsp"/>">разделам</a>
         <form action="/security/style/editresult.jsp" method="post">
-            <login:input/>
             <input type="hidden" name="styleid" value="<%= style.id %>">
             <p>
                 Название стиля<br>

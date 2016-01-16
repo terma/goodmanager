@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.util.UtilCalendar" %>
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final EntityTidingCategory tidingCategory = ViewTidingCategory.getById(
@@ -32,7 +31,6 @@
         %>
         <p>
         <form action="/security/tiding/tidingaddresult.jsp" method="post">
-            <login:input/>
             <input type="hidden" name="tidingcategoryid" value="<%= tidingCategory.id %>">
             <p><b>Реквизиты новости</b></p>
             <p>

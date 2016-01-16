@@ -1,7 +1,6 @@
 package ua.com.testes.manager.web.servlet;
 
 import junit.framework.Assert;
-import org.directwebremoting.WebContextFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -37,11 +36,7 @@ public class FirmEditResultServletTest {
         EntityManager.setTestTransaction(true);
         EntityManager.setTestJavaxEntityManager(javaxEntityManager);
 
-        WebContextFactory.WebContextBuilder webContextBuilder = mock(WebContextFactory.WebContextBuilder.class);
-        WebContextFactory.setWebContextBuilder(webContextBuilder);
-
         request = mock(HttpServletRequest.class);
-
         response = mock(HttpServletResponse.class);
 
         session = mock(HttpSession.class);
@@ -97,6 +92,17 @@ public class FirmEditResultServletTest {
         Assert.assertNull(firm.getDelete());
 
         verify(javaxEntityManager).persist(firm);
+    }
+
+    @Test
+    public void ifNoFirmIdSpecifiedGotoMain() throws IOException, ServletException {
+        EntityUser user = new EntityUser();
+        when(entityManager.findNonStatic(eq(EntityUser.class), Matchers.any())).thenReturn(user);
+
+        new FirmEditResultServlet().doPost(request, response);
+
+        verify(response).sendRedirect("/security/main.jsp");
+        verifyZeroInteractions(javaxEntityManager);
     }
 
 }

@@ -4,7 +4,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.web.filter.SessionListener" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

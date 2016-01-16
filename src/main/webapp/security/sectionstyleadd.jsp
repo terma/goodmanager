@@ -2,7 +2,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -15,10 +14,9 @@
             final List<EntityStyle> styles = EntityManager.list("select style from styles as style");
         %>
         К <a href="/security/main.jsp">главной</a>, примененние стиля к
-        <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + section.getId() %>'/>"><%= section.getName() %></a>
+        <a href="/security/list.jsp?sectionid=<%= section.getId() %>"><%= section.getName() %></a>
         <p>
         <form action="/security/sectionstyleaddresult.jsp" method="post">
-            <login:input/>
             <input type="hidden" name="sectionid" value="<%= section.getId() %>">
             <p>
                 Выберите стиль<br>

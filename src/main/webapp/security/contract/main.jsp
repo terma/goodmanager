@@ -5,7 +5,6 @@
 <%@ page import="ua.com.testes.manager.entity.EntityVersionResolution" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%!
 

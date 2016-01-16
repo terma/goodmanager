@@ -5,7 +5,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <html>
     <%
@@ -26,7 +25,7 @@
                 <b>Найдено фирм <%= firms.size() %></b> для кода <b><%= request.getParameter("text") %></b>
             </p>
             <% for (final EntityFirm firm : firms) { %>
-                <a href="<login:link value="<%= \"/security/detail.jsp?firmId=\" + firm.getId() %>"/>"><%= firm.getName() %></a><br>
+                <a href="/security/detail.jsp?firmId=<%= firm.getId() %>"><%= firm.getName() %></a><br>
             <% } %>
     </body>
 </html>

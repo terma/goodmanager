@@ -4,7 +4,6 @@
 <%@ page import="java.util.HashSet" %>
 <%@ page import="ua.com.testes.manager.view.product.ViewCategory" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     EntityCategory parentCategory = null;
@@ -38,7 +37,6 @@
         %>
         <p>
         <form action="/security/product/categoryaddresult.jsp" method="post">
-            <login:input/>
             <% if (parentCategory != null) { %>
                 <input type="hidden" name="parentcategoryid" value="<%= parentCategory.id %>">
             <% } %>

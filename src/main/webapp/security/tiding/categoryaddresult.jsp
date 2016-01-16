@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.logic.tiding.LogicTidingCategory" %>
 <%@ page import="ua.com.testes.manager.logic.tiding.LogicTidingCategoryException" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("utf-8");

@@ -3,7 +3,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ page import="ua.com.testes.manager.util.UtilCalendar" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -40,11 +39,10 @@
             }
         %>
         <% if(firmId != null) { %>
-            или к <a href="<login:link value='<%= "detail.jsp?firmId=" + firmId %>'/>">фирме</a>
+            или к <a href="detail.jsp?firmId=<%= firmId %>">фирме</a>
         <% } %>
         <p>
         <form action="/security/pipoladdresult.jsp" method="post">
-            <login:input/>
             Раздел в который добавить фирму<br>
             <select name="firmId" style="vertical-align: middle; width: 80%">
                 <%

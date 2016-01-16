@@ -6,7 +6,6 @@
 <%@ page import="ua.com.testes.manager.logic.view.LogicView" %>
 <%@ page import="ua.com.testes.manager.entity.EntityTransaction" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%!
 
@@ -54,10 +53,10 @@
         %>
         Назад к <a href="/security/main.jsp">главной</a>
         <% if (sectionId != null) { %>
-            , к <a href="<login:link value='<%= "/security/list.jsp?sectionid=" + sectionId %>'/>">разделу</a>
+            , к <a href="/security/list.jsp?sectionid=<%= sectionId %>">разделу</a>
         <% } %>
         <% if (firmId != null) { %>
-            , к <a href="<login:link value='<%= "/security/detail.jsp?firmId=" + firmId %>'/>">фирме</a>
+            , к <a href="/security/detail.jsp?firmId="<%= firmId %>">фирме</a>
         <% } %>
         <p>
             Представление вашего интерфейса
@@ -81,7 +80,6 @@
                                     <li><input type="checkbox" <%= LogicView.isUserCheck(tempUser.getId(), view, false) ? "checked" : "" %> style="vertical-align: middle;" name="viewusers" value="<%= tempUser.getId() %>"> <%= tempUser.getFio() %></li>
                                 <% } %>
                             </ul>
-                            <login:input/>
                             Показывать историю
                             <ul style="list-style: none">
                                 <li><input type="checkbox" <%= view.history.firm ? "checked" : "" %> name="firmhistorys"> редактирования фирмы</li>
@@ -126,14 +124,14 @@
                                     <li>
                                         №<%= sort.order %> <%= fieldName(sort.field) %>
                                         <% if (sort.order > 0) { %>
-                                            <a href="<login:link value='<%= "/security/viewsorttopresult.jsp?sortId=" + sort.id + (sectionId == null ? "" : "&sectionId=" + sectionId) %>'/>">
+                                            <a href="/security/viewsorttopresult.jsp?sortId=<%= sort.id + (sectionId == null ? "" : "&sectionId=" + sectionId) %>">
                                                 <img src="/image/top.gif" alt="На один вверх" height="15" width="15" border="0" style="vertical-align: middle;"></a>
                                         <% } %>
                                         порядок
                                         <% if (!sort.inverse) { %>
-                                            <a href="<login:link value='<%= "/security/viewsortinverserresult.jsp?sortId=" + sort.id + "&inverse=true" + (sectionId == null ? "" : "&sectionId=" + sectionId) %>'/>">прямой</a>
+                                            <a href="/security/viewsortinverserresult.jsp?sortId=<%= sort.id + "&inverse=true" + (sectionId == null ? "" : "&sectionId=" + sectionId) %>">прямой</a>
                                         <% } else { %>
-                                            <a href="<login:link value='<%= "/security/viewsortinverserresult.jsp?sortId=" + sort.id + "&inverse=false" + (sectionId == null ? "" : "&sectionId=" + sectionId) %>'/>">обратный</a>
+                                            <a href="/security/viewsortinverserresult.jsp?sortId=<%= sort.id + "&inverse=false" + (sectionId == null ? "" : "&sectionId=" + sectionId) %>">обратный</a>
                                         <% } %>
                                     </li>
                                 <% } %>

@@ -2,7 +2,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final ua.com.testes.manager.entity.user.EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
@@ -39,7 +38,6 @@
                     </select>
                 </p>
                 <input type="hidden" name="userid" value="<%= moveUser.getId() %>">
-                <login:input/>
                 <input type="submit" name="" value="Переместить">
             </form>
         <% } %>

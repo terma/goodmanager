@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.logic.product.LogicCategory" %>
 <%@ page import="ua.com.testes.manager.logic.product.LogicCategoryException" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("utf-8");

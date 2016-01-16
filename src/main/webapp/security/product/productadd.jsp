@@ -5,7 +5,6 @@
 <%@ page import="ua.com.testes.manager.entity.product.EntityCategory" %>
 <%@ page import="ua.com.testes.manager.view.product.ViewCategory" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final EntityCategory category = ViewCategory.getById(Integer.parseInt(request.getParameter("categoryId")));
@@ -31,7 +30,6 @@
         %>
         <p>
         <form action="/security/product/productaddresult.jsp" method="post">
-            <login:input/>
             <input type="hidden" name="categoryid" value="<%= category.id %>">
             <p><b>Реквизиты продукции</b></p>
             <p>

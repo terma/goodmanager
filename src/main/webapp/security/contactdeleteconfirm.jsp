@@ -3,7 +3,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy", request.getLocale());
@@ -27,7 +26,6 @@
                         <% if (user == contact.user) {  %>
                             <% if (contact.pipol.getContacts().size() > 1) { %>
                                 <form action="contactdelete.jsp" method="post">
-                                    <login:input/>
                                     <p>
                                         Вы действительно хотите удалить беседу с <%= contact.pipol.getFio() %>
                                         из <%= contact.pipol.getFirm().getName() %> от <%= format.format(contact.create) %>,

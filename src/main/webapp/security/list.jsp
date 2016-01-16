@@ -7,7 +7,6 @@
 <%@ page import="ua.com.testes.manager.logic.style.LogicStyle" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page import="java.util.*" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%!
@@ -163,9 +162,9 @@
             <jsp:include page="/security/util/mail/list.jsp" flush="true"/>
             <jsp:include page="/security/util/rate/list.jsp" flush="true"/>
             <p>
-                Перечень фирм в разделе <%= LogicStyle.getHtml(section.getStyle(), section.getName()) %> к <a href="<login:link value='<%= "/security/main.jsp#section" + section.getId() %>'/>">разделам</a> к
-                <a href="/security/search/search.jsp">поиску</a> или создать <a href="<login:link value='<%= "/security/firmadd.jsp?sectionId=" + section.getId() %>'/>">фирму</a>,
-                <a href="<login:link value='<%= "/security/views.jsp?sectionId=" + sectionId %>'/>">представление</a>
+                Перечень фирм в разделе <%= LogicStyle.getHtml(section.getStyle(), section.getName()) %> к <a href="/security/main.jsp#section<%= section.getId() %>">разделам</a> к
+                <a href="/security/search/search.jsp">поиску</a> или создать <a href="/security/firmadd.jsp?sectionId=<%= section.getId() %>">фирму</a>,
+                <a href="/security/views.jsp?sectionId=<%= sectionId %>">представление</a>
             </p>
             <p>
                 Показывать фирмы если в названии есть <span id="filterPhraseResult"></span><br>

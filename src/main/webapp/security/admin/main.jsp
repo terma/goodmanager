@@ -6,7 +6,6 @@
 <%@ page import="ua.com.testes.manager.util.activex1c.UtilActiveX1cConnection" %>
 <%@ page import="ua.com.testes.manager.util.activex1c.UtilActiveX1c" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%!
 

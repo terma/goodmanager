@@ -3,7 +3,6 @@
 <%@ page import="ua.com.testes.manager.logic.tiding.LogicTidingCategoryError" %>
 <%@ page import="ua.com.testes.manager.entity.tiding.EntityTidingCategory" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -24,7 +23,6 @@
         %>
         <p>
         <form action="/security/tiding/categoryaddresult.jsp" method="post">
-            <login:input/>
             <p><b>Реквизиты категории новостей</b></p>
             <p>
                 Название<br>

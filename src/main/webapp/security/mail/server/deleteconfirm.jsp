@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page import="ua.com.testes.manager.entity.mail.server.EntityServer" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -25,7 +24,6 @@
                         <% if (user.getGroup().id == 2) {  %>
                             <% if (server.mails.isEmpty()) { %>
                                 <form action="/security/mail/server/delete.jsp">
-                                    <login:input/>
                                     <p>
                                         Вы действительно хотите удалить сервер <%= server.login %>
                                     </p>

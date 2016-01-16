@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.web.page.PageSearch" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <html>
     <head>
@@ -49,7 +48,6 @@
                         </div>
                     </p>
                     <form action="/security/search/searchresult.jsp" method="post">
-                        <login:input/>
                         <input type="text" name="text" value="<%= pageSearch.text %>" style="width: 70%;">
                         <input type="submit" name="" value="Выполнить" style="vertical-align: top;"><br>
                         Место поиска <input type="checkbox" name="firm" <%= pageSearch.firm ? "checked" : "" %>> фирмы,
@@ -57,7 +55,6 @@
                         <input type="checkbox" name="contact" <%= pageSearch.contact ? "checked" : "" %>> контакты
                     </form>
                     <form action="/security/search/searchidresult.jsp">
-                        <login:input/>
                         <input type="text" name="text" value="" style="width: 10%;">
                         <input type="submit" name="" value="По коду" style="vertical-align: top;">
                     </form>

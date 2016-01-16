@@ -2,7 +2,6 @@
 <%@ page import="ua.com.testes.manager.web.page.PageDetailError" %>
 <%@ page import="java.util.*" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -14,7 +13,6 @@
         К <a href="/security/main.jsp">разделам</a>
         <p>
         <form action="/security/pipoleditresult" method="post">
-            <login:input/>
             <%
                 EntityPipol editPipol = (EntityPipol) request.getAttribute("pipol");
                 if (editPipol == null) {

@@ -4,7 +4,6 @@
 <%@ page import="ua.com.testes.manager.entity.product.EntityProduct" %>
 <%@ page import="ua.com.testes.manager.view.product.ViewProduct" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final EntityProduct product = ViewProduct.getById(Integer.parseInt(request.getParameter("productid")));
@@ -37,7 +36,6 @@
         %>
         <p>
         <form action="/security/product/producteditresult.jsp" method="post">
-            <login:input/>
             <input type="hidden" name="productid" value="<%= product.id %>">
             <p><b>Реквизиты продукции</b></p>
             <p>

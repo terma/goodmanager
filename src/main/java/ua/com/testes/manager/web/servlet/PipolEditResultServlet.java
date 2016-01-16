@@ -32,7 +32,14 @@ public class PipolEditResultServlet extends HttpServlet {
 
         final EntityPipol pipolEdit = new EntityPipol();
         final List<PageDetailError> errors = new ArrayList<PageDetailError>();
-        pipolEdit.setId(Integer.parseInt(request.getParameter("pipolid")));
+
+        final String pipolId = request.getParameter("pipolid");
+        if (pipolId == null) {
+            response.sendRedirect("/security/main.jsp");
+            return;
+        }
+
+        pipolEdit.setId(Integer.parseInt(pipolId));
         final EntityPipol pipol = EntityManager.find(EntityPipol.class, pipolEdit.getId());
         pipolEdit.setFio(request.getParameter("pipolfio").trim());
         pipolEdit.setFirm(pipol.getFirm());

@@ -3,7 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final List<EntityServer> servers = EntityManager.list(
@@ -30,7 +29,6 @@
                 Вернуться к <a href="/security/mail/main.jsp"/>">письмам</a>
             </p>
             <form action="/security/mail/sendresult.jsp" method="post">
-                <login:input/>
                 <p><b>Письмо</b></p>
                 <p>
                     Получатели (разделяя через , или ;):<br>

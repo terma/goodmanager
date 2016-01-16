@@ -5,7 +5,6 @@
 <%@ page import="ua.com.testes.manager.logic.mail.MailItem" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
     final SimpleDateFormat format = new SimpleDateFormat("dd MMMM yy hh:mm", request.getLocale());

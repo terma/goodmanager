@@ -6,7 +6,6 @@
 <%@ page import="ua.com.testes.manager.util.UtilCalendar" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -64,7 +63,6 @@
         %>
         <p>Назад к <a href="/security/main.jsp">разделам</a></p>
         <form action="/security/statistic/dategraph.jsp" method="post">
-        <login:input/>
         <table border="0" cellpadding="0" cellspacing="5" width="100%">
             <tr>
                 <td valign="top">

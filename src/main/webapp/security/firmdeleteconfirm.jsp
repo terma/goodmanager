@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.entity.EntityFirm" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -23,7 +22,6 @@
                     <p>
                         <% if (user.getId() == firm.getUser().getId()) { %>
                             <form action="firmdelete.jsp">
-                                <login:input/>
                                 <p>
                                     Вы действительно хотите удалить фирму <%= firm.getName() %>
                                     из <%= firm.getSection().getName() %>?

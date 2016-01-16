@@ -5,7 +5,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -38,7 +37,6 @@
         %>
         <p>Назад к <a href="/security/main.jsp"/>">разделам</a></p>
         <form action="/security/statistic/work.jsp" method="post">
-            <login:input/>
             <p>
                 Показать для менеджера
                 <select name="userid">

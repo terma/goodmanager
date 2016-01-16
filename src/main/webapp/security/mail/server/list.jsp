@@ -5,7 +5,6 @@
 <%@ page import="ua.com.testes.manager.entity.mail.server.EntityServerType" %>
 <%@ page import="ua.com.testes.manager.entity.mail.server.rule.EntityServerRule" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
     EntityManager.find(ua.com.testes.manager.entity.user.EntityUser.class, session.getAttribute("userId"));

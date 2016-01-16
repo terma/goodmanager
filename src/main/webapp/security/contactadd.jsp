@@ -5,9 +5,7 @@
 <%@ page import="java.util.GregorianCalendar" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="ua.com.testes.manager.util.UtilCalendar" %>
-<%@ page import="java.util.Date" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -53,7 +51,6 @@
         или к <a href="/security/detail.jsp?firmId=<%= firmId %>">фирме</a>
         <p>
         <form action="/security/contactaddresult.jsp" method="post">
-            <login:input/>
             Сотрудник для беседы<br>
             <select name="pipolId" style="vertical-align: middle; width: 80%">
                 <%

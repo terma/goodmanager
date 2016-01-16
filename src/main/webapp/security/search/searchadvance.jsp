@@ -12,7 +12,6 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%!
 
     private static final Comparator<EntitySearch> useSearchComparator = new Comparator<EntitySearch>() {
@@ -380,7 +379,6 @@
                 <td valign="top" width="70%">
                     <!-- Условия поиска -->
                     <form action="/security/search/searchadvanceaddresult.jsp" method="post">
-                        <login:input/>
                         <p><b>Условия по фирмам:</b></p>
                         <p>
                             Название<br>

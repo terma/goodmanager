@@ -2,7 +2,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
-<%@ taglib prefix="login" uri="/WEB-INF/tag/login.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final List<EntityUser> users = EntityManager.list("select user from users as user");
@@ -14,7 +13,6 @@
     </head>
     <body>
         <form action="/security/mail/server/rule/addresult.jsp" method="post">
-            <login:input/>
             <p>
                 <b>Правило</b>
             </p>

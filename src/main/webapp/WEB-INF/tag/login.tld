@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE taglib
         PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
-        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"
-        >
+        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
 <taglib>
     <tlibversion>1.0</tlibversion>
     <jspversion>1.1</jspversion>
     <shortname>login</shortname>
     <info>Manager Tags library</info>
-    <tag>
-        <name>link</name>
-        <tagclass>ua.com.testes.manager.web.tag.TagLoginLinkGet</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>value</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>always</name>
-            <required>false</required>
-        </attribute>
-    </tag>
-    <tag>
-        <name>input</name>
-        <tagclass>ua.com.testes.manager.web.tag.TagLoginInputGet</tagclass>
-        <bodycontent>JSP</bodycontent>
-    </tag>
+
 </taglib>
