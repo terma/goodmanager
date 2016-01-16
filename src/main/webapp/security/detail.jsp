@@ -11,35 +11,27 @@
 <%!
 
     private static class ContactComparator implements Comparator<EntityContact> {
-
         public int compare(EntityContact o1, EntityContact o2) {
             return o2.create.compareTo(o1.create);
         }
-
     }
 
     private static class FirmHistoryComparator implements Comparator<EntityFirmHistory> {
-
         public int compare(EntityFirmHistory o1, EntityFirmHistory o2) {
             return o2.id.update.compareTo(o1.id.update);
         }
-
     }
 
     private static class PipolHistoryComparator implements Comparator<EntityPipolHistory> {
-
         public int compare(EntityPipolHistory o1, EntityPipolHistory o2) {
             return o2.id.update.compareTo(o1.id.update);
         }
-
     }
 
     private static class ContactHistoryComparator implements Comparator<EntityContactHistory> {
-
         public int compare(EntityContactHistory o1, EntityContactHistory o2) {
             return o2.id.update.compareTo(o1.id.update);
         }
-
     }
 %>
 <html>

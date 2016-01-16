@@ -39,8 +39,10 @@ public final class FilterLogin implements Filter {
                 String login = httpRequest.getParameter("login");
                 String password = httpRequest.getParameter("password");
 
-                if ((login != null) && (password != null)) {
-                    List users = ua.com.testes.manager.entity.EntityManager.list("select user from ua.com.testes.manager.entity.user.EntityUser as user where user.login = :p0", new Object[]{login.toLowerCase()});
+                if (login != null && password != null) {
+                    List users = ua.com.testes.manager.entity.EntityManager.list(
+                            "select user from ua.com.testes.manager.entity.user.EntityUser as user where user.login = :p0",
+                            login.toLowerCase());
 
                     if (!users.isEmpty()) {
                         final EntityUser user = (EntityUser) users.get(0);
@@ -77,12 +79,12 @@ public final class FilterLogin implements Filter {
                                     }
                                 });
                             } else {
-                                httpRequest.setAttribute("error", PageLoginError.NOT_CORRENT);
+                                httpRequest.setAttribute("error", PageLoginError.NOT_CURRENT);
                             }
                             httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);
                         }
                     } else {
-                        httpRequest.setAttribute("error", PageLoginError.NOT_CORRENT);
+                        httpRequest.setAttribute("error", PageLoginError.NOT_CURRENT);
                         httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);
                     }
                 } else {
@@ -96,6 +98,7 @@ public final class FilterLogin implements Filter {
         }
     }
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
         String useString = config.getServletContext().getInitParameter("basicLoginUse");
         use = (useString == null) || ("true".equalsIgnoreCase(useString));

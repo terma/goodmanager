@@ -12,61 +12,37 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-public final class FilterLoginCheck
-        implements Filter {
+public final class FilterLoginCheck implements Filter {
 
+    @Override
     public void destroy() {
-
     }
 
-
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-
         HttpSession session = httpRequest.getSession(true);
-
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
         Integer userId = (Integer) session.getAttribute("userId");
-
         if (userId != null) {
-
-            EntityUser user = (EntityUser) EntityManager.find(EntityUser.class, userId);
-
+            EntityUser user = EntityManager.find(EntityUser.class, userId);
             if (user.isBlock()) {
-
                 httpRequest.setAttribute("error", PageLoginError.BLOCK);
-
                 httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);
-
             } else {
-
                 chain.doFilter(request, response);
-
             }
-
         } else {
-
-            httpRequest.setAttribute("originalUrl", httpRequest.getRequestURL().toString());
-
-
+            httpRequest.setAttribute("originalUrl", httpRequest.getRequestURL().toString() + (httpRequest.getQueryString() != null ? "?" + httpRequest.getQueryString() : ""));
             httpRequest.getRequestDispatcher("/login.jsp").forward(httpRequest, httpResponse);
-
         }
 
     }
 
-
-    public void init(FilterConfig config)
-            throws ServletException {
+    @Override
+    public void init(FilterConfig config) throws ServletException {
 
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.web.filter.FilterLoginCheck
- * JD-Core Version:    0.6.0
- */

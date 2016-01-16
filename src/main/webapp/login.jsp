@@ -60,7 +60,7 @@
                                         }
                                     %>
                                     <form action="<%= originalUrl %>" method="post">
-                                        <% if (PageLoginError.NOT_CORRENT.equals(error)) { %>
+                                        <% if (PageLoginError.NOT_CURRENT.equals(error)) { %>
                                             <p><b>Пожайлуста введите правильный логин или пароль!</b></p>
                                         <% } %>
                                         <% if (PageLoginError.BLOCK.equals(error)) { %>
