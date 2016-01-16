@@ -7,17 +7,20 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>goodmanager</name>
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>resources</directory>
-            </resource>
-        </resources>
 
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.7</java.version>
+    </properties>
+
+    <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -27,9 +30,36 @@
 
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jasig.mojo.jspc</groupId>
+                <artifactId>jspc-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <packageName>ua.com.testes.manager.web.servlet</packageName>
+                </configuration>
+
+                <!-- Use the Tomcat 6 JSP compiler -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jasig.mojo.jspc</groupId>
+                        <artifactId>jspc-compiler-tomcat6</artifactId>
+                        <version>2.0.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -37,7 +67,40 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <warSourceDirectory>web</warSourceDirectory>
+                    <webXml>${pom.basedir}/target/jspweb.xml</webXml>
+                    <packagingExcludes>**/*.jsp</packagingExcludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.5.201505241946</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.0.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <preparationGoals>clean install</preparationGoals>
+                    <completionGoals>release:clean</completionGoals>
+                    <resume>false</resume>
                 </configuration>
             </plugin>
         </plugins>
@@ -90,7 +153,7 @@
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache-core</artifactId>
-            <version>2.4.6</version>
+            <version>2.4.7</version>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-api</artifactId>
@@ -113,23 +176,29 @@
 
         <dependency>
             <groupId>org.firebirdsql.jdbc</groupId>
-            <artifactId>jaybird</artifactId>
-            <version>2.1.6</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>junit</artifactId>
-                    <groupId>junit</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jms</artifactId>
-                    <groupId>javax.jms</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>mail</artifactId>
-                    <groupId>javax.mail</groupId>
-                </exclusion>
-            </exclusions>
+            <artifactId>jaybird-jdk18</artifactId>
+            <version>2.2.9</version>
         </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.firebirdsql.jdbc</groupId>-->
+        <!--<artifactId>jaybird</artifactId>-->
+        <!--<version>2.1.6</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<artifactId>junit</artifactId>-->
+        <!--<groupId>junit</groupId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+        <!--<artifactId>jms</artifactId>-->
+        <!--<groupId>javax.jms</groupId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+        <!--<artifactId>mail</artifactId>-->
+        <!--<groupId>javax.mail</groupId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.resource</groupId>

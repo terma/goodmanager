@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Manager</display-name>
+
+    <context-param>
+        <param-name>version</param-name>
+        <param-value>${version}</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>rateuse</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>basicloginUse</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>domain</param-name>
+        <param-value>X</param-value>
+    </context-param>
+    <context-param>
+        <param-name>domainLogin</param-name>
+        <param-value>X</param-value>
+    </context-param>
+    <context-param>
+        <param-name>domainLoginUse</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>domainPassword</param-name>
+        <param-value>X</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>FilterEncodeRequest</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterEncodeRequest</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterEncodeRequest</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterUpload</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.upload.UploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUpload</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterEntity</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterEntity</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterEntity</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Определяет правильну локаль для приложения -->
+    <filter>
+        <filter-name>FilterLocale</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.locale.FilterLocale</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLocale</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterLogin</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterLogin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLogin</filter-name>
+        <url-pattern>/security/*</url-pattern>
+    </filter-mapping>
+
+    <!--<filter>-->
+        <!--<filter-name>FilterLoginNtlm</filter-name>-->
+        <!--<filter-class>ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>FilterLoginNtlm</filter-name>-->
+        <!--<url-pattern>/security/*</url-pattern>-->
+    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>FilterLoginCheck</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.FilterLoginCheck</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterLoginCheck</filter-name>
+        <url-pattern>/security/*</url-pattern>
+    </filter-mapping>
+    <!-- Подключение фильтра измерения производительности, последним для того чтобы он
+        измерял производительность страниц jsp -->
+    <filter>
+        <filter-name>FilterPerforman</filter-name>
+        <filter-class>ua.com.testes.manager.web.filter.performance.FilterPerformance</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterPerforman</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- Этот сервлет отвечает за отдачу файлов клиентам -->
+    <servlet>
+        <servlet-name>ServletFileGet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.ServletFileGet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletFileGet</servlet-name>
+        <url-pattern>/security/contract/fileget</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletImageGet</servlet-name>
+        <servlet-class>ua.com.testes.manager.servlet.ServletImageGet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletImageGet</servlet-name>
+        <url-pattern>/content/imageget</url-pattern>
+    </servlet-mapping>
+
+    <!-- Для работы DWR -->
+    <servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <!--<display-name>DWR Servlet</display-name>-->
+        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>classes</param-name>
+            <param-value>
+                ua.com.testes.manager.web.service.FirmNamesService
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FirmEditResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.FirmEditResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmEditResultServlet</servlet-name>
+        <url-pattern>/security/firmeditresult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FirmAddResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.FirmAddResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirmAddResultServlet</servlet-name>
+        <url-pattern>/security/firmaddresult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PipolEditResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.PipolEditResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PipolEditResultServlet</servlet-name>
+        <url-pattern>/security/pipoleditresult</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>ua.com.testes.manager.web.listener.LoadListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ua.com.testes.manager.web.filter.SessionListener</listener-class>
+    </listener>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/tag/version.tld</taglib-uri>
+            <taglib-location>/WEB-INF/tag/version.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+
+    <session-config>
+        <session-timeout>180</session-timeout>
+    </session-config>
+</web-app>

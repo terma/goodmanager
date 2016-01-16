@@ -1,8 +1,0 @@
-package ua.com.testes.manager.web.page;
-
-public enum PageRuleError {
-
-    GROUP_NAME_EMPTY, GROUP_NAME_NOT_UNIQUE, USER_NAME_EMPTY,
-    USER_LOGIN_EMPTY, USER_LOGIN_NOT_UNIQUE, USER_PASSWORD_NOT_EQUAL, USER_PASSWORD_EMPTY
-
-}
