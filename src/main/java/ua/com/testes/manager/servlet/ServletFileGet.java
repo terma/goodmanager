@@ -55,8 +55,3 @@ public final class ServletFileGet extends HttpServlet {
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.servlet.ServletFileGet
- * JD-Core Version:    0.6.0
- */

@@ -55,8 +55,3 @@ public final class ServletImageGet extends HttpServlet {
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.servlet.ServletImageGet
- * JD-Core Version:    0.6.0
- */

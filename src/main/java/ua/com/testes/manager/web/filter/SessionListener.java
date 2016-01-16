@@ -10,60 +10,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SessionListener
-        implements HttpSessionListener {
-    private static final Map<String, HttpSession> sessions = new HashMap();
+public class SessionListener implements HttpSessionListener {
+
+    private static final Map<String, HttpSession> sessions = new HashMap<String, HttpSession>();
 
 
     public static void disconnect(int userId) {
-
         for (HttpSession session : sessions.values()) {
-
             EntityUser user = (EntityUser) session.getAttribute("user");
-
-            if ((user != null) && (user.getId().intValue() == userId))
-                session.setAttribute("user", null);
-
+            if (user != null && user.getId() == userId) session.setAttribute("user", null);
         }
-
     }
 
 
     public static boolean isConnect(int userId) {
-
         for (HttpSession session : sessions.values()) {
-
             EntityUser user = (EntityUser) session.getAttribute("user");
-
-            if ((user != null) && (user.getId().intValue() == userId)) {
-
-                return true;
-
-            }
-
+            if (user != null && user.getId() == userId) return true;
         }
-
         return false;
-
     }
 
-
+    @Override
     public void sessionCreated(HttpSessionEvent se) {
-
         sessions.put(se.getSession().getId(), se.getSession());
-
     }
 
-
+    @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-
         sessions.remove(se.getSession().getId());
-
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.web.filter.SessionListener
- * JD-Core Version:    0.6.0
- */

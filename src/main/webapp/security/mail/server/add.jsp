@@ -7,14 +7,6 @@
         <link type="text/css" href="/public/testes/style.css" rel="stylesheet">
     </head>
     <body>
-        <%--<%--%>
-<!--//            final List<PageDetailError> errors =-->
-<!--//                    (List<PageDetailError>) request.getAttribute("errors");-->
-<!--//            EntityContact contact = (EntityContact) request.getAttribute("contact");-->
-<!--//            if (contact == null) {-->
-<!--//                contact = new EntityContact();-->
-<!--//            }-->
-        <%--%>--%>
         <form action="/security/mail/server/addresult.jsp" method="post">
             <login:input/>
             <p>

@@ -32,8 +32,3 @@ public class FilterEncodeRequest
     }
 
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.web.filter.FilterEncodeRequest
- * JD-Core Version:    0.6.0
- */
