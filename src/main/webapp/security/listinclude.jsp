@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ua.com.testes.manager.entity.view.EntityView" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
     final EntityView view = (EntityView) request.getAttribute("view");
@@ -63,16 +63,16 @@
             </td>
 
             <td class="firmInfo">
-                <% if (view.showTelephon) { %>
+                <% if (view.showTelephon && StringUtils.isNotEmpty(firmInfo.firm.getTelephon())) { %>
                     Тел.: <%= firmInfo.firm.getTelephon() %><br>
                 <% } %>
-                <% if (view.showFax) { %>
+                <% if (view.showFax && StringUtils.isNotEmpty(firmInfo.firm.getFax())) { %>
                     Факс: <%= firmInfo.firm.getFax() %><br>
                 <% } %>
-                <% if (view.showEmail) { %>
+                <% if (view.showEmail && StringUtils.isNotEmpty(firmInfo.firm.getEmail())) { %>
                     E-mail: <a href="mailto:<%= firmInfo.firm.getEmail() %>"><%= firmInfo.firm.getEmail() %></a><br>
                 <% } %>
-                <% if (view.showWeb && firmInfo.firm.getSite().length() > 0) { %>
+                <% if (view.showWeb && StringUtils.isNotEmpty(firmInfo.firm.getSite())) { %>
                     <a href="<%= firmInfo.firm.getSite() %>"><%= firmInfo.firm.getSite() %></a>
                 <% } %>
             </td>

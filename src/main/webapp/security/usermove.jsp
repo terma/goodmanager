@@ -1,7 +1,6 @@
 <%@ page import="ua.com.testes.manager.entity.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
-<%@ taglib prefix="stripes" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     final ua.com.testes.manager.entity.user.EntityUser user = EntityManager.find(EntityUser.class, session.getAttribute("userId"));
