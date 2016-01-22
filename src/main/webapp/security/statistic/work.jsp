@@ -35,7 +35,7 @@
             } catch (NumberFormatException exception) {
             }
         %>
-        <p>Назад к <a href="/security/main.jsp"/>">разделам</a></p>
+        <p>Назад к <a href="/security/main.jsp">разделам</a></p>
         <form action="/security/statistic/work.jsp" method="post">
             <p>
                 Показать для менеджера
@@ -178,8 +178,7 @@
                     <p>Создал фирмы (<%= createFirms.size() %>)</p>
                     <ul>
                         <% for (final EntityFirm firm : createFirms) { %>
-                            <% String link1 = "/security/detail.jsp?firmId=" + firm.getId(); %>
-                            <li><a href="<%= link1 %>"/>"><%= firm.getName() %></a></li>
+                            <li><a href="/security/detail.jsp?firmId=<%= firm.getId() %>"><%= firm.getName() %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -187,8 +186,7 @@
                     <p>Удалил фирмы (<%= deleteFirms.size() %>)</p>
                     <ul>
                         <% for (final EntityFirm firm : deleteFirms) { %>
-                            <% String link2 = "/security/detail.jsp?firmId=" + firm.getId(); %>
-                            <li><a href="<%= link2 %>"/>"><%= firm.getName() %></a></li>
+                            <li><a href="/security/detail.jsp?firmId=<%= firm.getId() %>"><%= firm.getName() %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -196,8 +194,7 @@
                     <p>Отредактировал фирмы (<%= updateFirms.size() %>)</p>
                     <ul>
                         <% for (final EntityFirmHistory firmHistory : updateFirms) { %>
-                            <% String link3 = "/security/detail.jsp?firmId=" + firmHistory.id.firm.getId(); %>
-                            <li><a href="<%= link3 %>"/>"><%= firmHistory.id.firm.getName() %></a></li>
+                            <li><a href="/security/detail.jsp?firmId=<%= firmHistory.id.firm.getId() %>"><%= firmHistory.id.firm.getName() %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -211,8 +208,7 @@
                                 <% } else { %>
                                     <%= pipol.getFio() %>
                                 <% } %>
-                                <% String link4 = "/security/detail.jsp?firmId=" + pipol.getFirm().getId(); %>
-                                из <a href="<%= link4 %>"/>"><%= pipol.getFirm().getName() %></a>
+                                из <a href="/security/detail.jsp?firmId=<%= pipol.getFirm().getId() %>"><%= pipol.getFirm().getName() %></a>
                             </li>
                         <% } %>
                     </ul>
@@ -226,8 +222,7 @@
                                 <% } else { %>
                                     <%= pipol.getFio() %>
                                 <% } %>
-                                <% String link5 = "/security/detail.jsp?firmId=" + pipol.getFirm().getId(); %>
-                                из <a href="<%= link5 %>"/>"><%= pipol.getFirm().getName() %></a>
+                                из <a href="/security/detail.jsp?firmId=<%= pipol.getFirm().getId() %>"><%= pipol.getFirm().getName() %></a>
                         <% } %>
                     </ul>
                 <% } %>
@@ -242,7 +237,7 @@
                                     <%= pipolHistory.id.pipol.getFio() %>
                                 <% } %>
                                 <% String link6 = "/security/detail.jsp?firmId=" + pipolHistory.id.pipol.getFirm().getId(); %>
-                                из <a href="<%= link6 %>"/>"><%= pipolHistory.id.pipol.getFirm().getName() %></a>
+                                из <a href="<%= link6 %>"><%= pipolHistory.id.pipol.getFirm().getName() %></a>
                             </li>
                         <% } %>
                     </ul>
@@ -251,12 +246,8 @@
                     <p>Создал контакты (<%= createContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContact contact : createContacts) { %>
-                            <li><a href="<%
-        EntityPipol result = contact.pipol;
-        String link7 = "/security/detail.jsp?firmId=" + result.getFirm().getId();
-    %><%= link7 %>"/>
-        String result = contact.description;
-    "><%= result %></a></li>
+                            <% EntityPipol result = contact.pipol; %>
+                            <li><a href="/security/detail.jsp?firmId=<%= result.getFirm().getId() %>"><%= contact.description %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -264,12 +255,8 @@
                     <p>Удалил контакты (<%= deleteContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContact contact : deleteContacts) { %>
-                            <li><a href="<%
-        EntityPipol result = contact.pipol;
-        String link8 = "/security/detail.jsp?firmId=" + result.getFirm().getId();
-    %><%= link8 %>"/>
-        String result = contact.description;
-    "><%= result %></a></li>
+                            <% EntityPipol result = contact.pipol; %>
+                            <li><a href="/security/detail.jsp?firmId=<%= result.getFirm().getId() %>"><%= contact.description %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -277,12 +264,8 @@
                     <p>Отредактировал контакты (<%= updateContacts.size() %>)</p>
                     <ul>
                         <% for (final EntityContactHistory contactHistory : updateContacts) { %>
-                            <li><a href="<%
-        EntityPipol result = contactHistory.id.contact.pipol;
-        String link9 = "/security/detail.jsp?firmId=" + result.getFirm().getId() ;
-    %><%= link9%>"/>
-        EntityPipol result = contactHistory.id.contact.pipol;
-    "><%= result.getFirm().getName() %></a></li>
+                            <% EntityPipol result = contactHistory.id.contact.pipol; %>
+                            <li><a href="/security/detail.jsp?firmId=<%= result.getFirm().getId() %>"><%= contactHistory.id.contact.pipol.getFirm().getName() %></a></li>
                         <% } %>
                     </ul>
                 <% } %>
@@ -292,8 +275,7 @@
                         <% for (final EntityContractVersion contractVersion : createContractVersions) { %>
                             <li>
                                 №<%= contractVersion.contract.id %>
-                                <% String link10 = "/security/contract/detail.jsp?contractId=" + contractVersion.contract.id; %>
-                                <a href="<%= link10 %>"/>"><%= contractVersion.contract.name %></a>
+                                <a href="/security/contract/detail.jsp?contractId=<%= contractVersion.contract.id %>"><%= contractVersion.contract.name %></a>
                             </li>
                         <% } %>
                     </ul>

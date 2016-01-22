@@ -305,7 +305,7 @@
     <body>
         <p>
             Назад к <a href="/security/statistic/user.jsp">статистики</a>, или к
-            <a href="/security/main.jsp"/>">разделам</a>, максимум <%= countMax %>
+            <a href="/security/main.jsp">разделам</a>, максимум <%= countMax %>
         </p>
         <table border="0" cellpadding="0" cellspacing="0">
             <% for (final StatisticUser statisticUser : statistics.values()) { %>
@@ -347,7 +347,7 @@
                                                             <tr>
                                                                 <td valign="bottom" <%= value == 0 ? "rowspan=\"2\"" : "" %>>
                                                                     <% String link1 = "/security/statistic/userdaygraph.jsp?start=" + statistic.start.getTime() + "&finish=" + statistic.finish.getTime() + "&userid=" + statisticUser.user.getId(); %>
-                                                                    <a target="_blank" href="<%= link1 %>"/>"><img src="/image/border.gif" border="0"
+                                                                    <a target="_blank" href="<%= link1 %>"><img src="/image/border.gif" border="0"
                                                                         alt="Отчет <%= status.status.name %> количество <%= value %> с <%= format.format(statistic.start) %> по <%= format.format(statistic.finish) %>"
                                                                         width="5" height="<%= (int) (value * percent) %>"></a></td>
                                                                     <%
