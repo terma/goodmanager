@@ -1,9 +1,9 @@
 <%@ page import="ua.com.testes.manager.web.page.PageLoginError" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
-<%@ page import="ua.com.testes.manager.web.filter.FilterLogin" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="ua.com.testes.manager.util.locale.UtilLocale" %>
+<%@ page import="ua.com.testes.manager.web.servlet.LoginResultServlet" %>
 <%@ taglib prefix="version" uri="/WEB-INF/tag/version.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -52,13 +52,14 @@
                                 </td>
                             <% } else { %>
                                 <td valign="top">
-                                    <%
-                                        String originalUrl = (String) request.getAttribute("originalUrl");
-                                        if (originalUrl == null) {
-                                            originalUrl = "/security/main.jsp";
-                                        }
-                                    %>
-                                    <form action="<%= originalUrl %>" method="post">
+                                    <form action="/loginresult" method="post">
+                                        <%
+                                            String originalUrl = (String) request.getAttribute("originalUrl");
+                                            if (originalUrl == null) {
+                                                originalUrl = "/security/main.jsp";
+                                            }
+                                        %>
+                                        <input type="hidden" name="originalUrl" value="<%= originalUrl %>">
                                         <% if (PageLoginError.NOT_CURRENT.equals(error)) { %>
                                             <p><b>Пожайлуста введите правильный логин или пароль!</b></p>
                                         <% } %>
@@ -74,8 +75,8 @@
                                     <%--<% if (FilterLoginNtlm.isUse()) { %>--%>
                                         <%--<p>Попробовать <a href="/security/main.jsp">автоматически</a></p>--%>
                                     <%--<% } %>--%>
-                                    <% if (FilterLogin.getAnonymousUserId() != null) { %>
-                                        <% final EntityUser anonymousUser = EntityManager.find(EntityUser.class, FilterLogin.getAnonymousUserId()); %>
+                                    <% if (LoginResultServlet.getAnonymousUserId() != null) { %>
+                                        <% final EntityUser anonymousUser = EntityManager.find(EntityUser.class, LoginResultServlet.getAnonymousUserId()); %>
                                         <% if (anonymousUser != null) { %>
                                             <p>Анонимный <a href="/security/main.jsp?login=<%= anonymousUser.getLogin() %>&password=<%= anonymousUser.getPassword() %>">вход</a></p>
                                         <% } %>
@@ -106,9 +107,9 @@
                                             окно и окрыть его снова.
                                         </p>
                                         <p>
-                                            <b>Внимание!</b> При <%= FilterLogin.BLOCK_COUNT %> попытках
+                                            <b>Внимание!</b> При <%= LoginResultServlet.BLOCK_COUNT %> попытках
                                             неверно введения пароля система запретит Вам входить в течение
-                                            ближайших <%= FilterLogin.BLOCK_DELAY / 1000 / 60 %> минут, если
+                                            ближайших <%= LoginResultServlet.BLOCK_DELAY / 1000 / 60 %> минут, если
                                             это страшно обратитесь к своему администратору.
                                         </p>
                                         <p>

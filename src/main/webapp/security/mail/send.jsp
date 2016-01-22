@@ -26,7 +26,7 @@
             </table>
         <% } else { %>
             <p>
-                Вернуться к <a href="/security/mail/main.jsp"/>">письмам</a>
+                Вернуться к <a href="/security/mail/main.jsp">письмам</a>
             </p>
             <form action="/security/mail/sendresult.jsp" method="post">
                 <p><b>Письмо</b></p>

@@ -30,3 +30,6 @@ ps ax | grep fb_inet_server
 It should contain:
 
 /Library/Frameworks/Firebird.framework/Resources/bin/fb_inet_server
+
+Connect by isql
+ connect localhost:/Library/Frameworks/Firebird.framework/Resources/manager.fdb 

@@ -71,15 +71,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>FilterLogin</filter-name>
-        <filter-class>ua.com.testes.manager.web.filter.FilterLogin</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>FilterLogin</filter-name>
-        <url-pattern>/security/*</url-pattern>
-    </filter-mapping>
-
     <!--<filter>-->
         <!--<filter-name>FilterLoginNtlm</filter-name>-->
         <!--<filter-class>ua.com.testes.manager.web.filter.ntlm.http.FilterLoginNtlm</filter-class>-->
@@ -172,6 +163,15 @@
     <servlet-mapping>
         <servlet-name>PipolEditResultServlet</servlet-name>
         <url-pattern>/security/pipoleditresult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.LoginResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginResultServlet</servlet-name>
+        <url-pattern>/loginresult</url-pattern>
     </servlet-mapping>
 
     <listener>

@@ -1,29 +1,15 @@
 <%@ page language='java' %>
-<%@ page import="com.sun.mail.util.BASE64DecoderStream" %>
 <%@ page import="ua.com.testes.manager.entity.EntityManager" %>
-<%@ page import="ua.com.testes.manager.entity.EntityTransaction" %>
-<%@ page import="ua.com.testes.manager.entity.mail.EntityMail" %>
-<%@ page import="ua.com.testes.manager.entity.mail.EntityPart" %>
-<%@ page import="ua.com.testes.manager.entity.mail.EntityPartFile" %>
-<%@ page import="ua.com.testes.manager.entity.mail.EntityPartText" %>
 <%@ page import="ua.com.testes.manager.entity.mail.server.EntityServer" %>
 <%@ page import="ua.com.testes.manager.entity.mail.server.EntityServerType" %>
-<%@ page import="ua.com.testes.manager.entity.mail.server.rule.EntityServerRule" %>
 <%@ page import="ua.com.testes.manager.entity.user.EntityUser" %>
 <%@ page import="ua.com.testes.manager.logic.mail.MailException" %>
 <%@ page import="javax.mail.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="org.apache.commons.logging.Log" %>
-<%@ page import="org.apache.commons.logging.LogFactory" %>
 <%@ page import="java.util.regex.Pattern" %>
 <%@ page import="com.sun.mail.smtp.SMTPMessage" %>
 <%@ page import="javax.mail.internet.*" %>
-<%@ page import="java.io.*" %>
-<%@ page import="javax.activation.DataHandler" %>
-<%@ page import="javax.activation.FileDataSource" %>
 <%@ page import="java.util.regex.Matcher" %>
-<%@ page import="com.sun.mail.smtp.SMTPAddressFailedException" %>
-<%@ page import="java.net.ConnectException" %>
 <%!
 
     final static class MailAuthenticator extends Authenticator {

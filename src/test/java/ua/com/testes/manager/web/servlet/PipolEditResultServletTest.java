@@ -1,48 +1,20 @@
 package ua.com.testes.manager.web.servlet;
 
 import junit.framework.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
-import org.mockito.Mockito;
 import ua.com.testes.manager.entity.EntityFirm;
-import ua.com.testes.manager.entity.EntityManager;
 import ua.com.testes.manager.entity.EntityPipol;
 import ua.com.testes.manager.entity.EntityPipolHistory;
 import ua.com.testes.manager.entity.user.EntityUser;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-public class PipolEditResultServletTest {
-
-    private EntityManager entityManager;
-    private HttpServletRequest request;
-    private HttpServletResponse response;
-    private javax.persistence.EntityManager javaxEntityManager;
-
-    @Before
-    public void init() {
-        entityManager = mock(EntityManager.class);
-        EntityManager.setEntityManager(entityManager);
-
-        javaxEntityManager = mock(javax.persistence.EntityManager.class);
-        EntityManager.setTestTransaction(true);
-        EntityManager.setTestJavaxEntityManager(javaxEntityManager);
-
-        request = mock(HttpServletRequest.class);
-
-        response = mock(HttpServletResponse.class);
-
-        HttpSession session = mock(HttpSession.class);
-        when(request.getSession(Mockito.anyBoolean())).thenReturn(session);
-    }
+public class PipolEditResultServletTest extends ServletTest {
 
     @Test
     public void failsIfNoUser() throws IOException, ServletException {
