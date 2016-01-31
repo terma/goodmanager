@@ -20,7 +20,7 @@ public class PipolEditResultServletTest extends ServletTest {
     public void failsIfNoUser() throws IOException, ServletException {
         when(entityManager.findNonStatic(any(EntityUser.class.getClass()), Matchers.any())).thenReturn(null);
 
-        new PipolEditResultServlet().doPost(request, response);
+        new PipolEditResultServlet().service(request, response);
 
         verify(response).sendError(403, "No user!");
     }
@@ -43,7 +43,7 @@ public class PipolEditResultServletTest extends ServletTest {
 
         when(entityManager.listNonStatic(anyString(), any())).thenReturn(new ArrayList<Object>());
 
-        new PipolEditResultServlet().doPost(request, response);
+        new PipolEditResultServlet().service(request, response);
 
         Assert.assertEquals(1, pipol.getHistorys().size());
         EntityPipolHistory pipolHistory = pipol.getHistorys().get(0);
@@ -68,7 +68,7 @@ public class PipolEditResultServletTest extends ServletTest {
         EntityUser user = new EntityUser();
         when(entityManager.findNonStatic(eq(EntityUser.class), Matchers.any())).thenReturn(user);
 
-        new PipolEditResultServlet().doPost(request, response);
+        new PipolEditResultServlet().service(request, response);
 
         verify(response).sendRedirect("/security/main.jsp");
         verifyZeroInteractions(javaxEntityManager);

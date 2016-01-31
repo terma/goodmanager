@@ -1,9 +1,6 @@
 package ua.com.testes.manager.web.servlet;
 
-import ua.com.testes.manager.entity.EntityFirm;
-import ua.com.testes.manager.entity.EntityFirmHistory;
-import ua.com.testes.manager.entity.EntityManager;
-import ua.com.testes.manager.entity.EntityTransaction;
+import ua.com.testes.manager.entity.*;
 import ua.com.testes.manager.entity.user.EntityUser;
 import ua.com.testes.manager.web.page.PageDetailError;
 
@@ -19,7 +16,7 @@ import java.util.List;
 public class FirmEditResultServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
 
@@ -40,6 +37,8 @@ public class FirmEditResultServlet extends HttpServlet {
             return;
         }
 
+        final int sectionId = Integer.parseInt(request.getParameter("sectionId"));
+
         firmEdit.setId(Integer.parseInt(firmId));
         final EntityFirm firm = EntityManager.find(EntityFirm.class, firmEdit.getId());
         firmEdit.setName(request.getParameter("firmname").trim());
@@ -50,9 +49,12 @@ public class FirmEditResultServlet extends HttpServlet {
         firmEdit.setTelephon(request.getParameter("firmtelephon").trim());
         firmEdit.setFax(request.getParameter("firmfax").trim());
         firmEdit.setDescription(request.getParameter("firmdescription"));
+
+        // validation
         if (firmEdit.getName() == null || firmEdit.getName().trim().length() == 0) {
             errors.add(PageDetailError.FIRM_NAME_EMPTY);
         }
+
         if (errors.isEmpty()) {
             final List<EntityFirm> firms = EntityManager.list(
                     "select firm from ua.com.testes.manager.entity.EntityFirm as firm");
@@ -83,7 +85,16 @@ public class FirmEditResultServlet extends HttpServlet {
                     history.user = user;
                     history.telephon = firm.getTelephon();
                     firm.getHistorys().add(history);
-                    //manager.persist(history);
+
+                    if (!firm.getSection().getId().equals(sectionId)) {
+                        final EntitySection oldSection = firm.getSection();
+                        oldSection.getFirms().remove(firm);
+
+                        final EntitySection section = EntityManager.find(EntitySection.class, sectionId);
+                        firm.setSection(section);
+                        section.getFirms().add(firm);
+                    }
+
                     firm.setAddress(firmEdit.getAddress());
                     firm.setSite(firmEdit.getSite());
                     firm.setEmail(firmEdit.getEmail());

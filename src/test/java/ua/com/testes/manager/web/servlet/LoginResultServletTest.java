@@ -18,7 +18,7 @@ public class LoginResultServletTest extends ServletTest {
     public void redirectToLoginPageIfNoLogin() throws IOException, ServletException {
         when(request.getParameter("password")).thenReturn("x");
 
-        new LoginResultServlet().doPost(request, response);
+        new LoginResultServlet().service(request, response);
 
         verify(response).sendRedirect("/login.jsp");
     }
@@ -27,7 +27,7 @@ public class LoginResultServletTest extends ServletTest {
     public void redirectToLoginPageIfNoPassword() throws IOException, ServletException {
         when(request.getParameter("login")).thenReturn("x");
 
-        new LoginResultServlet().doPost(request, response);
+        new LoginResultServlet().service(request, response);
 
         verify(response).sendRedirect("/login.jsp");
     }
@@ -37,7 +37,7 @@ public class LoginResultServletTest extends ServletTest {
         when(request.getParameter("login")).thenReturn("x");
         when(request.getParameter("password")).thenReturn("x");
 
-        new LoginResultServlet().doPost(request, response);
+        new LoginResultServlet().service(request, response);
 
         verify(request).setAttribute("error", PageLoginError.NOT_CURRENT);
         verify(request).getRequestDispatcher("/login.jsp");
@@ -55,7 +55,7 @@ public class LoginResultServletTest extends ServletTest {
         when(request.getParameter("login")).thenReturn("x");
         when(request.getParameter("password")).thenReturn("x");
 
-        new LoginResultServlet().doPost(request, response);
+        new LoginResultServlet().service(request, response);
 
         verify(request).setAttribute("error", PageLoginError.BLOCK);
         verify(request).getRequestDispatcher("/login.jsp");
@@ -73,7 +73,7 @@ public class LoginResultServletTest extends ServletTest {
         when(request.getParameter("login")).thenReturn("x");
         when(request.getParameter("password")).thenReturn("x");
 
-        new LoginResultServlet().doPost(request, response);
+        new LoginResultServlet().service(request, response);
 
         verify(response).sendRedirect("originalX");
     }
