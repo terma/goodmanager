@@ -12,11 +12,10 @@ import java.util.List;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "pipols")
-public final class EntityPipol
-        implements Serializable {
+public final class EntityPipol implements Serializable {
 
     @Column(nullable = false, length = 250)
- private String fio = "";
+    private String fio = "";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERATOR_PIPOL")
@@ -24,19 +23,19 @@ public final class EntityPipol
     private Integer id;
 
     @Column(name = "descriptions", nullable = false)
- private String description = "";
+    private String description = "";
 
     @Column(nullable = false)
- private String telephon = "";
+    private String telephon = "";
 
     @Column(nullable = false)
- private String rang = "";
+    private String rang = "";
 
     @Column(name = "e_mail", nullable = false)
- private String email = "";
+    private String email = "";
 
     @Column(name = "create_date", nullable = false)
- private Date create = new Date();
+    private Date create = new Date();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -56,14 +55,14 @@ public final class EntityPipol
     @OneToMany(cascade = {javax.persistence.CascadeType.ALL})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinColumn(name = "id_parent")
- private List<EntityContact> contacts = new ArrayList();
+    private List<EntityContact> contacts = new ArrayList();
 
     @Column(name = "delete_date")
     private Date delete;
 
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "id.pipol", cascade = {javax.persistence.CascadeType.ALL})
- private List<EntityPipolHistory> historys = new ArrayList();
+    private List<EntityPipolHistory> historys = new ArrayList();
 
     public String getFio() {
 
@@ -191,12 +190,11 @@ public final class EntityPipol
     }
 
     public void setHistorys(List<EntityPipolHistory> historys) {
-
         this.historys = historys;
     }
-}
 
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.EntityPipol
- * JD-Core Version:    0.6.0
- */
+    @Override
+    public String toString() {
+        return "EntityPipol {" + "id=" + id + ", fio='" + fio + '\'' + '}';
+    }
+}

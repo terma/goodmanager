@@ -10,8 +10,7 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "source_type", discriminatorType = DiscriminatorType.INTEGER)
 @Entity(name = "search_sources")
-public abstract class EntitySearchSource
-        implements Serializable {
+public abstract class EntitySearchSource implements Serializable {
 
     @Id
     @Column(name = "source_id")
@@ -28,8 +27,3 @@ public abstract class EntitySearchSource
     @OneToOne(cascade = {javax.persistence.CascadeType.ALL}, mappedBy = "source")
     public EntitySearchRule rule;
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.search.EntitySearchSource
- * JD-Core Version:    0.6.0
- */

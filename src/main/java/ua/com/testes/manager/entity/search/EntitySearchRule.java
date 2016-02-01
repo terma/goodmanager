@@ -10,8 +10,7 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "rule_type", discriminatorType = DiscriminatorType.INTEGER)
 @Entity(name = "search_rules")
-public abstract class EntitySearchRule
-        implements Serializable {
+public abstract class EntitySearchRule implements Serializable {
 
     @Id
     @Column(name = "rule_id")
@@ -24,8 +23,3 @@ public abstract class EntitySearchRule
     @JoinColumn(name = "rule_source_id")
     public EntitySearchSource source;
 }
-
-/* Location:           C:\artem\work\goodmanager\web\WEB-INF\classes\
- * Qualified Name:     ua.com.testes.manager.entity.search.EntitySearchRule
- * JD-Core Version:    0.6.0
- */
