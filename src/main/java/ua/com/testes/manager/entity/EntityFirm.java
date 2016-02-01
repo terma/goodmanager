@@ -14,6 +14,7 @@ import java.util.List;
 @Entity(name = "FIRMS")
 public final class EntityFirm implements Serializable {
 
+    @Column(nullable = false)
     private String name = "";
 
     @Id
@@ -225,6 +226,11 @@ public final class EntityFirm implements Serializable {
 
     public void setHistorys(List<EntityFirmHistory> historys) {
         this.historys = historys;
+    }
+
+    @Override
+    public String toString() {
+        return "EntityFirm {" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 
 }

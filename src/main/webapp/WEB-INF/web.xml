@@ -166,6 +166,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>SearchResultServlet</servlet-name>
+        <servlet-class>ua.com.testes.manager.web.servlet.SearchResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchResultServlet</servlet-name>
+        <url-pattern>/security/search/searchresult</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>LoginResultServlet</servlet-name>
         <servlet-class>ua.com.testes.manager.web.servlet.LoginResultServlet</servlet-class>
     </servlet>

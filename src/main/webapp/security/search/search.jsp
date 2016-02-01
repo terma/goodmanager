@@ -37,7 +37,7 @@
                     <p>
                         К <a href="/security/main.jsp">разделам</a>
                         простой поиск, к
-                        <a href="/security/search/searchadvance.jsp">расширенному</a>
+                        <a href="/security/search/searchadvance">расширенному</a>
                         поиску, краткое
                         описание <a href="javascript:searchHelpClick()">здесь</a><br>
                         <div id="searchHelp">Поиск работает достаточно просто
@@ -47,16 +47,12 @@
                             и вернетесь к этому окну с сохраненными настройками.
                         </div>
                     </p>
-                    <form action="/security/search/searchresult.jsp" method="post">
+                    <form action="/security/search/searchresult" method="post">
                         <input type="text" name="text" value="<%= pageSearch.text %>" style="width: 70%;">
                         <input type="submit" name="" value="Выполнить" style="vertical-align: top;"><br>
                         Место поиска <input type="checkbox" name="firm" <%= pageSearch.firm ? "checked" : "" %>> фирмы,
                         <input type="checkbox" name="pipol" <%= pageSearch.pipol ? "checked" : "" %>> сотрудники,
                         <input type="checkbox" name="contact" <%= pageSearch.contact ? "checked" : "" %>> контакты
-                    </form>
-                    <form action="/security/search/searchidresult.jsp">
-                        <input type="text" name="text" value="" style="width: 10%;">
-                        <input type="submit" name="" value="По коду" style="vertical-align: top;">
                     </form>
                 </td>
             </tr>
