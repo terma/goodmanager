@@ -4,7 +4,7 @@
     <groupId>com.googlecode</groupId>
     <artifactId>goodmanager</artifactId>
     <packaging>war</packaging>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3</version>
     <name>goodmanager</name>
 
     <properties>
@@ -250,6 +250,6 @@
         <developerConnection>scm:git:https://github.com/terma/goodmanager.git</developerConnection>
         <connection>scm:git:https://github.com/terma/goodmanager.git</connection>
         <url>https://github.com/terma/goodmanager</url>
-        <tag>HEAD</tag>
+        <tag>goodmanager-1.3</tag>
     </scm>
 </project>
